@@ -1,5 +1,6 @@
 import logo from './logo.svg';
-import './App.css';
+import './App.css';import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 function App() {
   const [messasge, setMessage] = useState("Hi");
@@ -26,6 +27,9 @@ function App() {
         >
           Learn React
         </a>
+        <h1>
+          {messasge}
+        </h1>
       </header>
     </div>
   );
