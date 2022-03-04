@@ -2,6 +2,15 @@ import logo from './logo.svg';
 import './App.css';
 
 function App() {
+  const [messasge, setMessage] = useState("Hi");
+
+  useEffect(() => {
+    axios.get('http://localhost:8080/')
+      .then((response) => {
+        setMessage(response.data)
+      })
+  })
+
   return (
     <div className="App">
       <header className="App-header">
