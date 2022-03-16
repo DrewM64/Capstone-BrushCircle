@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -53,5 +54,14 @@ public class TestController {
         Files.write(fileNameAndPath, file.getBytes());
 
         return "Uploaded file: " + file.getOriginalFilename();
+    }
+
+    @RequestMapping("/testfilelist")
+    @ResponseBody
+    public String[] GetFileList(){
+        File file = new File(uploadDirectory);
+        String[] fileList = file.list();
+
+        return fileList;
     }
 }
