@@ -17,9 +17,9 @@ import java.nio.file.Paths;
 
 @Controller
 public class TestController {
-    /* this will store the path to your home directory in which the upload folder will
+    /* this should store the path to your resources directory in which the upload folder will
     * be placed. */
-    public static String uploadDirectory = System.getProperty("user.dir") + "/BrushcircleUploads";
+    public static String uploadDirectory = System.getProperty("user.dir") + "/src/main/resources/public/BrushCircleImages";
 
     public TestController() {
     }

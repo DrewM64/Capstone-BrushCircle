@@ -34,3 +34,4 @@ build/
 
 ### Test Directories ###
 BrushcircleUploads
+/src/main/resources/public/BrushCircleImages
