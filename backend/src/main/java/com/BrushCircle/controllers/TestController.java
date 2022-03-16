@@ -44,4 +44,14 @@ public class TestController {
 
         return "uploadstatusview";
     }
+
+    @RequestMapping("/reactupload")
+    @ResponseBody
+    @CrossOrigin(origins = "http://localhost:3000")
+    public String ReactUpload(@RequestParam("file") MultipartFile file) throws IOException {
+        Path fileNameAndPath = Paths.get(uploadDirectory, file.getOriginalFilename());
+        Files.write(fileNameAndPath, file.getBytes());
+
+        return "Uploaded file: " + file.getOriginalFilename();
+    }
 }
