@@ -33,5 +33,5 @@ build/
 .vscode/
 
 ### Test Directories ###
-BrushcircleUploads
+BrushCircleUploads
 /src/main/resources/public/BrushCircleImages

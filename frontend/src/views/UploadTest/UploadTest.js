@@ -3,6 +3,12 @@ import React, { useEffect, useState } from 'react'
 
 import './styles.css';
 
+/* NOTES
+
+    When files are recieved on the backend we should remove
+    spaces from the filenames. This was previously causing me issues.
+*/
+
 function UploadTest() {
     const [file, setFile] = useState(null);
     const [response, setResponse] = useState(null);
@@ -33,6 +39,7 @@ function UploadTest() {
         //send to the backend
         axios.post("http://localhost:8080/reactupload", formData).then((response) => {
             setResponse(response.data);
+            getFileList();
         }).catch((error) => {
             console.log(error);
         })    
@@ -49,11 +56,12 @@ function UploadTest() {
             <div>
                 <input type="file"  id='file' onChange={onFileChange} />
                 <button onClick={onFileUpload}>Upload</button>
-                <h5>Server Response: {response}</h5>
+                <h5>Server Response: </h5> <span>{response}</span>
             </div>
-            <div>
+            <hr />
+            <div id='image-container'>
                 {fileList?.map((item, index) => {
-                    return (<img src={'http://localhost:8080/BrushCircleImages/' + item}></img>)
+                    return (<img src={'http://localhost:8080/' + item}></img>)
                 })}
             </div>
         </div>

@@ -19,7 +19,7 @@ import java.nio.file.Paths;
 public class TestController {
     /* this should store the path to your resources directory in which the upload folder will
     * be placed. */
-    public static String uploadDirectory = System.getProperty("user.dir") + "/src/main/resources/public/BrushCircleImages";
+    public static String uploadDirectory = System.getProperty("user.dir") + "/BrushCircleUploads";
 
     public TestController() {
     }
@@ -50,7 +50,7 @@ public class TestController {
     @ResponseBody
     @CrossOrigin(origins = "http://localhost:3000")
     public String ReactUpload(@RequestParam("file") MultipartFile file) throws IOException {
-        Path fileNameAndPath = Paths.get(uploadDirectory, file.getOriginalFilename());
+        Path fileNameAndPath = Paths.get(uploadDirectory, file.getOriginalFilename().replaceAll(" ", "-"));
         Files.write(fileNameAndPath, file.getBytes());
 
         return "Uploaded file: " + file.getOriginalFilename();
