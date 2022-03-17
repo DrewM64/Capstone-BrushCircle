@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    <div id="container">
+        <div id="content" class="content">
+            <button class="toggle-button" onclick="onClick()">Toggle Sidebar</button>
+            <div class="placeholder-container">
+                <div class="box"></div>
+                <div class="box"></div>
+                <div class="box"></div>
+                <div class="box"></div>
+                <div class="box"></div>
+                <div class="box"></div>
+                <div class="box"></div>
+                <div class="box"></div>
+                <div class="box"></div>
+                <div class="box"></div>
+                <div class="box"></div>
+                <div class="box"></div>
+                <div class="box"></div>
+                <div class="box"></div>
+                <div class="box"></div>
+                <div class="box"></div>
+                <div class="box"></div>
+                <div class="box"></div>
+                <div class="box"></div>
+                <div class="box"></div>
+                <div class="box"></div>
+                <div class="box"></div>
+                <div class="box"></div>
+                <div class="box"></div>
+                <div class="box"></div>
+                <div class="box"></div>
+                <div class="box"></div>
+                <div class="box"></div>
+                <div class="box"></div>
+                <div class="box"></div>
+                <div class="box"></div>
+                <div class="box"></div>
+                <div class="box"></div>
+                <div class="box"></div>
+                <div class="box"></div>
+                <div class="box"></div>
+            </div>
+        </div>
+        <div id="right-sidebar" class="right-sidebar">
+
+        </div>
+    </div>
+
+    <script>
+        const onClick = (event) => {
+            let currentClass = document.querySelector("#right-sidebar").getAttribute("class");
+            
+            if(currentClass == "right-sidebar"){
+                document.querySelector("#right-sidebar").setAttribute("class", "right-sidebar-closed");
+                document.querySelector("#content").setAttribute("class", "content-expanded");
+            }else{
+                document.querySelector("#right-sidebar").setAttribute("class", "right-sidebar");
+                document.querySelector("#content").setAttribute("class", "content");
+            }
+        }
+    </script>
+</body>
+</html>
