@@ -58,6 +58,7 @@ public class TestController {
 
     @RequestMapping("/testfilelist")
     @ResponseBody
+    @CrossOrigin(origins = "http://localhost:3000")
     public String[] GetFileList(){
         File file = new File(uploadDirectory);
         String[] fileList = file.list();

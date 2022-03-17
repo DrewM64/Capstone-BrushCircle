@@ -1,18 +1,30 @@
 import axios from 'axios';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+
+import './styles.css';
 
 function UploadTest() {
     const [file, setFile] = useState(null);
     const [response, setResponse] = useState(null);
+    const [fileList, setFileList] = useState(null);
 
-    //this will store the file in state when selected
+    //this will store the file in local state when selected
     const onFileChange = (event) => {
         setFile(event.target.files[0]);
     }
 
+    /* will get a list of files from the backend so
+    we know what to request */
+    const getFileList = () => {
+        axios.get("http://localhost:8080/testfilelist").then((response) => {
+            setFileList(response.data);
+        }).catch((error) => {
+            console.log(error);
+        })
+    }
+
     //event handler for when submitted
     const onFileUpload = () => {
-        // const isEmpty = document.querySelector("#file").value;
         let formData = new FormData();
 
         formData.append("file", file, file.name);
@@ -23,8 +35,13 @@ function UploadTest() {
             setResponse(response.data);
         }).catch((error) => {
             console.log(error);
-        })
+        })    
     }
+
+    //this will run 1 time upon component mount
+    useEffect(() => {
+        getFileList()
+    }, [])
 
     return (
         <div>
@@ -33,6 +50,11 @@ function UploadTest() {
                 <input type="file"  id='file' onChange={onFileChange} />
                 <button onClick={onFileUpload}>Upload</button>
                 <h5>Server Response: {response}</h5>
+            </div>
+            <div>
+                {fileList?.map((item, index) => {
+                    return (<img src={'http://localhost:8080/BrushCircleImages/' + item}></img>)
+                })}
             </div>
         </div>
     )
