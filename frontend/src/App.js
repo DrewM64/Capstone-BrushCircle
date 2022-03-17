@@ -3,6 +3,7 @@ import './App.css';import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Route, Routes } from 'react-router-dom';
 import UploadTest from './views/UploadTest/UploadTest';
+import SlidingMenuTest from './views/SlidingMenuTest/SlidingMenuTest';
 
 function App() {
   const [messasge, setMessage] = useState("Hi");
@@ -17,6 +18,7 @@ function App() {
   return (
     <Routes>
       <Route path='/test-upload' element={<UploadTest />} />
+      <Route path='/test-menu' element={<SlidingMenuTest />} />
     </Routes>
   );
 }
