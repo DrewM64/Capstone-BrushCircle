@@ -1,8 +1,7 @@
 package com.BrushCircle.model;
 
-import org.springframework.boot.autoconfigure.domain.EntityScan;
+//import org.springframework.boot.autoconfigure.domain.EntityScan;
 
-@EntityScan
 public class User {
     
     private long id;

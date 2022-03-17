@@ -1,0 +1,13 @@
+img {
+    width: 200px;
+}
+
+#image-container {
+    max-width: 80vw;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+h4 {
+    text-align: center;
+}
