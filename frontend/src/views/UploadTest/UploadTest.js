@@ -53,6 +53,7 @@ function UploadTest() {
     return (
         <div>
             <h1>Uplaod test</h1>
+            <h3>First select an image file then click upload</h3>
             <div>
                 <input type="file"  id='file' onChange={onFileChange} />
                 <button onClick={onFileUpload}>Upload</button>
@@ -60,6 +61,7 @@ function UploadTest() {
             </div>
             <hr />
             <div id='image-container'>
+                <h4>Images will display here when uploaded:</h4>
                 {fileList?.map((item, index) => {
                     return (<img src={'http://localhost:8080/' + item}></img>)
                 })}
