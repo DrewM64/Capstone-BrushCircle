@@ -1,96 +1,38 @@
 package com.BrushCircle.model;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+
+import lombok.Data;
+
+import javax.persistence.*;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
+//@Data
+//@Entity
+//@Table(name = "carts")
 public class Cart {
-    
-	private int cartId;
-	private int orderId;
-    private String ProductId;
-    private String ProductName;
-    private String email;
-    private String DateAdded;
-    private String quantity;
-    private String price;
-
-    public Cart(String productId, String productName, String email, String dateAdded, String quantity, String price) {
-    super();
-    this.ProductId = productId;
-    this.ProductName = productName;
-    this.email = email;
-    this.DateAdded = dateAdded;
-    this.quantity = quantity;
-    this.price = price;
-    }
-
-    public Cart() {
-        super();
-    }
-
-    public Cart(String email) {
-        super();
-        this.email = email;
-    }
-
-	public int getOrderId() {
-		return orderId;
-	}
-
-	public int getCartId() {
-		return cartId;
-	}
-
-	public void setCartId(int cartId) {
-		this.cartId = cartId;
-	}
-
-	public void setOrderId(int orderId) {
-		this.orderId = orderId;
-	}
-
-	public String getProductName() {
-		return ProductName;
-	}
-
-	public void setProductName(String productName) {
-		this.ProductName = productName;
-	}
-
-	public String getPrice() {
-		return price;
-	}
-
-	public void setPrice(String price) {
-		this.price = price;
-	}
-
-	public String getQuantity() {
-		return quantity;
-	}
-
-	public void setQuantity(String quantity) {
-		this.quantity = quantity;
-	}
-
-	public String getProductId() {
-		return ProductId;
-	}
-
-	public void setProductId(String productId) {
-		this.ProductId = productId;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getDateAdded() {
-		return DateAdded;
-	}
-
-	public void setDateAdded(String dateAdded) {
-		this.DateAdded = dateAdded;
-	}
+//
+//	@Id
+//	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "carts_seq")
+//	@SequenceGenerator(name = "carts_seq", sequenceName = "carts_seq", initialValue = 6, allocationSize = 1)
+//	private Long id;
+//    private String ProductId;
+//    private String ProductName;
+//    private String email;
+//    private LocalDate dateAdded;
+//    private String quantity;
+//    private String price;
+//
+//	@OneToMany(fetch = FetchType.EAGER)
+//	private List<CartItem> cartItems;
+//
+//	public Cart() {
+//		this.dateAdded = LocalDate.now();
+//		this.cartItems = new ArrayList<>();
+//	}
 }

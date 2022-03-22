@@ -1,38 +1,63 @@
 package com.BrushCircle.model;
 
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
+import java.util.List;
+
+@Entity
 public class Product {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+	private Integer price; //cost
+	private String productTitle; //name of artwork
+	private String productStyle; //art style
+	private String description; //art description
+	private String filename; //image file name
+	private String artistName;
 
-    private String productId;
-	private String description;
-	private String productname;
-	private String productprice;
-	private String quantity;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "artist")
+	private Artist artist;
 
-    public Product() {
+	public Product() {}
+
+	public Product(Integer price, String artistName, String productTitle, String productStyle, String description, String filename, Artist artist) {
 		super();
-	}
-
-	public Product(String productId) {
-		super();
-		this.productId = productId;
-	}
-
-    public Product(String productId, String description, String productname, String productprice, String quantity) {
-		super();
-		this.productId = productId;
+		this.price = price;
+		this.artistName = artistName;
+		this.productTitle = productTitle;
+		this.productStyle = productStyle;
 		this.description = description;
-		this.productname = productname;
-		this.productprice = productprice;
-		this.quantity = quantity;
-
+		this.filename = filename;
+		this.artist = artist;
 	}
 
-	public String getProductId() {
-		return productId;
+	public Integer getPrice() {
+		return price;
 	}
 
-	public void setProductId(String productId) {
-		this.productId = productId;
+	public void setPrice(Integer price) {
+		this.price = price;
+	}
+
+	public String getProductTitle() {
+		return productTitle;
+	}
+
+	public void setProductTitle(String productTitle) {
+		this.productTitle = productTitle;
+	}
+
+	public String getProductStyle() {
+		return productStyle;
+	}
+
+	public void setProductStyle(String productStyle) {
+		this.productStyle = productStyle;
 	}
 
 	public String getDescription() {
@@ -43,33 +68,28 @@ public class Product {
 		this.description = description;
 	}
 
-	public String getProductname() {
-		return productname;
+	public String getFilename() {
+		return filename;
 	}
 
-	public void setProductname(String productname) {
-		this.productname = productname;
+	public void setFilename(String filename) {
+		this.filename = filename;
 	}
 
-	public String getProductprice() {
-		return productprice;
+	public Artist getArtist() {
+		return artist;
 	}
 
-	public void setProductprice(String productprice) {
-		this.productprice = productprice;
+	public void setArtist(Artist artist) {
+		this.artist = artist;
 	}
 
-	public String getQuantity() {
-		return quantity;
+	public String getArtistName() {
+		return artistName;
 	}
 
-	public void setQuantity(String quantity) {
-		this.quantity = quantity;
+	public void setArtistName(String artistName) {
+		this.artistName = artistName;
 	}
 
-	@Override
-	public String toString() {
-		return "Product [productId=" + productId + ", description=" + description + ", productname=" + productname
-				+ ", productprice=" + productprice + ", quantity=" + quantity + ", prodImage=" + "]";
-	}
 }
