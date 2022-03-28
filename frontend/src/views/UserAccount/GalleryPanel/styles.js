@@ -1,12 +1,6 @@
 const styles = {
-    container: {
-        // display: "flex",
-        width: "100%",
-        height: "557px",
-        overflow: "hidden",
-    },
     content: {
-        width: "75%",
+        width: "70%",
         height: "100%",
         overflowY: "scroll",
         transition: "width 0.3s",
@@ -20,7 +14,7 @@ const styles = {
     rightSidebar: {
         position: "relative",
         right: "0",
-        width: "25%",
+        width: "30%",
         height: "100%",
         transition: "right 0.4s",
     },
@@ -30,6 +24,20 @@ const styles = {
         width: "0px",
         height: "100%",
     },
+    imagesList: {
+        display: "flex",
+        flexWrap: "wrap",
+        justifyContent: "center",
+        columnGap: "20px",
+        rowGap: "20px",
+        padding: "30px",
+    },
+    uploadButton: {
+        margin: "20px 0 20px 0"
+    },
+    actionBar: {
+        width: "50px"
+    }
 }
 
 export default styles;
