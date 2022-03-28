@@ -4,6 +4,7 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import CollectionsOutlinedIcon from '@mui/icons-material/CollectionsOutlined';
+import { Paper } from '@mui/material';
 
 import Header from '../../components/Header/Header'
 import AccountPanel from './AccountPanel/AccountPanel';
@@ -20,6 +21,7 @@ function UserViewAccount() {
     return (
         <Box sx={{ backgroundColor: "backgroundColor1", height: "100vh" }}>
             <Header />
+            <Paper sx={styles.paper}>
             <Box sx={styles.tabContainer}>
                 <Box sx={{ borderBottom: 1, bordercolor: 'grey' }} >
                     <Tabs value={tabValue} onChange={handleChange} aria-label="interface tabs" >
@@ -30,6 +32,7 @@ function UserViewAccount() {
                 <AccountPanel value={tabValue} index={0} />
                 <GalleryPanel value={tabValue} index={1} />
             </Box>
+            </Paper>
         </Box>
     )
 }

@@ -3,6 +3,10 @@ const styles = {
         backgroundColor: "white",
         margin: "auto",
         width: "1100px",
+    },
+    paper: {
+        width: "1100px",
+        margin: "auto"
     }
 }
 
