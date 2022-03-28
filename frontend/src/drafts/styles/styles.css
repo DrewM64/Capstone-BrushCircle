@@ -1,0 +1,25 @@
+* {
+    box-sizing: border-box;
+    font-family: Roboto,Arial, Helvetica, sans-serif;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto,Arial, Helvetica, sans-serif;
+}
+
+.splash {
+    height: 300px;
+}
+
+#exploreSearchBar {
+    width: 600px;
+    padding: 10px;
+    border: solid 1px darkgray ;
+    border-radius: 5px;
+}
+
+#exploreSearchBar:placeholder-shown {
+    font-size: .9rem;
+    color: darkgray;
+}

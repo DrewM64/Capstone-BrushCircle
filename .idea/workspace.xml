@@ -4,18 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="127cf08a-aa75-47a9-b2dc-53063a924fef" name="Changes" comment="Merge test_upload and test_sidebar from derrian_dev">
+    <list default="true" id="127cf08a-aa75-47a9-b2dc-53063a924fef" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/frontend/src/drafts/explore.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/drafts/home.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/drafts/img/brushcircle logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/drafts/results.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/drafts/styles/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/com/BrushCircle/model/Admin.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/com/BrushCircle/model/Admin.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/com/BrushCircle/model/Cart.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/com/BrushCircle/model/Cart.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/com/BrushCircle/model/Product.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/com/BrushCircle/model/Product.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/com/BrushCircle/model/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/com/BrushCircle/model/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/com/DemoApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/com/DemoApplication.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/test-classes/com/DemoApplicationTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/test-classes/com/DemoApplicationTests.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/views/SlidingMenuTest/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/SlidingMenuTest/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui design/sliding options pane/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/ui design/sliding options pane/styles.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,6 +22,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JavaScript File" />
+        <option value="HTML File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -36,6 +34,13 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="JpbToolWindowState">
+    <option name="myId2Visible">
+      <map>
+        <entry key="com.haulmont.jpb.jpaStructure" value="false" />
+      </map>
+    </option>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -54,6 +59,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="DatabaseDriversLRU" value="h2" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RequestMappingsPanelOrder0" value="0" />
     <property name="RequestMappingsPanelOrder1" value="1" />
     <property name="RequestMappingsPanelWidth0" value="75" />
@@ -63,13 +69,28 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="codeWithMe.voiceChat.enabledByDefault" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/frontend/src/drafts" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="reference.settings.ide.settings.web.browsers" />
   </component>
-  <component name="RunManager">
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Documents\Coding\Capstone-BrushCircle\frontend\src\drafts" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Documents\Coding\Capstone-BrushCircle\frontend\src\drafts\img" />
+      <recent name="D:\Documents\Coding\Capstone-BrushCircle\frontend\src\drafts" />
+      <recent name="D:\Documents\Coding\Capstone-BrushCircle\frontend\src\drafts\homepage" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JavaScript Debug.home.html">
+    <configuration name="home.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/Capstone-BrushCircle/frontend/src/drafts/home.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
     <configuration name="DemoApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="BrushCircle" />
       <extension name="coverage">
@@ -85,6 +106,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JavaScript Debug.home.html" />
         <item itemvalue="Spring Boot.DemoApplication" />
       </list>
     </recent_temporary>
