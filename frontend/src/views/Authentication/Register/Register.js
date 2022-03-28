@@ -13,7 +13,7 @@ function Register() {
             </Box>
             <Box sx={styles.formContainer} >
                 <Box sx={styles.form} >
-                    <Typography align='center' >Register</Typography>
+                    <Typography variant='h4' align='center' >Register</Typography>
                     <TextField variant='outlined' label='Email' ></TextField>
                     <TextField variant='outlined' label='Password' ></TextField>
                     <TextField variant='outlined' label='Confirmation Password' ></TextField>

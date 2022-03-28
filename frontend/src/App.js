@@ -6,6 +6,7 @@ import { Route, Routes, Navigate } from 'react-router-dom';
 import UploadTest from './views/UploadTest/UploadTest';
 import SlidingMenuTest from './views/SlidingMenuTest/SlidingMenuTest';
 import Register from './views/Authentication/Register/Register';
+import UserViewAccount from './views/UserAccount/UserAccount'
 
 function App() {
   const [messasge, setMessage] = useState("Hi");
@@ -21,6 +22,7 @@ function App() {
     <Routes>
       <Route path='/' element={<Navigate to={"/register"} />} />
       <Route path='/register' element={<Register />} />
+      <Route path='/useraccount' element={<UserViewAccount />} />
       <Route path='/test-upload' element={<UploadTest />} />
       <Route path='/test-menu' element={<SlidingMenuTest />} />
     </Routes>
