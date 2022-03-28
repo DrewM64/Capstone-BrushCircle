@@ -1,3 +1,5 @@
+import { borderRadius, height } from "@mui/system";
+
 const styles = {
     content: {
         width: "70%",
@@ -36,7 +38,51 @@ const styles = {
         margin: "20px 0 20px 0"
     },
     actionBar: {
-        width: "50px"
+        width: "100%",
+        backgroundColor: "primary.main",
+    },
+    actionButton: {
+        color: "white"
+    },
+    backActionButton: {
+        color: "white",
+    },
+    sidebarInfoContainer: {
+        display: "grid",
+        padding: "20px",
+        gridTemplateColumns: "auto auto",
+        rowGap: "5px",
+    },
+    sidebarInfoContainerHidden: {
+        display: "none",
+        padding: "20px",
+        gridTemplateColumns: "auto auto",
+        rowGap: "5px",
+    },
+    imageContainer: {
+        overflow: "hidden",
+        height: "200px",
+        gridColumn: "span 2",
+        marginBottom: "10px",
+        borderRadius: "6px",
+        img: {
+            width: "100%",
+        }
+    },
+    sidebarFormContainer: {
+        display: "grid",
+        padding: "20px",
+        rowGap: "5px"
+    },
+    sidebarFormContainerHidden: {
+        display: "none"
+    },
+    rightActionButton: {
+        marginLeft: "auto",
+        color: "white",
+    },
+    rightActionButtonHidden: {
+        display: "none"
     }
 }
 
