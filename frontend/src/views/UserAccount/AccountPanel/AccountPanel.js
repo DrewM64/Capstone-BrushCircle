@@ -12,7 +12,7 @@ function AccountPanel(props) {
         <Box role="tabpanel" id="account-panel" hidden={value !== index} sx={styles.container} >
             <Box sx={styles.accountHeader}>
                 <Typography variant='h6' sx={styles.profileTitle} >Profile Details</Typography>
-                <img className='profileImage' alt='profile'></img>
+                <img className='profileImage' alt='profile' src='/stefan-stefancik-QXevDflbl8A-unsplash.jpg'></img>
                 <Button variant='contained' sx={styles.uploadButton} >Upload new photo</Button>
                 <Button variant='contained' sx={styles.resetbutton}>Reset</Button>
                 <Typography sx={styles.subtitle} >Allowed JPG,GIF,PNG</Typography>
