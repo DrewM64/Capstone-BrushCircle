@@ -7,6 +7,9 @@ const styles = {
         img: {
             height: "30px"
         }
+    },
+    searchInput: {
+        margin: "auto",
     }
 }
 
