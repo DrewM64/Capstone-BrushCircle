@@ -29,7 +29,7 @@ function AccountPanel(props) {
                 <TextField label="Cashapp" />
             </Box>
             <Box sx={styles.buttonContainer}>
-                <Button variant='contained' >Save Changes</Button>
+                <Button variant='contained' sx={styles.saveButton}>Save Changes</Button>
                 <Button variant='contained' >Cancel</Button>
             </Box>
         </Box>

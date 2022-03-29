@@ -83,7 +83,10 @@ const styles = {
     },
     rightActionButtonHidden: {
         display: "none"
-    }
+    },
+    saveButton: {
+        backgroundColor: "saveButtonColor",
+    },
 }
 
 export default styles;

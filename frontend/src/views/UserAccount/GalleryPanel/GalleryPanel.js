@@ -7,11 +7,14 @@ import ArrowBackOutlinedIcon from '@mui/icons-material/ArrowBackOutlined';
 import styles from './styles';
 import createStyles from './containerStyles'; //this is needed to hide the second panel
 import { Button, IconButton, Stack, TextField, Typography } from '@mui/material';
+import GalleryItem from './GalleryItem/GalleryItem';
 
 function GalleryPanel(props) {
     const { value, index } = props;
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     const [isEditOpen, setIsEditOpen] = useState(true);
+    const [selectedIndex, setSelectedIndex] = useState(null);
+    const indexes = [1,2,3,4,5,6,7,8,9,10]
 
     const onButtonPress = (event) => {
         setIsSidebarOpen(!isSidebarOpen);
@@ -25,48 +28,26 @@ function GalleryPanel(props) {
         setIsEditOpen(!isEditOpen);
     }
 
+    const onGalleryItemClicked = (index) => {
+        setSelectedIndex(index);
+
+        //if being deslected then the sizebar should close
+        if(index == null){
+            setIsSidebarOpen(false);
+        }else{
+            setIsSidebarOpen(true);
+        }
+    }
+
     return (
         <Box hidden={value == index ? false : true} sx={createStyles(value !== index)}>
             <Box padding={2} sx={isSidebarOpen ? styles.content : styles.contentExpanded}>
                 <Button variant='contained' sx={styles.uploadButton} onClick={onButtonPress}>Upload New</Button>
                 <hr />
                 <Box sx={styles.imagesList}>
-                    <div class="box"></div>
-                    <div class="box"></div>
-                    <div class="box"></div>
-                    <div class="box"></div>
-                    <div class="box"></div>
-                    <div class="box"></div>
-                    <div class="box"></div>
-                    <div class="box"></div>
-                    <div class="box"></div>
-                    <div class="box"></div>
-                    <div class="box"></div>
-                    <div class="box"></div>
-                    <div class="box"></div>
-                    <div class="box"></div>
-                    <div class="box"></div>
-                    <div class="box"></div>
-                    <div class="box"></div>
-                    <div class="box"></div>
-                    <div class="box"></div>
-                    <div class="box"></div>
-                    <div class="box"></div>
-                    <div class="box"></div>
-                    <div class="box"></div>
-                    <div class="box"></div>
-                    <div class="box"></div>
-                    <div class="box"></div>
-                    <div class="box"></div>
-                    <div class="box"></div>
-                    <div class="box"></div>
-                    <div class="box"></div>
-                    <div class="box"></div>
-                    <div class="box"></div>
-                    <div class="box"></div>
-                    <div class="box"></div>
-                    <div class="box"></div>
-                    <div class="box"></div>
+                    {indexes.map((value, arrayIndex) => {
+                        return <GalleryItem clickAction={onGalleryItemClicked} currentIndex={selectedIndex} index={arrayIndex} key={arrayIndex} />
+                    })}
                 </Box>
             </Box>
             <Box sx={isSidebarOpen ? styles.rightSidebar : styles.rightSidebarClosed}>
@@ -110,7 +91,7 @@ function GalleryPanel(props) {
                     <TextField multiline rows={5}></TextField>
                     <Typography>Category</Typography>
                     <Typography>Featured</Typography>
-                    <Button variant='contained'>Save Changes</Button>
+                    <Button variant='contained' sx={styles.saveButton}>Save Changes</Button>
                     
                 </Box>
             </Box>

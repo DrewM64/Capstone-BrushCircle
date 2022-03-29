@@ -19,6 +19,7 @@ const styles = {
     },
     resetbutton: {
         gridArea: "resetButton",
+        backgroundColor: "cancelButtonColor",
         width: "",
     },
     subtitle: {
@@ -36,6 +37,9 @@ const styles = {
     buttonContainer: {
         display: "flex",
         columnGap: "20px"
+    },
+    saveButton: {
+        backgroundColor: "saveButtonColor",
     }
 }
 
