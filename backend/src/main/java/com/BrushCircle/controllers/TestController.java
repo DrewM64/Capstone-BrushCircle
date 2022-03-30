@@ -49,19 +49,22 @@ public class TestController {
     @RequestMapping("/reactupload")
     @ResponseBody
     @CrossOrigin(origins = "http://localhost:3000")
-    public String ReactUpload(@RequestParam("file") MultipartFile file) throws IOException {
+    public String[] ReactUpload(@RequestParam("file") MultipartFile file) throws IOException {
         Path fileNameAndPath = Paths.get(uploadDirectory, file.getOriginalFilename().replaceAll(" ", "-"));
         Files.write(fileNameAndPath, file.getBytes());
 
-        return "Uploaded file: " + file.getOriginalFilename();
+        File newFile = new File(uploadDirectory);
+        String[] fileList = newFile.list();
+
+        return fileList;
     }
 
     @RequestMapping("/testfilelist")
     @ResponseBody
     @CrossOrigin(origins = "http://localhost:3000")
     public String[] GetFileList(){
-        File file = new File(uploadDirectory);
-        String[] fileList = file.list();
+        File tempFile = new File(uploadDirectory);
+        String[] fileList = tempFile.list();
 
         return fileList;
     }

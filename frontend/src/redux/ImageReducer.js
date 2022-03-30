@@ -9,9 +9,14 @@ export default function (state = initialState, action){
         case types.GET_FILE_LIST:
             return {
                 ...state,
-                imageList: action.payload
+                imageList: action.payload,
             }
-
+        
+        case types.UPLOAD_FILE:
+            return {
+                ...state,
+                imageList: action.payload,
+            }
         default:
             return state;
     }

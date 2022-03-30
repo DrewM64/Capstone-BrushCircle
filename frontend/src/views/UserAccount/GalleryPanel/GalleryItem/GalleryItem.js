@@ -1,10 +1,11 @@
 import React from 'react'
 import { Box } from '@mui/material'
 
-import styles from './styles'
+import styles from './styles';
+import './styles.css';
 
 function GalleryItem(props) {
-    const { index, currentIndex, clickAction } = props;
+    const { index, currentIndex, clickAction, image } = props;
 
     const onElementClicked = (e) => {
         e.preventDefault();
@@ -19,7 +20,7 @@ function GalleryItem(props) {
     }
     return (
         <Box sx={index === currentIndex ? styles.selected : styles.container} onClick={onElementClicked} >
-            {index}
+            <img className='galleryImage' src={'http://localhost:8080/' + image}></img>
         </Box>
     )
 }

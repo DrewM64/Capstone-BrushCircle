@@ -3,24 +3,24 @@ import { Box } from '@mui/system';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 import ArrowBackOutlinedIcon from '@mui/icons-material/ArrowBackOutlined';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import styles from './styles';
 import createStyles from './containerStyles'; //this is needed to hide the second panel
-import { Button, IconButton, Stack, TextField, Typography } from '@mui/material';
+import { Button, IconButton, Input, Stack, TextField, Typography } from '@mui/material';
 import GalleryItem from './GalleryItem/GalleryItem';
-import { getFileList } from '../../../actions/imageActions'
+import { getFileList, uploadFileToServer } from '../../../actions/imageActions'
 
 function GalleryPanel(props) {
     const { value, index } = props;
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     const [isEditOpen, setIsEditOpen] = useState(true);
     const [selectedIndex, setSelectedIndex] = useState(null);
-    const indexes = [1,2,3,4,5,6,7,8,9,10];
+    const imageList = useSelector(state => state.ImageReducer.imageList);
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(getFileList())
+        dispatch(getFileList());
     }, [])
 
     const onButtonPress = (event) => {
@@ -46,14 +46,29 @@ function GalleryPanel(props) {
         }
     }
 
+    /* this is the event handler for the upload button.
+    files are returned in an array even if only one
+    file is selected. */
+    const onFileSelected = (event) => {
+        const newImage = event.target.files[0];
+
+        //prepare the image then send it off
+        let formData = new FormData();
+        formData.append("file", newImage, newImage.name);
+        dispatch(uploadFileToServer(formData));
+    }
+
     return (
         <Box hidden={value == index ? false : true} sx={createStyles(value !== index)}>
             <Box padding={2} sx={isSidebarOpen ? styles.content : styles.contentExpanded}>
-                <Button variant='contained' sx={styles.uploadButton} onClick={onButtonPress}>Upload New</Button>
+                <label htmlFor='contained-button-file'>
+                    <Input accept="image/*" id="contained-button-file" type="file" sx={{display: "none"}}  onChange={onFileSelected} />
+                    <Button variant='contained' component='span'>Upload</Button>
+                </label>
                 <hr />
                 <Box sx={styles.imagesList}>
-                    {indexes.map((value, arrayIndex) => {
-                        return <GalleryItem clickAction={onGalleryItemClicked} currentIndex={selectedIndex} index={arrayIndex} key={arrayIndex} />
+                    {imageList?.map((img, arrayIndex) => {
+                        return <GalleryItem clickAction={onGalleryItemClicked} currentIndex={selectedIndex} index={arrayIndex} key={arrayIndex} image={img} />
                     })}
                 </Box>
             </Box>
@@ -73,7 +88,7 @@ function GalleryPanel(props) {
                 </Box>
                 <Box sx={isEditOpen ?  styles.sidebarInfoContainer : styles.sidebarInfoContainerHidden}>
                     <Box sx={styles.imageContainer}>
-                    <img src='/david-zieglgansberger--M_J7gGTg6k-unsplash.jpg' alt='selected image'></img>
+                    {imageList && <img src={'http://localhost:8080/' + imageList[selectedIndex]} alt='selected image'></img>}
                     </Box>
                     <Typography>Title</Typography>
                     <Typography align='right'>The light that shines bright</Typography>
