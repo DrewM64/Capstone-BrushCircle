@@ -3,6 +3,7 @@ import { Box } from '@mui/system';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 import ArrowBackOutlinedIcon from '@mui/icons-material/ArrowBackOutlined';
+import { useDispatch } from 'react-redux';
 
 import styles from './styles';
 import createStyles from './containerStyles'; //this is needed to hide the second panel
@@ -14,7 +15,8 @@ function GalleryPanel(props) {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     const [isEditOpen, setIsEditOpen] = useState(true);
     const [selectedIndex, setSelectedIndex] = useState(null);
-    const indexes = [1,2,3,4,5,6,7,8,9,10]
+    const indexes = [1,2,3,4,5,6,7,8,9,10];
+    const dispatch = useDispatch();
 
     const onButtonPress = (event) => {
         setIsSidebarOpen(!isSidebarOpen);
