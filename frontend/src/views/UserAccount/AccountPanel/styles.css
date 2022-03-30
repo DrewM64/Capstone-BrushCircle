@@ -1,5 +1,4 @@
 .profileImage {
     width: 124px;
-    height: 103px;
-    grid-area: image;
+    min-height: 124px;
 }

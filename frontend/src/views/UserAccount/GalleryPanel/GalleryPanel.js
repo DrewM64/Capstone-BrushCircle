@@ -61,8 +61,8 @@ function GalleryPanel(props) {
     return (
         <Box hidden={value == index ? false : true} sx={createStyles(value !== index)}>
             <Box padding={2} sx={isSidebarOpen ? styles.content : styles.contentExpanded}>
-                <label htmlFor='contained-button-file'>
-                    <Input accept="image/*" id="contained-button-file" type="file" sx={{display: "none"}}  onChange={onFileSelected} />
+                <label htmlFor='contained-button-file-1'>
+                    <Input accept="image/*" id="contained-button-file-1" type="file" sx={{display: "none"}}  onChange={onFileSelected} />
                     <Button variant='contained' component='span'>Upload</Button>
                 </label>
                 <hr />

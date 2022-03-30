@@ -40,6 +40,12 @@ const styles = {
     },
     saveButton: {
         backgroundColor: "saveButtonColor",
+    },
+    profileImageContainer: {
+        width: "124px",
+        height: "124px",
+        gridArea: "image",
+        overflow: "hidden"
     }
 }
 

@@ -68,4 +68,17 @@ public class TestController {
 
         return fileList;
     }
+
+    @RequestMapping("/reactuploadprofileimage")
+    @ResponseBody
+    @CrossOrigin(origins = "http://localhost:3000")
+    public String ReactUploadProfileImage(@RequestParam("file") MultipartFile file) throws IOException {
+        Path fileNameAndPath = Paths.get(uploadDirectory, file.getOriginalFilename().replaceAll(" ", "-"));
+        Files.write(fileNameAndPath, file.getBytes());
+
+        File newFile = new File(uploadDirectory);
+        String[] fileList = newFile.list();
+
+        return file.getOriginalFilename().replaceAll(" ", "-");
+    }
 }
