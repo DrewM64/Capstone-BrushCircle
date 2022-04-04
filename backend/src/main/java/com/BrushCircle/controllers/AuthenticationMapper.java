@@ -1,4 +1,4 @@
 package com.BrushCircle.controllers;
 
-public class ArtController {
+public class AuthenticationMapper {
 }

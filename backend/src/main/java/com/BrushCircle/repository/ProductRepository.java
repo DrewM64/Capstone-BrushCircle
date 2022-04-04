@@ -10,8 +10,8 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 @RepositoryRestResource
 public interface ProductRepository extends CrudRepository <Product, Long> {
     // Fetch product by style
-    List<Product> findByProductStyle(@Param("productStyle") String productStyle);
+    List<Product> findByProductStyle(@Param("style") String style);
 
     // Fetch product by title
-    List<Product> findByProductTitle(@Param("productTitle") String productTitle);
+    List<Product> findByProductTitle(@Param("title") String title);
 }

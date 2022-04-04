@@ -15,11 +15,15 @@ public interface ProductService {
 
     DataFetcher<List<Product>> getAllProductsByIdsQuery();
 
+    List<Product> findProductsByIds(Long userId);
+
     Product findProductById(Long productId);
 
     List<Product> findAllProducts();
 
     List<Product> findProductsByIds(List<Long> productsId);
+
+
 
     List<Product> filter(List<String> products, List<String> genders, List<Integer> prices, boolean sortByPrice);
 
