@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/user")
 @CrossOrigin(origins = "http://localhost:3000")
 public class UserController {
 
@@ -33,6 +33,7 @@ public class UserController {
 //    private final SimpMessagingTemplate messagingTemplate;
 
     @PostMapping("/register")
+    @CrossOrigin(origins = "http://localhost:3000")
     public String registerUser() {
         return "createUser was called";
     }
