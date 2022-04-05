@@ -1,11 +1,6 @@
-package com.BrushCircle.model;
-
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+package com.BrushCircle.service.model;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 public class Product {

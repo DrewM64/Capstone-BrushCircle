@@ -1,6 +1,6 @@
 package com.BrushCircle.service;
 
-import com.BrushCircle.model.Product;
+import com.BrushCircle.service.model.Product;
 
 import graphql.schema.DataFetcher;
 import org.springframework.web.multipart.MultipartFile;

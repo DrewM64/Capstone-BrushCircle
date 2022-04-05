@@ -1,11 +1,6 @@
 package com.BrushCircle.mapper;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
-import com.BrushCircle.model.User;
 import lombok.RequiredArgsConstructor;
-import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
 @Component

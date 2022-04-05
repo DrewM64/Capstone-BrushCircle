@@ -1,10 +1,7 @@
 package com;
 
-import java.util.List;
-
-import com.BrushCircle.model.Artist;
-import com.BrushCircle.model.Product;
-import com.BrushCircle.model.User;
+import com.BrushCircle.service.model.Artist;
+import com.BrushCircle.service.model.Product;
 import com.BrushCircle.repository.ArtistRepository;
 import com.BrushCircle.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +9,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Primary;
-import org.springframework.web.bind.annotation.GetMapping;
 
 
 @SpringBootApplication

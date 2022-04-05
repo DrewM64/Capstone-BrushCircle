@@ -1,4 +1,4 @@
-package com.BrushCircle.model;
+package com.BrushCircle.service.model;
 
 import lombok.Data;
 
