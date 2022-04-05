@@ -11,12 +11,12 @@ import UserViewAccount from './views/UserAccount/UserAccount'
 function App() {
   const [messasge, setMessage] = useState("Hi");
 
-  useEffect(() => {
-    axios.get('http://localhost:8080/')
-      .then((response) => {
-        setMessage(response.data)
-      })
-  })
+  // useEffect(() => {
+  //   axios.get('http://localhost:8080/')
+  //     .then((response) => {
+  //       setMessage(response.data)
+  //     })
+  // })
 
   return (
     <Routes>
