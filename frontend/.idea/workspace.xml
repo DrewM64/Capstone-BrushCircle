@@ -2,24 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b0bb619c-6de8-4135-b63b-d1c6dd0c8097" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../backend/src/main/java/com/BrushCircle/controllers/UserController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../backend/src/main/java/com/BrushCircle/model/Product.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../backend/src/main/java/com/BrushCircle/model/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../backend/src/main/java/com/BrushCircle/repository/UserRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../backend/src/test/java/com/BrushCircle/repository/UserRepositoryTests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../backend/.idea/backend.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/.idea/backend.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/.idea/libraries/Maven__org_springframework_spring_test_5_3_15.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../backend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/com/BrushCircle/model/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/com/BrushCircle/model/Admin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/com/BrushCircle/model/Cart.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/com/BrushCircle/model/Cart.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/com/BrushCircle/model/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/com/BrushCircle/model/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/com/BrushCircle/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/com/BrushCircle/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/com/BrushCircle/model/controllers/TestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/com/BrushCircle/controllers/TestController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../backend/src/main/java/com/DemoApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/com/DemoApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../backend/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../backend/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/target/classes/com/BrushCircle/model/Admin.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/com/BrushCircle/model/Admin.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/target/classes/com/BrushCircle/model/Cart.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/com/BrushCircle/model/Cart.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../backend/target/classes/com/BrushCircle/model/Product.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/com/BrushCircle/model/Product.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../backend/target/classes/com/BrushCircle/model/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/com/BrushCircle/model/User.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../backend/target/classes/com/DemoApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/com/DemoApplication.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,6 +74,7 @@
       <option name="presentableId" value="Default" />
       <updated>1646359674492</updated>
       <workItem from="1646359676617" duration="4203000" />
+      <workItem from="1649122629268" duration="741000" />
     </task>
     <servers />
   </component>

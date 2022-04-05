@@ -1,14 +1,14 @@
 package com.BrushCircle.service.model;
 
-import lombok.Data;
-import lombok.ToString;
-import net.minidev.json.annotate.JsonIgnore;
-import org.springframework.data.annotation.Id;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
+//import lombok.Data;
+//import lombok.ToString;
+//import net.minidev.json.annotate.JsonIgnore;
+//import org.springframework.data.annotation.Id;
+//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+//import org.springframework.security.crypto.password.PasswordEncoder;
+//
+//import javax.persistence.Entity;
+//import javax.persistence.GeneratedValue;
 
 //@Data
 //@ToString(exclude = "password")

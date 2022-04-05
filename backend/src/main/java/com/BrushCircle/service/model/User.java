@@ -1,13 +1,13 @@
 package com.BrushCircle.service.model;
 
-import lombok.Data;
-import net.minidev.json.annotate.JsonIgnore;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.Version;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.ManyToOne;
+//import lombok.Data;
+//import net.minidev.json.annotate.JsonIgnore;
+//import org.springframework.data.annotation.Id;
+//import org.springframework.data.annotation.Version;
+//
+//import javax.persistence.Entity;
+//import javax.persistence.GeneratedValue;
+//import javax.persistence.ManyToOne;
 
 //@Data
 //@Entity

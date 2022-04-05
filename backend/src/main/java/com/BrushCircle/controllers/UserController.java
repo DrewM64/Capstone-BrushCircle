@@ -5,7 +5,7 @@ package com.BrushCircle.controllers;
 import com.BrushCircle.model.Product;
 //import com.BrushCircle.payload.user.UserRequest;
 //import com.BrushCircle.payload.user.UserResponse;
-import com.BrushCircle.repository.UserRepository;
+//import com.BrushCircle.repository.UserRepository;
 //import com.BrushCircle.service.graphql.GraphQLProvider;
 //import graphql.ExecutionResult;
 //import graphql.servlet.internal.GraphQLRequest;
@@ -25,8 +25,8 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:3000")
 public class UserController {
 
-    @Autowired
-    UserRepository userRepository;
+//    @Autowired
+//    UserRepository userRepository;
 
 //    private final UserMapper userMapper;
 //    private final GraphQLProvider graphQLProvider;

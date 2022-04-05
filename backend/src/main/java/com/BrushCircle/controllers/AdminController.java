@@ -1,23 +1,23 @@
 package com.BrushCircle.controllers;
 
-import com.BrushCircle.mapper.ProductMapper;
-import com.BrushCircle.mapper.UserMapper;
-import graphql.ExecutionResult;
-import graphql.servlet.GraphQLProvider;
-import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-
-import javax.validation.Valid;
-import java.util.List;
-
-@RestController
-@RequiredArgsConstructor
-@PreAuthorize("hasAuthority('ADMIN')")
-@RequestMapping("/api/v1/admin")
+//import com.BrushCircle.mapper.ProductMapper;
+//import com.BrushCircle.mapper.UserMapper;
+//import graphql.ExecutionResult;
+//import graphql.servlet.GraphQLProvider;
+//import lombok.RequiredArgsConstructor;
+//import org.springframework.http.ResponseEntity;
+//import org.springframework.security.access.prepost.PreAuthorize;
+//import org.springframework.validation.BindingResult;
+//import org.springframework.web.bind.annotation.*;
+//import org.springframework.web.multipart.MultipartFile;
+//
+//import javax.validation.Valid;
+//import java.util.List;
+//
+//@RestController
+//@RequiredArgsConstructor
+//@PreAuthorize("hasAuthority('ADMIN')")
+//@RequestMapping("/api/v1/admin")
 public class AdminController {
 
 //    private final UserMapper userMapper;

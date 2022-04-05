@@ -18,22 +18,22 @@ public class UserRepositoryTests {
     @Autowired
     private TestEntityManager entityManager;
 
-    @Autowired
-    private UserRepository repo;
+//    @Autowired
+//    private UserRepository repo;
 
-    @Test
-    public void testCreateUser() {
-        User user = new User();
-        user.setEmail("testUser");
-        user.setPassword("password");
-        user.setFirstName("Test");
-        user.setLastName("User01");
+//    @Test
+//    public void testCreateUser() {
+//        User user = new User();
+//        user.setEmail("testUser");
+//        user.setPassword("password");
+//        user.setFirstName("Test");
+//        user.setLastName("User01");
 
-        User savedUser = repo.save(user);
-
-        User existUser = entityManager.find(User.class, savedUser.getId());
-
-        assertThat(user.getEmail()).isEqualTo(existUser.getEmail());
-
-    }
+//        User savedUser = repo.save(user);
+//
+//        User existUser = entityManager.find(User.class, savedUser.getId());
+//
+//        assertThat(user.getEmail()).isEqualTo(existUser.getEmail());
+//
+//    }
 }

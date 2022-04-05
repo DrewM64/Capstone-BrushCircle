@@ -1,10 +1,10 @@
 package com.BrushCircle.mapper;
 
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
-
-@Component
-@RequiredArgsConstructor
+//import lombok.RequiredArgsConstructor;
+//import org.springframework.stereotype.Component;
+//
+//@Component
+//@RequiredArgsConstructor
 public class UserMapper {
 //
 //    private final ModelMapper modelMapper;

@@ -1,16 +1,16 @@
 package com.BrushCircle.service.model;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
-
-import lombok.Data;
-
-import javax.persistence.*;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+//import javax.persistence.GeneratedValue;
+//import javax.persistence.GenerationType;
+//import javax.persistence.Id;
+//import javax.persistence.SequenceGenerator;
+//
+//import lombok.Data;
+//
+//import javax.persistence.*;
+//import java.time.LocalDate;
+//import java.util.ArrayList;
+//import java.util.List;
 
 //@Data
 //@Entity

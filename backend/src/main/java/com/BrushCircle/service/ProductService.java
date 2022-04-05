@@ -1,19 +1,20 @@
 package com.BrushCircle.service;
 
-import com.BrushCircle.service.model.Product;
+import com.BrushCircle.model.Product;
+//import com.BrushCircle.service.model.Product;
 
-import graphql.schema.DataFetcher;
+//import graphql.schema.DataFetcher;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
 public interface ProductService {
 
-    DataFetcher<Product> getProductByQuery();
-
-    DataFetcher<List<Product>> getAllProductsByQuery();
-
-    DataFetcher<List<Product>> getAllProductsByIdsQuery();
+//    DataFetcher<Product> getProductByQuery();
+//
+//    DataFetcher<List<Product>> getAllProductsByQuery();
+//
+//    DataFetcher<List<Product>> getAllProductsByIdsQuery();
 
     Product findProductById(Long productId);
 
