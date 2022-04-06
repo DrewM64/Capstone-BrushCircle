@@ -8,6 +8,7 @@ import SlidingMenuTest from './views/SlidingMenuTest/SlidingMenuTest';
 import Register from './views/Authentication/Register/Register';
 import UserViewAccount from './views/UserAccount/UserAccount'
 import UserProfile from './views/UserProfile/UserProfile';
+import ImageView from './views/ImageView/ImageView';
 
 function App() {
   const [messasge, setMessage] = useState("Hi");
@@ -25,6 +26,7 @@ function App() {
       <Route path='/register' element={<Register />} />
       <Route path='/useraccount' element={<UserViewAccount />} />
       <Route path='/userprofile' element={<UserProfile />} />
+      <Route path='/imageview' element={<ImageView />} />
       <Route path='/test-upload' element={<UploadTest />} />
       <Route path='/test-menu' element={<SlidingMenuTest />} />
     </Routes>
