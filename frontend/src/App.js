@@ -9,9 +9,11 @@ import Register from './views/Authentication/Register/Register';
 import UserViewAccount from './views/UserAccount/UserAccount'
 import UserProfile from './views/UserProfile/UserProfile';
 import ImageView from './views/ImageView/ImageView';
+import { useSelector } from 'react-redux';
 
 function App() {
   const [messasge, setMessage] = useState("Hi");
+  const user = useSelector(state => state.Authentication.user)
 
   useEffect(() => {
     axios.get('http://localhost:8080/')

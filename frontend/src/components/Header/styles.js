@@ -10,6 +10,14 @@ const styles = {
     },
     searchInput: {
         margin: "auto",
+    },
+    profileButton: {
+        overflow: "hidden",
+        img: {
+            borderRadius: "50%",
+            height: "25px",
+            width: "25px"
+        }
     }
 }
 

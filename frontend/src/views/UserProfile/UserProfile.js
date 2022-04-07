@@ -9,10 +9,17 @@ import GalleryImage from './GalleryImage/GalleryImage';
 import Header from '../../components/Header/Header'
 
 import makeStyles from './styles';
+import { useNavigate } from 'react-router-dom';
 function UserProfile() {
   const nums = [1, 2, 3, 4];
   const nums2 = [1, 2, 3, 4, 5, 6, 7, 8, 9];
   const styles = makeStyles();
+  const navigate = useNavigate();
+
+  const onItemClicked = (event) => {
+    navigate("/imageview");
+  }
+
   return (
     <Box sx={styles.container}>
       <Header />
@@ -52,7 +59,7 @@ function UserProfile() {
             <Typography mb={2}>Featured Images</Typography>
             <Box sx={styles.featuredImages}>
               {nums.map((val, index) => {
-                return <FeaturedImage number={val} key={index} />
+                return <FeaturedImage number={val} key={index} action={onItemClicked} />
               })}
             </Box>
           </Box>
@@ -60,7 +67,7 @@ function UserProfile() {
             <Typography mb={2}>Gallery</Typography>
             <Box sx={styles.galleryImages}>
               {nums2.map((val, index) => {
-                return <GalleryImage number={val} key={index} />
+                return <GalleryImage number={val} key={index} action={onItemClicked} />
               })}
             </Box>
           </Box>

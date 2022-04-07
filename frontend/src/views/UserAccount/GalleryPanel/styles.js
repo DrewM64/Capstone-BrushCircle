@@ -4,11 +4,11 @@ const styles = {
     content: {
         width: "70%",
         height: "100%",
-        overflowY: "scroll",
+        overflowY: "auto",
         transition: "width 0.3s",
     },
     contentExpanded: {
-        overflowY: "scroll",
+        overflowY: "auto",
         width: "100%",
         height: "100%",
         transition: "width 0.3s",
@@ -19,6 +19,7 @@ const styles = {
         width: "30%",
         height: "100%",
         transition: "right 0.4s",
+        borderLeft: "2px solid lightgrey",
     },
     rightSidebarClosed: {
         position: "relative",

@@ -15,6 +15,7 @@ const createStyles = (options) => {
         },
         imageContainer: {
             display: "flex",
+            marginTop: "40px",
             justifyContent: "center",
             img: {
                 height: "73vh",

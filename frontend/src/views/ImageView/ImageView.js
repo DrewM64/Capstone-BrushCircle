@@ -27,7 +27,7 @@ function ImageView() {
                         <Typography variant='h4' fontWeight={600}>The Light That Shines Bright</Typography>
                         <Typography variant='h6' ml={3} color='primary'>$499.00</Typography>
                         <Box sx={styles.authorColumn}>
-                            <Typography>By: <Link to="">Stacy Woodard</Link></Typography>
+                            <Typography>By: <Link to="/userprofile">Stacy Woodard</Link></Typography>
                         </Box>
                     </Box>
                     <Box sx={styles.detailsContainer}>
