@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
 import { Box } from '@mui/system';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
@@ -9,7 +9,7 @@ import styles from './styles';
 import createStyles from './containerStyles'; //this is needed to hide the second panel
 import { Button, IconButton, Input, Stack, TextField, Typography } from '@mui/material';
 import GalleryItem from './GalleryItem/GalleryItem';
-import { getFileList, uploadFileToServer } from '../../../actions/imageActions'
+import { getFileList, uploadFileToServer } from '../../../actions/imageActions';
 
 function GalleryPanel(props) {
     const { value, index } = props;
