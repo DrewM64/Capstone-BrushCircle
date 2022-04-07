@@ -1,6 +1,6 @@
 const styles = {
     container: {
-        marginBottom: "50px",
+        marginBottom: "",
         flexGrow: 1,
     },
     toolbar: {

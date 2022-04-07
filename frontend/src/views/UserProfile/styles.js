@@ -1,20 +1,23 @@
 const makeStyles = () => {
     return {
         container: {
+            height: "100vh",
+            overflow: "hidden",
+            width: "100vw",
+        },
+        innerContainer: {
             display: "grid",
             gridTemplateColumns: "500px auto",
             backgroundColor: "backgroundColor1",
-            width: "100vw",
-            height: "100vh",
-            maxHeight: "100vh",
-            overflow: "hidden",
+            height: "100%",
+            maxHeight: "100%",
         },
         infoContainer: {
             borderRight: "2px solid lightgrey"
         },
         contentContainer: {
             width: "100%",
-            height: "100vh",
+            height: "100%",
             overflow: "auto",
             margin: "40px 0 0 40px",
         },
