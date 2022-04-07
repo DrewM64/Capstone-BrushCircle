@@ -42,6 +42,35 @@ const createStyles = (options) => {
             justifyContent: "end",
             flexGrow: "1",
         },
+        detailsContainer: {
+            display: "flex",
+            height: "100%",
+            justifyContent: "space-evenly",
+            alignItems: "start",
+        },
+        dateContainer: {
+            display: "flex",
+            width: "15vw",
+            paddingTop: "15px",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center"
+        },
+        biographyContainer: {
+            width: "30vw",
+            height: "50%",
+            padding: "20px 15px 0 20px",
+            textAlign: "center",
+            borderRight: "1px solid black",
+            borderLeft: "1px solid black"
+        },
+        attributesContainer: {
+            display: "grid",
+            paddingTop: "15px",
+            gridTemplateColumns: "auto auto",
+            columnGap: "25px",
+            alignItems: "center",
+        },
     }
 
     return styles;
