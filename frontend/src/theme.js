@@ -10,9 +10,12 @@ const theme = createTheme({
         cancelButtonColor: "#47505A",
         galleryItemHoverColor: "#BDCFDD",
         galleryItemSelectedColor: "#BDCFDD",
-        backgroundColor1: "#F7F7F7",
+        backgroundColor1: "#F7F8F9",
         
     },
+    shape: {
+        borderRadius: 5
+    }
 });
 
 export default theme;
