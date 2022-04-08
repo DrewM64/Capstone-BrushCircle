@@ -3,12 +3,9 @@ package com.BrushCircle.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 //import lombok.Data;
-import org.springframework.data.annotation.Version;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.Set;
-
 
 @Entity
 @Table(name = "users")
@@ -37,6 +34,8 @@ public class User {
     private String patreon;
     private String cashapp;
     private String title;
+
+    private String profileImageName;
     private String biography;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     @JsonIgnore
@@ -47,13 +46,11 @@ public class User {
     public User(){}
 
     public User(String firstName, String lastName, String email, String password) {
-        this.firstName = firstName;
-        this.lastName = lastName;
         this.email = email;
         this.password = password;
     }
 
-    public User(String firstName, String lastName, String email, String password, String phoneNumber, String address, String state, String patreon, String cashapp, String title, String biography) {
+    public User(String firstName, String lastName, String email, String password, String phoneNumber, String address, String state, String patreon, String cashapp, String title, String profileImageName, String biography) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -64,10 +61,11 @@ public class User {
         this.patreon = patreon;
         this.cashapp = cashapp;
         this.title = title;
+        this.profileImageName = profileImageName;
         this.biography = biography;
     }
 
-    public User(String firstName, String lastName, String email, String password, String phoneNumber, String address, String state, String patreon, String cashapp, String title, String biography, List<Product> products) {
+    public User(String firstName, String lastName, String email, String password, String phoneNumber, String address, String state, String patreon, String cashapp, String title, String profileImageName, String biography, List<Product> products) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -78,11 +76,12 @@ public class User {
         this.patreon = patreon;
         this.cashapp = cashapp;
         this.title = title;
+        this.profileImageName = profileImageName;
         this.biography = biography;
         this.products = products;
     }
 
-    public User(String firstName, String lastName, String email, String password, String phoneNumber, String address, String state, String patreon, String cashapp, String title, String biography, List<Product> products, String role) {
+    public User(String firstName, String lastName, String email, String password, String phoneNumber, String address, String state, String patreon, String cashapp, String title, String profileImageName, String biography, List<Product> products, String role) {
         super();
         this.firstName = firstName;
         this.lastName = lastName;
@@ -94,6 +93,7 @@ public class User {
         this.patreon = patreon;
         this.cashapp = cashapp;
         this.title = title;
+        this.profileImageName = profileImageName;
         this.biography = biography;
         this.products = products;
         this.role = role;
@@ -209,5 +209,13 @@ public class User {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public String getProfileImageName() {
+        return profileImageName;
+    }
+
+    public void setProfileImageName(String profileImageName) {
+        this.profileImageName = profileImageName;
     }
 }
