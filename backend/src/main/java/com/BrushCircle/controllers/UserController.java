@@ -102,7 +102,7 @@ public class UserController {
     public ResponseEntity <?> newProfilePhoto(
 //        @RequestHeader(value = "Authorization") @ApiParam(required = true, value = "JWT Token to authorize request made by user") String authorization,
 //        @Valid
-        @RequestBody @ApiParam(value = "Current User's Info") User currentUser) throws Throwable {
+        @RequestBody @ApiParam(value = "Current User") User currentUser) throws Throwable {
         User response = userService.addProfPic(currentUser);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
@@ -123,7 +123,7 @@ public class UserController {
     public ResponseEntity<User> resetProfilePhoto(
 //        @RequestHeader(value = "Authorization") @ApiParam(required = true, value = "JWT Token to authorize request made by user") String authorization,
 //        @Valid
-            @RequestBody @ApiParam(value = "Current User's Info") User currentUser) throws Throwable {
+            @RequestBody @ApiParam(value = "Current User") User currentUser) throws Throwable {
         User response = userService.resetProfPic(currentUser);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
@@ -143,7 +143,7 @@ public class UserController {
     public ResponseEntity<User> updateUser(
 //        @RequestHeader(value = "Authorization") @ApiParam(required = true, value = "JWT Token to authorize request made by user") String authorization,
 //        @Valid
-             @RequestBody @ApiParam(value = "Reset Profile Picture") User currentUser) throws Throwable {
+             @RequestBody @ApiParam(value = "Current User") User currentUser) throws Throwable {
         User response = userService.update(currentUser);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
