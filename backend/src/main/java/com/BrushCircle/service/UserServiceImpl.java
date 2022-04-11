@@ -14,7 +14,7 @@ import java.util.Set;
 
 @Service
 @Slf4j
-public class UserServiceImpl {
+public class UserServiceImpl implements UserService {
 
     @Autowired
     UserRepository userRepository;

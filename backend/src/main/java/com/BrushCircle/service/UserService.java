@@ -1,7 +1,10 @@
 package com.BrushCircle.service;
 
 //import com.BrushCircle.model.RegisteredUser;
+import com.BrushCircle.model.Product;
 import com.BrushCircle.model.User;
+
+import java.util.List;
 
 public interface UserService {
     User registerUser(User newUser) throws Exception;

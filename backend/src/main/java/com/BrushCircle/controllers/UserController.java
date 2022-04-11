@@ -12,6 +12,7 @@ import com.BrushCircle.model.Product;
 //import graphql.servlet.internal.GraphQLRequest;
 //import lombok.RequiredArgsConstructor;
 import com.BrushCircle.model.User;
+import com.BrushCircle.service.ProductService;
 import com.BrushCircle.service.UserService;
 import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
@@ -40,6 +41,8 @@ public class UserController {
 //    @Autowired
 //    UserRepository userRepository;
 
+    ProductService productService;
+
 //    @Autowired
     UserService userService;
 //    private final GraphQLProvider graphQLProvider;
@@ -64,7 +67,6 @@ public class UserController {
         User response = userService.registerUser(newUser);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
-
 
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "OK", response = User.class),
@@ -168,4 +170,23 @@ public class UserController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "OK", response = Product.class),
+            @ApiResponse(code = 400, message = "Bad Request", response = ErrorMessage.class),
+            @ApiResponse(code = 401, message = "Unauthorized", response = ErrorMessage.class),
+            @ApiResponse(code = 404, message = "Not Found", response = ErrorMessage.class),
+            @ApiResponse(code = 500, message = "Internal Server Error", response = ErrorMessage.class)
+    })
+    @RequestMapping(
+            value ="/products",
+            method = RequestMethod.POST,
+            produces = {MediaType.APPLICATION_JSON_VALUE},
+            consumes = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<?> getProductList(
+//        @RequestHeader(value = "Authorization") @ApiParam(required = true, value = "JWT Token to authorize request made by product") String authorization,
+//        @Valid
+            @RequestBody @ApiParam(value = "Current User") User currentUser) throws Throwable {
+        List<Product> response = productService.getProductList(currentUser);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
 }

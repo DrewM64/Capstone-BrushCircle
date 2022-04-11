@@ -22,30 +22,46 @@ public class User {
     @Column(name = "lastName", nullable = false, length = 20)
     private String lastName;
 
-    @Column(nullable = false, unique = true, length = 45)
+    @Column(name = "email", nullable = false, unique = true, length = 45)
     private String email;
 
-    @Column(nullable = false, length = 64)
+    @Column(name = "password", nullable = false, length = 64)
     private String password;
 
+    @Column(name = "phoneNumber")
     private String phoneNumber;
+
+    @Column(name = "phoneNumber")
     private String address;
+
+    @Column(name = "phoneNumber")
     private String state;
+
+    @Column(name = "patreon")
     private String patreon;
+
+    @Column(name = "cashapp")
     private String cashapp;
+
+    @Column(name = "title")
     private String title;
 
+    @Column(name = "profileImageName")
     private String profileImageName;
+
+    @Column(name = "biography")
     private String biography;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     @JsonIgnore
     private List<Product> products;
+
     @Column(nullable = false)
     private String role;
 
     public User(){}
 
-    public User(String firstName, String lastName, String email, String password) {
+    public User(String email, String password) {
         this.email = email;
         this.password = password;
     }

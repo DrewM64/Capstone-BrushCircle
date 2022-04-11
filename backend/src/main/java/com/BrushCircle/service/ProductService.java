@@ -4,31 +4,21 @@ import com.BrushCircle.model.Product;
 //import com.BrushCircle.service.model.Product;
 
 //import graphql.schema.DataFetcher;
+import com.BrushCircle.model.User;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
 public interface ProductService {
+    Product registerProduct(Product newProduct, MultipartFile file) throws Exception;
 
-//    DataFetcher<Product> getProductByQuery();
-//
-//    DataFetcher<List<Product>> getAllProductsByQuery();
-//
-//    DataFetcher<List<Product>> getAllProductsByIdsQuery();
+    Product getProductInfo(Product product) throws Exception;
 
-    Product findProductById(Long productId);
+    Product update(User currentUser, Product currentProduct) throws Exception;
 
-    List<Product> findAllProducts();
+    List<Product> delete(User currentUser, Product currentProduct) throws Exception;
 
-    List<Product> findProductsByIds(List<Long> productsId);
+    List<Product> getProductList(User currentUser) throws Exception;
 
-    List<Product> filter(List<String> products, List<String> genders, List<Integer> prices, boolean sortByPrice);
-
-    List<Product> findByProductOrderByPriceDesc(String product);
-
-    List<Product> findByProductGenderOrderByPriceDesc(String productGender);
-
-    Product saveProduct(Product product, MultipartFile file);
-
-    List<Product> deleteProduct(Long productId);
+    List<String> removeStyleDuplicates(String[] styleList) throws Exception;
 }
