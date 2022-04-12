@@ -208,26 +208,26 @@ public class AdminController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "OK", response = User.class),
-            @ApiResponse(code = 400, message = "Bad Request", response = ErrorMessage.class),
-            @ApiResponse(code = 401, message = "Unauthorized", response = ErrorMessage.class),
-            @ApiResponse(code = 404, message = "Not Found", response = ErrorMessage.class),
-            @ApiResponse(code = 500, message = "Internal Server Error", response = ErrorMessage.class)
-    })
-    @RequestMapping(
-            value = "/createuser",
-            method = RequestMethod.POST,
-            produces = {MediaType.APPLICATION_JSON_VALUE},
-            consumes = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<User> createUser(
-//        @RequestHeader(value = "Authorization") @ApiParam(required = true, value = "JWT Token to authorize request made by user") String authorization,
-//        @Valid
-            @RequestBody @ApiParam(value = "Admin Object") User admin,
-            @RequestBody @ApiParam(value = "New Username") String newUsername,
-            @RequestBody @ApiParam(value = "New Password") String newPassword) throws Throwable {
-        User newUser = new User(newUsername,newPassword);
-        userService.registerUser(newUser);
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
+//    @ApiResponses(value = {
+//            @ApiResponse(code = 200, message = "OK", response = User.class),
+//            @ApiResponse(code = 400, message = "Bad Request", response = ErrorMessage.class),
+//            @ApiResponse(code = 401, message = "Unauthorized", response = ErrorMessage.class),
+//            @ApiResponse(code = 404, message = "Not Found", response = ErrorMessage.class),
+//            @ApiResponse(code = 500, message = "Internal Server Error", response = ErrorMessage.class)
+//    })
+//    @RequestMapping(
+//            value = "/createuser",
+//            method = RequestMethod.POST,
+//            produces = {MediaType.APPLICATION_JSON_VALUE},
+//            consumes = {MediaType.APPLICATION_JSON_VALUE})
+//    public ResponseEntity<User> createUser(
+////        @RequestHeader(value = "Authorization") @ApiParam(required = true, value = "JWT Token to authorize request made by user") String authorization,
+////        @Valid
+//            @RequestBody @ApiParam(value = "Admin Object") User admin,
+//            @RequestBody @ApiParam(value = "New Username") String newUsername,
+//            @RequestBody @ApiParam(value = "New Password") String newPassword) throws Throwable {
+//        User newUser = new User(newUsername,newPassword);
+//        userService.registerUser(newUser);
+//        return new ResponseEntity<>(HttpStatus.OK);
+//    }
 }

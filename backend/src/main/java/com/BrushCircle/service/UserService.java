@@ -7,7 +7,8 @@ import com.BrushCircle.model.User;
 import java.util.List;
 
 public interface UserService {
-    User registerUser(User newUser) throws Exception;
+//    User registerUser(User newUser) throws Exception;
+    User registerUser(String email, String password) throws Exception;
     User login(User loginUser) throws Exception;
     User addProfPic(User currentUser) throws Exception;
     User resetProfPic(User currentUser) throws Exception;

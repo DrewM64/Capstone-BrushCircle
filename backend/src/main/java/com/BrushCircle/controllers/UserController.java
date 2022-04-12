@@ -26,6 +26,7 @@ import org.springframework.http.ResponseEntity;
 //import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 //import javax.validation.Valid;
 import javax.validation.Valid;
@@ -63,8 +64,8 @@ public class UserController {
     public ResponseEntity<User> registerUser(
 //        @RequestHeader(value = "Authorization") @ApiParam(required = true, value = "JWT Token to authorize request made by user") String authorization,
 //        @Valid
-        @RequestBody @ApiParam(value = "New User to Register Information") User newUser) throws Throwable {
-        User response = userService.registerUser(newUser);
+            @RequestParam("email") String email, @RequestParam("password") String password) throws Throwable {
+        User response = userService.registerUser(email, password);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
