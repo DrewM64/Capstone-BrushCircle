@@ -2,6 +2,7 @@ package com.BrushCircle.controllers;
 
 //import com.BrushCircle.exception.InputFieldException;
 //import com.BrushCircle.mapper.UserMapper;
+import com.BrushCircle.dto.RegisterFormDTO;
 import com.BrushCircle.model.ErrorMessage;
 import com.BrushCircle.model.Product;
 //import com.BrushCircle.payload.user.UserRequest;
@@ -12,6 +13,7 @@ import com.BrushCircle.model.Product;
 //import graphql.servlet.internal.GraphQLRequest;
 //import lombok.RequiredArgsConstructor;
 import com.BrushCircle.model.User;
+import com.BrushCircle.repository.UserRepository;
 import com.BrushCircle.service.ProductService;
 import com.BrushCircle.service.UserService;
 import io.swagger.annotations.ApiParam;
@@ -39,12 +41,13 @@ import java.util.List;
 @RequestMapping("/user")
 public class UserController {
 
-//    @Autowired
-//    UserRepository userRepository;
+    @Autowired
+    UserRepository userRepository;
 
+    @Autowired
     ProductService productService;
 
-//    @Autowired
+    @Autowired
     UserService userService;
 //    private final GraphQLProvider graphQLProvider;
 //    private final SimpMessagingTemplate messagingTemplate;
@@ -61,11 +64,14 @@ public class UserController {
         method = RequestMethod.POST,
         produces = {MediaType.APPLICATION_JSON_VALUE},
         consumes = {MediaType.APPLICATION_JSON_VALUE})
+    @ResponseBody
     public ResponseEntity<User> registerUser(
 //        @RequestHeader(value = "Authorization") @ApiParam(required = true, value = "JWT Token to authorize request made by user") String authorization,
 //        @Valid
-            @RequestParam("email") String email, @RequestParam("password") String password) throws Throwable {
-        User response = userService.registerUser(email, password);
+            @RequestBody RegisterFormDTO registerForm) throws Throwable {
+        System.out.println(registerForm.getEmail());
+        System.out.println(registerForm.getPassword());
+        User response = userService.registerUser(registerForm.getEmail(), registerForm.getPassword());
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 

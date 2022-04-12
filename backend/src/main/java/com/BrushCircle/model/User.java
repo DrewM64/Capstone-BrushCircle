@@ -16,10 +16,10 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "firstName", nullable = false, length = 20)
+    @Column(name = "firstName", length = 20)
     private String firstName;
 
-    @Column(name = "lastName", nullable = false, length = 20)
+    @Column(name = "lastName", length = 20)
     private String lastName;
 
     @Column(name = "email", nullable = false, unique = true, length = 45)
@@ -56,8 +56,8 @@ public class User {
     @JsonIgnore
     private List<Product> products;
 
-    @Column(nullable = false, columnDefinition = "varchar(255) default 'ROLE'")
-    private String role;
+    @Column(columnDefinition = "varchar(255) default 'USER'")
+    private String role = "USER";
 
     public User(){}
 

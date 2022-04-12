@@ -44,9 +44,8 @@ public class UserServiceImpl implements UserService {
         try {
             if (newUser == null) {
                 throw new Exception();
-            } else {
-                return registeredUser;
             }
+            return registeredUser;
         } catch (Exception e) {
             log.info("\n[Error Found] User Email was not found..."
                     + "\n Email Expected:   " + newUser.getEmail());
