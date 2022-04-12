@@ -16,10 +16,10 @@ import org.springframework.web.multipart.MultipartFile;
 @RepositoryRestResource
 public interface ProductRepository extends CrudRepository <Product, Long>, JpaSpecificationExecutor<Product> {
     // Fetch product by style
-    List<Product> findByProductStyle(@Param("style") String style);
+    List<Product> findByStyle(@Param("style") String style);
 
     // Fetch product by title
-    Product findByProductTitle(@Param("title") String title);
+    Product findByTitle(@Param("title") String title);
 
     //    DataFetcher<Product> getProductByQuery();
 //
@@ -27,27 +27,23 @@ public interface ProductRepository extends CrudRepository <Product, Long>, JpaSp
 //
 //    DataFetcher<List<Product>> getAllProductsByIdsQuery();
 
-    Product findProductById(Long productId);
+//    Product findProductById(Long productId);
 
 //    List<Product> findAllProducts();
 
-    List<Product> findProductsByIds(List<Long> productsId);
+//    List<Product> findProductsByIds(List<Long> productsId);
+//
+//    List<Product> filter(List<String> products, List<String> genders, List<Integer> prices, boolean sortByPrice);
 
-    List<Product> filter(List<String> products, List<String> genders, List<Integer> prices, boolean sortByPrice);
+//    Product saveProduct(Product product, MultipartFile file);
 
-    List<Product> findByProductOrderByPriceDesc(String product);
-
-    List<Product> findByProductGenderOrderByPriceDesc(String productGender);
-
-    Product saveProduct(Product product, MultipartFile file);
-
-    List<Product> deleteProduct(Long productId);
+//    List<Product> deleteProduct(Long productId);
 
     List<Product> findByUser(@Param("user") User user);
 
-    @Query("SELECT * FROM product")
-    List<Product> findAllProducts();
+//    @Query("SELECT * FROM product")
+//    List<Product> findAllProducts();
 
-    @Query("SELECT style FROM product")
-    ArrayList<String> getStyles();
+//    @Query("SELECT style FROM product")
+//    ArrayList<String> getStyles();
 }

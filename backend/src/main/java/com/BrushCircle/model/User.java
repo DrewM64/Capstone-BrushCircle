@@ -31,10 +31,10 @@ public class User {
     @Column(name = "phoneNumber")
     private String phoneNumber;
 
-    @Column(name = "phoneNumber")
+    @Column(name = "address")
     private String address;
 
-    @Column(name = "phoneNumber")
+    @Column(name = "state")
     private String state;
 
     @Column(name = "patreon")
@@ -56,7 +56,7 @@ public class User {
     @JsonIgnore
     private List<Product> products;
 
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "varchar(255) default 'ROLE'")
     private String role;
 
     public User(){}

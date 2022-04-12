@@ -20,10 +20,12 @@ public class ProductServiceImpl implements ProductService {
     @Autowired
     ProductRepository productRepository;
 
+    @Override
     public Product registerProduct(Product newProduct, MultipartFile file) throws Exception {
         log.info("Running RegisterProduct");
         productRepository.save(newProduct);
-        Product registeredProduct = productRepository.saveProduct(newProduct, file);
+//        Product registeredProduct = productRepository.saveProduct(newProduct, file);
+        Product registeredProduct = productRepository.findByTitle(newProduct.getTitle());
         try {
             if (newProduct == null) {
                 throw new Exception();
@@ -39,13 +41,13 @@ public class ProductServiceImpl implements ProductService {
 
     public Product getProductInfo(Product product) throws Exception {
         log.info("Getting Product Info");
-        Product existing = productRepository.findByProductTitle(product.getTitle());
+        Product existing = productRepository.findByTitle(product.getTitle());
         return existing;
     }
 
     public Product update(User user, Product product) throws Exception {
         log.info("Updating Current Product Info");
-        Product existing = productRepository.findByProductTitle(product.getTitle());
+        Product existing = productRepository.findByTitle(product.getTitle());
         boolean ifAdmin = false;
         try {
             if (user.getRole().equals("ADMIN")) {
@@ -68,7 +70,7 @@ public class ProductServiceImpl implements ProductService {
 
     public List<Product> delete(User user, Product product) throws Exception {
         log.info("Updating Current Product Info");
-        Product existing = productRepository.findByProductTitle(product.getTitle());
+        Product existing = productRepository.findByTitle(product.getTitle());
         try {
             if (existing.getUser() != user) {
                 throw new Exception();

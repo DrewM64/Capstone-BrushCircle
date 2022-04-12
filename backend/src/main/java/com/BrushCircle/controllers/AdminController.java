@@ -91,10 +91,11 @@ public class AdminController {
 //        @Valid
             @RequestBody @ApiParam(value = "User Info Filter")@Valid User filter) throws Throwable {
 
-        Specification<User> spec = new UserSpecification(filter);
-
-        List<User> result = userRepository.findAllUsers(spec);
-        return new ResponseEntity<>(result, HttpStatus.OK);
+//        Specification<User> spec = new UserSpecification(filter);
+//
+//        List<User> result = userRepository.findAllUsers(spec);
+//        return new ResponseEntity<>(result, HttpStatus.OK);
+        return new ResponseEntity<>("API Reached", HttpStatus.OK);
     }
 
     @ApiResponses(value = {

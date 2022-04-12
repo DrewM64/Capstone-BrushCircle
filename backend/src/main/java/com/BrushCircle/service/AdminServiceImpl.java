@@ -19,7 +19,8 @@ public class AdminServiceImpl {
     List<User> getUsers(User admin) throws Exception {
         log.info("Running Admin getUsers");
 
-        List<User> userList = userRepository.getAllRegUsers();
+//        List<User> userList = userRepository.getAllRegUsers(); //TODO Fix
+        List<User> userList = userRepository.findAll();
 
         try {
             if (admin == null) {

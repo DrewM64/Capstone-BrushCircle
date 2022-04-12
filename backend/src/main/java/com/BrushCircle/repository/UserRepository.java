@@ -14,19 +14,21 @@ import java.util.List;
 @RepositoryRestResource
 public interface UserRepository extends CrudRepository<User, Long>, JpaSpecificationExecutor<Product> {
 
-    User findByUsername(String username);
+//    User findByUsername(String username);
 
-    @Query("SELECT * FROM users WHERE role='USER'")
-    List<User> getAllRegUsers();
+//    @Query("SELECT * FROM users WHERE role='USER'")
+//    List<User> getAllRegUsers();
 
-    User findByActivationCode(String code);
+//    User findByActivationCode(String code);
 
-    User findByPasswordResetCode(String code);
+//    User findByPasswordResetCode(String code);
 
     User findByEmail(@Param("email") String email);
 
-    List<User> findAllUsers(Specification<User> spec);
+//    List<User> findAllUsers(Specification<User> spec);
 
 //    @Query("SELECT * FROM user")
 //    List<User> findAll();
+
+    List<User> findAll();
 }
