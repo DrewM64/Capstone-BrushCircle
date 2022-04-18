@@ -20,6 +20,7 @@ const styles = {
         height: "100%",
         transition: "right 0.4s",
         borderLeft: "2px solid lightgrey",
+        overflow: "auto",
     },
     rightSidebarClosed: {
         position: "relative",
@@ -51,8 +52,8 @@ const styles = {
     sidebarInfoContainer: {
         display: "grid",
         padding: "20px",
-        gridTemplateColumns: "auto auto",
-        rowGap: "5px",
+        gridTemplateColumns: "100px auto",
+        rowGap: "10px",
     },
     sidebarInfoContainerHidden: {
         display: "none",
@@ -73,7 +74,7 @@ const styles = {
     sidebarFormContainer: {
         display: "grid",
         padding: "20px",
-        rowGap: "5px"
+        rowGap: "16px"
     },
     sidebarFormContainerHidden: {
         display: "none"
@@ -87,7 +88,42 @@ const styles = {
     },
     saveButton: {
         backgroundColor: "saveButtonColor",
+        width: "50%",
+        marginLeft: "auto",
+        marginTop: "15px",
     },
+    toggleSwitchContainer: {
+        display: 'flex',
+        justifyContent: 'end',
+        alignItems: 'top'
+    },
+    editToggleSwitchContainer: {
+        display: 'flex',
+        justifyContent: 'space-between'
+    },
+    toggleSwitch: {
+
+    },
+    descriptionLabel: {
+        gridColumn: "span 2",
+    },
+    descriptionText: {
+        gridColumn: "span 2",
+        color: "gray",
+        fontSize: "0.7em"
+    },
+    priceTextField: {
+        width: '40%'
+    },
+    dimensionsContainer: {
+        display: "grid",
+        width: "65%",
+        gridTemplateColumns: "auto auto",
+        columnGap: "20px"
+    },
+    formGroup: {
+        display: 'grid',
+    }
 }
 
 export default styles;

@@ -4,12 +4,12 @@ import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 import ArrowBackOutlinedIcon from '@mui/icons-material/ArrowBackOutlined';
 import { useDispatch, useSelector } from 'react-redux';
-
 import styles from './styles';
 import createStyles from './containerStyles'; //this is needed to hide the second panel
-import { Button, IconButton, Input, Stack, TextField, Typography } from '@mui/material';
+import { Button, IconButton, Input, InputAdornment, Stack, Switch, TextField, Typography } from '@mui/material';
 import GalleryItem from './GalleryItem/GalleryItem';
 import { getFileList, uploadFileToServer } from '../../../actions/imageActions';
+import { DesktopDatePicker } from '@mui/x-date-pickers';
 
 function GalleryPanel(props) {
     const { value, index } = props;
@@ -27,6 +27,10 @@ function GalleryPanel(props) {
         setIsSidebarOpen(!isSidebarOpen);
     }
 
+    const onDateChanged = (event) => {
+
+    }
+
     const onEditButtonClicked = (event) => {
         setIsEditOpen(!isEditOpen);
     }
@@ -39,9 +43,9 @@ function GalleryPanel(props) {
         setSelectedIndex(index);
 
         //if being deslected then the sizebar should close
-        if(index == null){
+        if (index == null) {
             setIsSidebarOpen(false);
-        }else{
+        } else {
             setIsSidebarOpen(true);
         }
     }
@@ -62,7 +66,7 @@ function GalleryPanel(props) {
         <Box hidden={value == index ? false : true} sx={createStyles(value !== index)}>
             <Box padding={2} sx={isSidebarOpen ? styles.content : styles.contentExpanded}>
                 <label htmlFor='contained-button-file-1'>
-                    <Input accept="image/*" id="contained-button-file-1" type="file" sx={{display: "none"}}  onChange={onFileSelected} />
+                    <Input accept="image/*" id="contained-button-file-1" type="file" sx={{ display: "none" }} onChange={onFileSelected} />
                     <Button variant='contained' component='span'>Upload</Button>
                 </label>
                 <hr />
@@ -75,20 +79,20 @@ function GalleryPanel(props) {
             <Box sx={isSidebarOpen ? styles.rightSidebar : styles.rightSidebarClosed}>
                 <Box id="actionBar" sx={styles.actionBar} >
                     <Stack direction="row"  >
-                        <IconButton sx={!isEditOpen? styles.backActionButton : {display: "none"}} onClick={onBackButtonClicked}>
-                            <ArrowBackOutlinedIcon sx={styles.actionButton}/>
+                        <IconButton sx={!isEditOpen ? styles.backActionButton : { display: "none" }} onClick={onBackButtonClicked}>
+                            <ArrowBackOutlinedIcon sx={styles.actionButton} />
                         </IconButton>
-                        <IconButton sx={!isEditOpen ? {display: "none"} : styles.rightActionButton} onClick={onEditButtonClicked}>
+                        <IconButton sx={!isEditOpen ? { display: "none" } : styles.rightActionButton} onClick={onEditButtonClicked}>
                             <EditOutlinedIcon />
                         </IconButton >
-                        <IconButton sx={!isEditOpen ? {display: "none"} : styles.actionButton}>
+                        <IconButton sx={!isEditOpen ? { display: "none" } : styles.actionButton}>
                             <DeleteOutlineOutlinedIcon sx={styles.actionButton} />
                         </IconButton>
                     </Stack>
                 </Box>
-                <Box sx={isEditOpen ?  styles.sidebarInfoContainer : styles.sidebarInfoContainerHidden}>
+                <Box sx={isEditOpen ? styles.sidebarInfoContainer : styles.sidebarInfoContainerHidden}>
                     <Box sx={styles.imageContainer}>
-                    {imageList && <img src={'http://localhost:8080/' + imageList[selectedIndex]} alt='selected image'></img>}
+                        {imageList && <img src={'http://localhost:8080/' + imageList[selectedIndex]} alt='selected image'></img>}
                     </Box>
                     <Typography>Title</Typography>
                     <Typography align='right'>The light that shines bright</Typography>
@@ -101,20 +105,68 @@ function GalleryPanel(props) {
                     <Typography>Date Created</Typography>
                     <Typography align='right'>1/12/2004</Typography>
                     <Typography>Featured</Typography>
-                    <Typography align='right'>True</Typography>
+                    <Box id='toggleSwitchContainer' sx={styles.toggleSwitchContainer}>
+                        <Switch size='small'></Switch>
+                    </Box>
+                    <Typography sx={styles.descriptionLabel}>Description</Typography>
+                    <Typography sx={styles.descriptionText}>Loren ipsum something something description for this nv
+                        piece of work made by that guy from that place called edf
+                        by the name in the event of something lorem lorem alr ed
+                        ight lets end this</Typography>
                 </Box>
                 <Box sx={isEditOpen ? styles.sidebarFormContainerHidden : styles.sidebarFormContainer}>
-                    <Typography>Title</Typography>
-                    <TextField></TextField>
-                    <Typography>Date Created</Typography>
-                    <TextField></TextField>
-                    <Typography>Size</Typography>
-                    <Typography>Tags</Typography>
-                    <TextField multiline rows={5}></TextField>
-                    <Typography>Category</Typography>
-                    <Typography>Featured</Typography>
-                    <Button variant='contained' sx={styles.saveButton}>Save Changes</Button>
-                    
+                    <Box sx={styles.formGroup}>
+                        <Typography>Title</Typography>
+                        <TextField size='small'></TextField>
+                    </Box>
+                    <Box sx={styles.formGroup}>
+                        <Typography>Date Created</Typography>
+                        <DesktopDatePicker
+                            inputFormat="MM/dd/yyyy"
+                            onChange={onDateChanged}
+                            renderInput={(params) => <TextField {...params} />}
+                        />
+                    </Box>
+                    <Box>
+                        <Typography>Price</Typography>
+                        <TextField size='small' label='$' sx={styles.priceTextField}></TextField>
+                    </Box>
+                    <Box sx={styles.formGroup}>
+                        <Typography>Style</Typography>
+                        <TextField size="small"></TextField>
+                    </Box>
+                    <Box sx={styles.editToggleSwitchContainer}>
+                        <Typography>Featured</Typography>
+                        <Box id='toggleSwitchContainer' sx={styles.toggleSwitchContainer}>
+                            <Switch size='small'></Switch>
+                        </Box>
+                    </Box>
+                    <Box sx={styles.formGroup}>
+                        <Typography>Description</Typography>
+                        <TextField multiline rows={3}></TextField>
+                    </Box>
+                    <Box sx={styles.dimensionsContainer}>
+                        <Box>
+                            <Typography>Width</Typography>
+                            <TextField
+                                size='small'
+                                InputProps={{ endAdornment: <InputAdornment position='end'>in</InputAdornment> }}
+                            ></TextField>
+                        </Box>
+                        <Box>
+                            <Typography>Length</Typography>
+                            <TextField
+                                size='small'
+                                InputProps={{ endAdornment: <InputAdornment position='end'>in</InputAdornment> }}
+                            ></TextField>
+                        </Box>
+                    </Box>
+                    <Box sx={styles.formGroup}>
+                        <Typography>Tags(Comma Separated) </Typography>
+                        <TextField placeholder='Sky,Custom, ect..' size='small'></TextField>
+                    </Box>
+                    <Button variant='contained' sx={styles.saveButton} size='small'>Save Changes</Button>
+
                 </Box>
             </Box>
         </Box>
