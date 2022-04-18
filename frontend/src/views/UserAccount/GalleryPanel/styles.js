@@ -16,7 +16,7 @@ const styles = {
     rightSidebar: {
         position: "relative",
         right: "0",
-        width: "30%",
+        width: "40%",
         height: "100%",
         transition: "right 0.4s",
         borderLeft: "2px solid lightgrey",
