@@ -42,7 +42,7 @@ function GalleryPanel(props) {
     const onGalleryItemClicked = (index) => {
         setSelectedIndex(index);
 
-        //if being deslected then the sizebar should close
+        //if being deslected then the sidebar should close
         if (index == null) {
             setIsSidebarOpen(false);
         } else {
