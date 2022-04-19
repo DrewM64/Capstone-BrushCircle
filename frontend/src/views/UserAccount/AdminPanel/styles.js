@@ -3,9 +3,9 @@ const makeStyles = (value, index, isUserSelected, isSidebarOpen) => {
     const searchContainerDisplay = isUserSelected ? "none" : "block";
     const selectionContainerDisplay = isUserSelected ? "flex" : "none";
     const sidebarDisplay = isSidebarOpen ? "block" : "none";
-    const leftContainerWidth = isSidebarOpen ? "60%" : "100%";
+    const leftContainerWidth = isSidebarOpen ? "65%" : "100%";
     const sidebarRightValue = isSidebarOpen ? "0" : "-300px";
-    const sidebarWidth = isSidebarOpen ? "40%" : "0px";
+    const sidebarWidth = isSidebarOpen ? "35%" : "0px";
 
     return {
         container: {
