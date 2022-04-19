@@ -66,6 +66,7 @@ public class AdminController {
             method = RequestMethod.POST,
             produces = {MediaType.APPLICATION_JSON_VALUE},
             consumes = {MediaType.APPLICATION_JSON_VALUE})
+    @ResponseBody
     public ResponseEntity<?> getUsers(
 //        @RequestHeader(value = "Authorization") @ApiParam(required = true, value = "JWT Token to authorize request made by user") String authorization,
 //        @Valid

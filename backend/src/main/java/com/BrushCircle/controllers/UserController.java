@@ -2,7 +2,10 @@ package com.BrushCircle.controllers;
 
 //import com.BrushCircle.exception.InputFieldException;
 //import com.BrushCircle.mapper.UserMapper;
+import com.BrushCircle.dto.LoginFormDTO;
+import com.BrushCircle.dto.ProfilePhotoDTO;
 import com.BrushCircle.dto.RegisterFormDTO;
+import com.BrushCircle.dto.UserDTO;
 import com.BrushCircle.model.ErrorMessage;
 import com.BrushCircle.model.Product;
 //import com.BrushCircle.payload.user.UserRequest;
@@ -87,11 +90,12 @@ public class UserController {
         method = RequestMethod.POST,
         produces = {MediaType.APPLICATION_JSON_VALUE},
         consumes = {MediaType.APPLICATION_JSON_VALUE})
+    @ResponseBody
     public ResponseEntity<User> loginUser(
 //        @RequestHeader(value = "Authorization") @ApiParam(required = true, value = "JWT Token to authorize request made by user") String authorization,
 //        @Valid
-            @RequestBody @ApiParam(value = "User Login") User loginUser) throws Throwable {
-        User response = userService.login(loginUser);
+            @RequestBody LoginFormDTO loginForm) throws Throwable {
+        User response = userService.login(loginForm);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
@@ -108,11 +112,13 @@ public class UserController {
         method = RequestMethod.POST,
         produces = {MediaType.APPLICATION_JSON_VALUE},
         consumes = {MediaType.APPLICATION_JSON_VALUE})
+    @ResponseBody
     public ResponseEntity <?> newProfilePhoto(
 //        @RequestHeader(value = "Authorization") @ApiParam(required = true, value = "JWT Token to authorize request made by user") String authorization,
 //        @Valid
-        @RequestBody @ApiParam(value = "Current User") User currentUser) throws Throwable {
-        User response = userService.addProfPic(currentUser);
+            @RequestBody @ApiParam(value = "Current User") User currentUser,
+            @RequestParam("file") MultipartFile file) throws Throwable {
+        User response = userService.addProfPic(currentUser, file);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
@@ -126,9 +132,10 @@ public class UserController {
     })
     @RequestMapping(
         value ="/resetprofilephoto",
-        method = RequestMethod.POST,
+        method = RequestMethod.DELETE,
         produces = {MediaType.APPLICATION_JSON_VALUE},
         consumes = {MediaType.APPLICATION_JSON_VALUE})
+    @ResponseBody
     public ResponseEntity<User> resetProfilePhoto(
 //        @RequestHeader(value = "Authorization") @ApiParam(required = true, value = "JWT Token to authorize request made by user") String authorization,
 //        @Valid
@@ -149,6 +156,7 @@ public class UserController {
         method = RequestMethod.POST,
         produces = {MediaType.APPLICATION_JSON_VALUE},
         consumes = {MediaType.APPLICATION_JSON_VALUE})
+    @ResponseBody
     public ResponseEntity<User> updateUser(
 //        @RequestHeader(value = "Authorization") @ApiParam(required = true, value = "JWT Token to authorize request made by user") String authorization,
 //        @Valid
@@ -169,11 +177,12 @@ public class UserController {
         method = RequestMethod.POST,
         produces = {MediaType.APPLICATION_JSON_VALUE},
         consumes = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<User> getUserInfo(
+    @ResponseBody
+    public ResponseEntity<UserDTO> getUserInfo(
 //        @RequestHeader(value = "Authorization") @ApiParam(required = true, value = "JWT Token to authorize request made by user") String authorization,
 //        @Valid
             @RequestBody @ApiParam(value = "User Email") String email) throws Throwable {
-        User response = userService.getUserInfo(email);
+        UserDTO response = userService.getUserInfo(email);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
@@ -189,6 +198,7 @@ public class UserController {
             method = RequestMethod.POST,
             produces = {MediaType.APPLICATION_JSON_VALUE},
             consumes = {MediaType.APPLICATION_JSON_VALUE})
+    @ResponseBody
     public ResponseEntity<?> getProductList(
 //        @RequestHeader(value = "Authorization") @ApiParam(required = true, value = "JWT Token to authorize request made by product") String authorization,
 //        @Valid

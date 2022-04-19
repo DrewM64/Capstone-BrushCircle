@@ -59,7 +59,8 @@ public class User {
     @Column(columnDefinition = "varchar(255) default 'USER'")
     private String role = "USER";
 
-    public User(){}
+    public User() {
+    }
 
     public User(String email, String password) {
         this.email = email;

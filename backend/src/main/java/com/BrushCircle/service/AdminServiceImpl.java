@@ -10,23 +10,23 @@ import java.util.List;
 
 @Service
 @Slf4j
-public class AdminServiceImpl {
+public class AdminServiceImpl implements AdminService{
 
     @Autowired
     UserRepository userRepository;
 
-    public
-    List<User> getUsers(User admin) throws Exception {
+    @Override
+    public List<User> getUsers(User admin) throws Exception {
         log.info("Running Admin getUsers");
 
 //        List<User> userList = userRepository.getAllRegUsers(); //TODO Fix
-        List<User> userList = userRepository.findAll();
+        List<User> userList = userRepository.findAllByRole("USER");
+        log.info(userList.toString());
 
         try {
-            if (admin == null) {
+            if (admin == null || admin.getRole().equals("USER")) {
                 throw new Exception();
-            }
-            if (userList.contains(admin)) {
+            } else if (userList.contains(admin)) {
                 throw new Exception();
             } else {
                 return userList;

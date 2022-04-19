@@ -1,5 +1,8 @@
 package com.BrushCircle.service;
 
+import com.BrushCircle.dto.LoginFormDTO;
+import com.BrushCircle.dto.ProfilePhotoDTO;
+import com.BrushCircle.dto.UserDTO;
 import com.BrushCircle.model.User;
 import com.BrushCircle.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -8,13 +11,20 @@ import org.springframework.beans.BeanWrapper;
 import org.springframework.beans.BeanWrapperImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
 @Service
 @Slf4j
 public class UserServiceImpl implements UserService {
+
+    public static String uploadDirectory = System.getProperty("user.dir") + "/BrushCircleUploads";
 
     @Autowired
     UserRepository userRepository;
@@ -53,11 +63,11 @@ public class UserServiceImpl implements UserService {
         return null;
     }
 
-    public User login(User loginUser) throws Exception {
+    public User login(LoginFormDTO loginForm) throws Exception {
         log.info("Running Login");
-        User existingUser = userRepository.findByEmail(loginUser.getEmail());
+        User existingUser = userRepository.findByEmail(loginForm.getEmail());
         try {
-            if (loginUser == null) {
+            if (loginForm == null) {
                 throw new Exception();
             } else if (existingUser == null) {
                 throw new Exception();
@@ -66,23 +76,32 @@ public class UserServiceImpl implements UserService {
             }
         } catch (Exception e) {
             log.info("\n[Error Found] User Email was not found..."
-                    + "\n Email Expected for loginUser:     " + loginUser.getEmail()
+                    + "\n Email Expected for loginUser:     " + loginForm.getEmail()
                     + "\n Email Expected for currentUser:   " + existingUser.getEmail());
         }
         return null;
     }
 
-    public User addProfPic(User currentUser) throws Exception {
-        log.info("Add Profile Picture");
-        User existing = userRepository.findByEmail(currentUser.getEmail());
-        existing.setProfileImageName(currentUser.getProfileImageName());
+    public User addProfPic(User user, MultipartFile file) throws Exception {
+        log.info("\nAdd Profile Picture");
+        log.info("\nUser Info:      " + user.toString());
+        log.info("\nFile Info:      "
+                + "\n" + file.getOriginalFilename()
+                + "\n" + file.getContentType()
+                + "\n" + Arrays.toString(file.getBytes()));
+        User existing = userRepository.findByEmail(user.getEmail());
+        existing.setProfileImageName(file.getOriginalFilename());
         userRepository.save(existing);
+        Path fileNameAndPath = Paths.get(uploadDirectory, file.getOriginalFilename());
+        Files.write(fileNameAndPath, file.getBytes());
         return existing;
     }
 
     public User resetProfPic(User currentUser) throws Exception {
         log.info("Reset Profile Picture");
         User existing = userRepository.findByEmail(currentUser.getEmail());
+        Path fileNameAndPath = Paths.get(uploadDirectory, existing.getProfileImageName());
+        Files.delete(fileNameAndPath);
         existing.setProfileImageName(null);
         userRepository.save(existing);
         return existing;
@@ -90,16 +109,21 @@ public class UserServiceImpl implements UserService {
 
     public User update(User currentUser) throws Exception {
         log.info("Updating Current User Info");
+        log.info("User Object provided: " + currentUser.toString());
         User existing = userRepository.findByEmail(currentUser.getEmail());
         copyNonNullProperties(currentUser, existing);
         userRepository.save(existing);
         return existing;
     }
 
-    public User getUserInfo(String email) throws Exception {
+    public UserDTO getUserInfo(String email) throws Exception {
         log.info("Getting User Info");
+        log.info("Email received:   " + email);
         User existing = userRepository.findByEmail(email);
-        return existing;
+        UserDTO userDTO = new UserDTO();
+        userDTO.setUser(existing);
+        userDTO.setProduct(existing.getProducts());
+        return userDTO;
     }
 
     public static void copyNonNullProperties(Object src, Object target) {

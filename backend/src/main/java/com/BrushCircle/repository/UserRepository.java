@@ -30,5 +30,6 @@ public interface UserRepository extends CrudRepository<User, Long>, JpaSpecifica
 //    @Query("SELECT * FROM user")
 //    List<User> findAll();
 
+    List<User> findAllByRole(@Param("role") String role);
     List<User> findAll();
 }
