@@ -19,7 +19,7 @@ function AdminGalleryItem(props) {
     }
 
     return (
-        <Box sx={styles.container} onClick={onElementClicked}>
+        <Box sx={index === currentIndex ? styles.selected : styles.container} onClick={onElementClicked}>
             {index}
         </Box>
     )

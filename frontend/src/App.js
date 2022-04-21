@@ -16,10 +16,10 @@ function App() {
   const user = useSelector(state => state.Authentication.user)
 
   useEffect(() => {
-    axios.get('http://localhost:8080/')
-      .then((response) => {
-        setMessage(response.data)
-      })
+    // axios.get('http://localhost:8080/')
+    //   .then((response) => {
+    //     setMessage(response.data)
+    //   })
   })
 
   return (

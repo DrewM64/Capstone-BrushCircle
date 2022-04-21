@@ -1,4 +1,11 @@
-const makeStyles = (value, index, isUserSelected, isSidebarOpen) => {
+const makeStyles = (
+    value,
+    index,
+    isUserSelected,
+    isSidebarOpen,
+    isUserProductSelected,
+    toggleInfoEdit,
+    toggleProductEdit) => {
     const adminPanelDisplay = value == index ? "block" : "none";
     const searchContainerDisplay = isUserSelected ? "none" : "block";
     const selectionContainerDisplay = isUserSelected ? "flex" : "none";
@@ -6,13 +13,20 @@ const makeStyles = (value, index, isUserSelected, isSidebarOpen) => {
     const leftContainerWidth = isSidebarOpen ? "65%" : "100%";
     const sidebarRightValue = isSidebarOpen ? "0" : "-300px";
     const sidebarWidth = isSidebarOpen ? "35%" : "0px";
+    const backButtonDisplay = toggleInfoEdit || toggleProductEdit ? "block" : "none";
+    const editButtonDisplay = toggleInfoEdit || toggleProductEdit ? "none" : "block";
+    const deleteButtonMargin = toggleInfoEdit || toggleProductEdit ? "auto" : "";
+    const userInfoContainerDisplay = !isUserProductSelected && !toggleInfoEdit ? "grid" : "none";
+    const userEditContainerDisplay = !isUserProductSelected && toggleInfoEdit ? "grid" : "none";
+    const userProductViewContainerDisplay = isUserProductSelected && !toggleProductEdit ? "grid" : "none";
+    const userProductEditContainerDisplay = isUserProductSelected && toggleProductEdit ? "grid" : "none";
 
     return {
         container: {
             display: adminPanelDisplay,
             width: "100%",
             height: "557px",
-            ['#searchHR']: {
+            '#searchHR': {
                 color: 'lightgrey',
                 margin: "10px 20px 10px 20px"
             }
@@ -83,16 +97,74 @@ const makeStyles = (value, index, isUserSelected, isSidebarOpen) => {
             backgroundColor: "primary.main",
             button: {
                 color: "white"
-            }    
+            }
         },
         editButton: {
+            display: editButtonDisplay,
             marginLeft: "auto"
         },
+        deleteButton: {
+            marginLeft: deleteButtonMargin,
+        },
+        backButton: {
+            display: backButtonDisplay,
+        },
         userInfoContainer: {
-            display: "grid",
+            display: userInfoContainerDisplay,
             padding: "20px",
+            rowGap: "5px",
             gridTemplateColumns: "auto auto",
-        }
+        },
+        userEditContainer: {
+            display: userEditContainerDisplay,
+            padding: "20px",
+        },
+        userProductViewContainer: {
+            display: userProductViewContainerDisplay,
+            gridTemplateColumns: "100px auto",
+            padding: "20px",
+            rowGap: "10px",
+        },
+        userProductEditContainer: {
+            display: userProductEditContainerDisplay,
+            padding: "20px",
+            rowGap: "16px",
+        },
+        imageContainer: {
+            overflow: "hidden",
+            height: "200px",
+            gridColumn: "span 2",
+            backgroundColor: "red",
+            marginBottom: "10px",
+            borderRadius: "6px",
+            img: {
+                width: "100%",
+            }
+        },
+        descriptionLabel: {
+            gridColumn: "span 2",
+        },
+        descriptionText: {
+            gridColumn: "span 2",
+            color: "gray",
+            fontSize: "0.7em",
+        },
+        toggleSwitchContainer: {
+            display: 'flex',
+            justifyContent: 'end',
+            alignItems: 'top'
+        },
+        biographyLabel: {
+            gridColumn: "span 2",
+        },
+        biographyText: {
+            gridColumn: "span  2",
+            color: "gray",
+            fontSize: "0.7em",
+        },
+        formGroup: {
+            display: 'grid',
+        },
     }
 }
 
