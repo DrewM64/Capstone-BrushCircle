@@ -6,6 +6,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Service
@@ -20,18 +22,20 @@ public class AdminServiceImpl implements AdminService{
         log.info("Running Admin getUsers");
 
 //        List<User> userList = userRepository.getAllRegUsers(); //TODO Fix
-        List<User> userList = userRepository.findAllByRole("USER");
-        log.info(userList.toString());
-
+        List<User> userList = new ArrayList<>(userRepository.findAllByRole("USER"));
         try {
+            for (User user: userList)
+            {
+                log.info("\nUser Info:  " + user.toString());
+            }
             if (admin == null || admin.getRole().equals("USER")) {
                 throw new Exception();
-            } else if (userList.contains(admin)) {
+            } else if (userList.isEmpty()) {
                 throw new Exception();
             } else {
                 return userList;
             }
-            } catch(Exception e) {
+        } catch (Exception e) {
             log.info("\n[Error Found] Admin was not found..."
                     + "\n Admin Expected:   " + admin.getEmail()
                     + "\n Users Retrieved:  " + userList);

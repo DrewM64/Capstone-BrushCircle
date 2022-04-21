@@ -50,6 +50,7 @@ public class AdminController {
     //    @Autowired
     UserService userService;
 
+    @Autowired
     AdminService adminService;
 //    private final GraphQLProvider graphQLProvider;
 //    private final SimpMessagingTemplate messagingTemplate;
@@ -71,6 +72,7 @@ public class AdminController {
 //        @RequestHeader(value = "Authorization") @ApiParam(required = true, value = "JWT Token to authorize request made by user") String authorization,
 //        @Valid
             @RequestBody @ApiParam(value = "Admin Logged In") User admin) throws Throwable {
+        log.info("\nAdmin Info:   " + admin.toString());
         List<User> response = adminService.getUsers(admin);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
