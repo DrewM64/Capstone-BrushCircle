@@ -118,6 +118,7 @@ const makeStyles = (
         userEditContainer: {
             display: userEditContainerDisplay,
             padding: "20px",
+            rowGap: "16px",
         },
         userProductViewContainer: {
             display: userProductViewContainerDisplay,
@@ -164,6 +165,51 @@ const makeStyles = (
         },
         formGroup: {
             display: 'grid',
+        },
+        editToggleSwitchContainer: {
+            display: 'flex',
+            justifyContent: 'space-between'
+        },
+        toggleSwitchContainer: {
+            display: 'flex',
+            justifyContent: 'end',
+            alignItems: 'top'
+        },
+        dimensionsContainer: {
+            display: "grid",
+            width: "65%",
+            gridTemplateColumns: "auto auto",
+            columnGap: "20px"
+        },
+        saveButton: {
+            backgroundColor: "saveButtonColor",
+            width: "50%",
+            marginLeft: "auto",
+            marginTop: "15px",
+        },
+        paymentMethodContainer: {
+            display: "grid",
+            gridTemplateColumns: "auto 80px",
+            gridTemaplteRows: "auto auto",
+        },
+        paymentResetButton: {
+            gridRow: "span 2",
+            height: "25px",
+        },
+        resetBiographyButton: {
+            height: "25px",
+        },
+        biographyContainer: {
+            display: "grid",
+            gridTemplateColumns: "auto 80px",
+            rowGap: "10px",
+        },
+        userEditSaveButton: {
+            backgroundColor: "saveButtonColor",
+            marginLeft: "auto",
+        },
+        userEditSaveButtonContainer: {
+            display: "flex",
         },
     }
 }

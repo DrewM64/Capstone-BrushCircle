@@ -166,7 +166,51 @@ function AdminPanel(props) {
                             ight lets end this</Typography>
                     </Box>
                     <Box sx={styles.userEditContainer}>
-                        <Typography>User edit view</Typography>
+                        <Box sx={styles.formGroup}>
+                            <Typography>Title</Typography>
+                            <TextField size='small'></TextField>
+                        </Box>
+                        <Box sx={styles.formGroup}>
+                            <Typography>Last Name</Typography>
+                            <TextField size="small"></TextField>
+                        </Box>
+                        <Box sx={styles.formGroup}>
+                            <Typography>Phone</Typography>
+                            <TextField size="small"></TextField>
+                        </Box>
+                        <Box sx={styles.formGroup}>
+                            <Typography>Address</Typography>
+                            <TextField size="small"></TextField>
+                        </Box>
+                        <Box sx={styles.formGroup}>
+                            <Typography>State</Typography>
+                            <TextField size="small"></TextField>
+                        </Box>
+                        <Box sx={styles.paymentMethodContainer}>
+                            <Typography>Patreon</Typography>
+                            <Button size="small" variant="contained" sx={styles.paymentResetButton}>Reset</Button>
+                            <Typography>hpotter@patreon.com</Typography>
+                        </Box>
+                        <Box sx={styles.paymentMethodContainer}>
+                            <Typography>Cashapp</Typography>
+                            <Button size="small" variant="contained" sx={styles.paymentResetButton}>Reset</Button>
+                            <Typography>$spellcaster26</Typography>
+                        </Box>
+                        <Box sx={styles.formGroup}>
+                            <Typography>Title</Typography>
+                            <TextField size="small"></TextField>
+                        </Box>
+                        <Box sx={styles.biographyContainer}>
+                            <Typography>Biography</Typography>
+                            <Button variant="contained" sx={styles.resetBiographyButton}>Reset</Button>
+                            <Typography sx={styles.biographyText}>Loren ipsum something something description for this nv I want t
+                                piece of work made by that guy from that place called edfo be the
+                                by the name in the event of something lorem lorem alr e very best
+                                ight lets end this</Typography>
+                        </Box>
+                        <Box sx={styles.userEditSaveButtonContainer}>
+                            <Button variant="contained" sx={styles.userEditSaveButton}>Save Changes</Button>
+                        </Box>
                     </Box>
                     <Box sx={styles.userProductViewContainer}>
                         <Box sx={styles.imageContainer}>
