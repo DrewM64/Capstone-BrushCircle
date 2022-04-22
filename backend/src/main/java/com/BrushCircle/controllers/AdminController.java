@@ -2,6 +2,7 @@ package com.BrushCircle.controllers;
 
 //import com.BrushCircle.exception.InputFieldException;
 //import com.BrushCircle.mapper.UserMapper;
+
 import com.BrushCircle.dto.UserDTO;
 import com.BrushCircle.model.*;
 //import com.BrushCircle.payload.user.UserRequest;
@@ -92,7 +93,7 @@ public class AdminController {
     public ResponseEntity<?> searchUser(
 //        @RequestHeader(value = "Authorization") @ApiParam(required = true, value = "JWT Token to authorize request made by user") String authorization,
 //        @Valid
-            @RequestBody @ApiParam(value = "User Info Filter")@Valid User filter) throws Throwable {
+            @RequestBody @ApiParam(value = "User Info Filter") @Valid User filter) throws Throwable {
 
 //        Specification<User> spec = new UserSpecification(filter);
 //
@@ -116,7 +117,7 @@ public class AdminController {
     public ResponseEntity<?> getUserData(
 //        @RequestHeader(value = "Authorization") @ApiParam(required = true, value = "JWT Token to authorize request made by user") String authorization,
 //        @Valid
-            @RequestBody @ApiParam(value = "Admin Object")User admin,
+            @RequestBody @ApiParam(value = "Admin Object") User admin,
             @RequestBody @ApiParam(value = "Target ID") Long targetId,
             @RequestBody @ApiParam(value = "Target Product") String targetProductArray) throws Throwable {
         UserDTO result = new UserDTO();
@@ -141,8 +142,8 @@ public class AdminController {
     public ResponseEntity<?> updateUserData(
 //        @RequestHeader(value = "Authorization") @ApiParam(required = true, value = "JWT Token to authorize request made by user") String authorization,
 //        @Valid
-            @RequestBody @ApiParam(value = "Admin Object")User admin,
-            @RequestBody @ApiParam(value = "Target Object")User target) throws Throwable {
+            @RequestBody @ApiParam(value = "Admin Object") User admin,
+            @RequestBody @ApiParam(value = "Target Object") User target) throws Throwable {
         User response = userService.update(target);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
@@ -162,8 +163,8 @@ public class AdminController {
     public ResponseEntity<?> deleteUserData(
 //        @RequestHeader(value = "Authorization") @ApiParam(required = true, value = "JWT Token to authorize request made by user") String authorization,
 //        @Valid
-            @RequestBody @ApiParam(value = "Admin Object")User admin,
-            @RequestBody @ApiParam(value = "Target Object")User target) throws Throwable {
+            @RequestBody @ApiParam(value = "Admin Object") User admin,
+            @RequestBody @ApiParam(value = "Target Object") User target) throws Throwable {
         userRepository.deleteById(target.getId());
         return new ResponseEntity<>(HttpStatus.OK);
     }
@@ -176,7 +177,7 @@ public class AdminController {
             @ApiResponse(code = 500, message = "Internal Server Error", response = ErrorMessage.class)
     })
     @RequestMapping(
-            value ="/updateproduct",
+            value = "/updateproduct",
             method = RequestMethod.PUT,
             produces = {MediaType.APPLICATION_JSON_VALUE},
             consumes = {MediaType.APPLICATION_JSON_VALUE})
@@ -197,7 +198,7 @@ public class AdminController {
             @ApiResponse(code = 500, message = "Internal Server Error", response = ErrorMessage.class)
     })
     @RequestMapping(
-            value ="/deleteproduct",
+            value = "/deleteproduct",
             method = RequestMethod.DELETE,
             produces = {MediaType.APPLICATION_JSON_VALUE},
             consumes = {MediaType.APPLICATION_JSON_VALUE})

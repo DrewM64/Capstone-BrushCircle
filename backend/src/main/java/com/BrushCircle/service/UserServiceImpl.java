@@ -87,8 +87,7 @@ public class UserServiceImpl implements UserService {
         log.info("\nUser Info:      " + user.toString());
         log.info("\nFile Info:      "
                 + "\n" + file.getOriginalFilename()
-                + "\n" + file.getContentType()
-                + "\n" + Arrays.toString(file.getBytes()));
+                + "\n" + file.getContentType());
         User existing = userRepository.findByEmail(user.getEmail());
         existing.setProfileImageName(file.getOriginalFilename());
         userRepository.save(existing);

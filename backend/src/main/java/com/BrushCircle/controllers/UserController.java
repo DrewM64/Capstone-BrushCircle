@@ -37,6 +37,8 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.validation.Valid;
 import java.util.List;
 
+import static org.springframework.http.MediaType.MULTIPART_FORM_DATA;
+
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000") //TODO May need to be added to all mappings
@@ -111,13 +113,13 @@ public class UserController {
         value ="/newprofilephoto",
         method = RequestMethod.POST,
         produces = {MediaType.APPLICATION_JSON_VALUE},
-        consumes = {MediaType.APPLICATION_JSON_VALUE})
+        consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
     @ResponseBody
     public ResponseEntity <?> newProfilePhoto(
 //        @RequestHeader(value = "Authorization") @ApiParam(required = true, value = "JWT Token to authorize request made by user") String authorization,
 //        @Valid
-            @RequestBody @ApiParam(value = "Current User") User currentUser,
-            @RequestParam("file") MultipartFile file) throws Throwable {
+            @RequestPart("user") User currentUser,
+            @RequestPart("file") MultipartFile file) throws Throwable {
         User response = userService.addProfPic(currentUser, file);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
