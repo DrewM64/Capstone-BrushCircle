@@ -21,6 +21,8 @@ public interface ProductRepository extends CrudRepository <Product, Long>, JpaSp
     // Fetch product by title
     Product findByTitle(@Param("title") String title);
 
+    Product findByFilename(@Param("filename") String filename);
+
     //    DataFetcher<Product> getProductByQuery();
 //
 //    DataFetcher<List<Product>> getAllProductsByQuery();

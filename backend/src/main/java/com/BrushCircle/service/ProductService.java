@@ -1,5 +1,7 @@
 package com.BrushCircle.service;
 
+import com.BrushCircle.dto.UpdateProductDTO;
+import com.BrushCircle.dto.UserDTO;
 import com.BrushCircle.model.Product;
 //import com.BrushCircle.service.model.Product;
 
@@ -10,13 +12,13 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 
 public interface ProductService {
-    Product registerProduct(Product newProduct, MultipartFile file) throws Exception;
+    Product registerProduct(User user, Product product, MultipartFile file) throws Exception;
 
     Product getProductInfo(Product product) throws Exception;
 
-    Product update(User currentUser, Product currentProduct) throws Exception;
+    Product update(UpdateProductDTO updateProductDTO) throws Exception;
 
-    List<Product> delete(User currentUser, Product currentProduct) throws Exception;
+    UserDTO delete(UpdateProductDTO updateProductDTO) throws Exception;
 
     List<Product> getProductList(User currentUser) throws Exception;
 

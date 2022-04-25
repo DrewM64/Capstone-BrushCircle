@@ -84,7 +84,7 @@ public class UserServiceImpl implements UserService {
 
     public User addProfPic(User user, MultipartFile file) throws Exception {
         log.info("\nAdd Profile Picture");
-        log.info("\nUser Info:      " + user.toString());
+        log.info("\nUser Info:      " + user);
         log.info("\nFile Info:      "
                 + "\n" + file.getOriginalFilename()
                 + "\n" + file.getContentType());
@@ -108,7 +108,7 @@ public class UserServiceImpl implements UserService {
 
     public User update(User currentUser) throws Exception {
         log.info("Updating Current User Info");
-        log.info("User Object provided: " + currentUser.toString());
+        log.info("User Object provided: " + currentUser);
         User existing = userRepository.findByEmail(currentUser.getEmail());
         copyNonNullProperties(currentUser, existing);
         userRepository.save(existing);

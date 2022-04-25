@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -17,11 +18,11 @@ public class Product {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 
-	@Column(name = "title")
+	@Column(name = "title", nullable = false, unique = true, length = 45)
 	private String title; //name of artwork
 
 	@Column(name = "date")
-	private Date date;
+	private LocalDate date;
 
 	@Column(name = "price")
 	private Integer price; //cost
@@ -54,7 +55,32 @@ public class Product {
 	public Product() {
 	}
 
-	public Product(String title, Date date, Integer price, String style, boolean featured, String description, int width, int length, String tags, String filename) {
+	public Product(String title, Integer price, String style, boolean featured, String description, int width, int length, String tags) {
+		super();
+		this.title = title;
+		this.price = price;
+		this.style = style;
+		this.featured = featured;
+		this.description = description;
+		this.width = width;
+		this.length = length;
+		this.tags = tags;
+	}
+
+	public Product(String title, LocalDate date, Integer price, String style, boolean featured, String description, int width, int length, String tags) {
+		super();
+		this.title = title;
+		this.date = date;
+		this.price = price;
+		this.style = style;
+		this.featured = featured;
+		this.description = description;
+		this.width = width;
+		this.length = length;
+		this.tags = tags;
+	}
+
+	public Product(String title, LocalDate date, Integer price, String style, boolean featured, String description, int width, int length, String tags, String filename) {
 		super();
 		this.title = title;
 		this.date = date;
@@ -68,7 +94,7 @@ public class Product {
 		this.filename = filename;
 	}
 
-	public Product(String title, Date date, Integer price, String style, boolean featured, String description, int width, int length, String tags, String filename, User user) {
+	public Product(String title, LocalDate date, Integer price, String style, boolean featured, String description, int width, int length, String tags, String filename, User user) {
 		super();
 		this.title = title;
 		this.date = date;
@@ -99,11 +125,11 @@ public class Product {
 		this.title = title;
 	}
 
-	public Date getDate() {
+	public LocalDate getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(LocalDate date) {
 		this.date = date;
 	}
 
@@ -177,5 +203,20 @@ public class Product {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	@Override
+	public String toString() {
+		return "Product{" +
+				", title='" + title + '\'' +
+				", price=" + price.toString() +
+				", style='" + style + '\'' +
+				", featured=" + featured +
+				", description='" + description + '\'' +
+				", width=" + width +
+				", length=" + length +
+				", tags='" + tags + '\'' +
+				", filename='" + filename + '\'' +
+				'}';
 	}
 }

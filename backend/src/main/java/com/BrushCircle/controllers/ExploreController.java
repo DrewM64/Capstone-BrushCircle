@@ -49,10 +49,8 @@ public class ExploreController {
 
     @Autowired
     ProductRepository productRepository;
-    //    @Autowired
+    @Autowired
     ProductService productService;
-//    private final GraphQLProvider graphQLProvider;
-//    private final SimpMessagingTemplate messagingTemplate;
 
 //    @ApiResponses(value = {
 //            @ApiResponse(code = 200, message = "OK", response = User.class),

@@ -24,6 +24,7 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.bind.Name;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -141,7 +142,7 @@ public class UserController {
     public ResponseEntity<User> resetProfilePhoto(
 //        @RequestHeader(value = "Authorization") @ApiParam(required = true, value = "JWT Token to authorize request made by user") String authorization,
 //        @Valid
-            @RequestBody @ApiParam(value = "Current User") User currentUser) throws Throwable {
+            @RequestBody User currentUser) throws Throwable {
         User response = userService.resetProfPic(currentUser);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
@@ -183,7 +184,7 @@ public class UserController {
     public ResponseEntity<UserDTO> getUserInfo(
 //        @RequestHeader(value = "Authorization") @ApiParam(required = true, value = "JWT Token to authorize request made by user") String authorization,
 //        @Valid
-            @RequestBody @ApiParam(value = "User Email") String email) throws Throwable {
+            @RequestBody String email) throws Throwable {
         UserDTO response = userService.getUserInfo(email);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }

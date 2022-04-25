@@ -3,7 +3,7 @@ package com.BrushCircle.controllers;
 //import com.BrushCircle.exception.InputFieldException;
 //import com.BrushCircle.mapper.UserMapper;
 
-import com.BrushCircle.dto.UserDTO;
+import com.BrushCircle.dto.*;
 import com.BrushCircle.model.*;
 //import com.BrushCircle.payload.user.UserRequest;
 //import com.BrushCircle.payload.user.UserResponse;
@@ -46,9 +46,10 @@ public class AdminController {
     @Autowired
     UserRepository userRepository;
 
+    @Autowired
     ProductService productService;
 
-    //    @Autowired
+    @Autowired
     UserService userService;
 
     @Autowired
@@ -73,7 +74,7 @@ public class AdminController {
 //        @RequestHeader(value = "Authorization") @ApiParam(required = true, value = "JWT Token to authorize request made by user") String authorization,
 //        @Valid
             @RequestBody @ApiParam(value = "Admin Logged In") User admin) throws Throwable {
-        log.info("\nAdmin Info:   " + admin.toString());
+        log.info("\nAdmin Info:   " + admin);
         List<User> response = adminService.getUsers(admin);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
@@ -93,13 +94,14 @@ public class AdminController {
     public ResponseEntity<?> searchUser(
 //        @RequestHeader(value = "Authorization") @ApiParam(required = true, value = "JWT Token to authorize request made by user") String authorization,
 //        @Valid
-            @RequestBody @ApiParam(value = "User Info Filter") @Valid User filter) throws Throwable {
+            @RequestBody AdminSearchDTO adminSearchDTO) throws Throwable {
 
 //        Specification<User> spec = new UserSpecification(filter);
-//
 //        List<User> result = userRepository.findAllUsers(spec);
 //        return new ResponseEntity<>(result, HttpStatus.OK);
-        return new ResponseEntity<>("API Reached", HttpStatus.OK);
+
+        UserSearchDTO response = adminService.searchUser(adminSearchDTO);
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @ApiResponses(value = {
@@ -117,14 +119,9 @@ public class AdminController {
     public ResponseEntity<?> getUserData(
 //        @RequestHeader(value = "Authorization") @ApiParam(required = true, value = "JWT Token to authorize request made by user") String authorization,
 //        @Valid
-            @RequestBody @ApiParam(value = "Admin Object") User admin,
-            @RequestBody @ApiParam(value = "Target ID") Long targetId,
-            @RequestBody @ApiParam(value = "Target Product") String targetProductArray) throws Throwable {
-        UserDTO result = new UserDTO();
-        Optional<User> target = userRepository.findById(targetId);
-        result.setUser(target.get());
-        result.setProduct(target.get().getProducts());
-        return new ResponseEntity<UserDTO>(result, HttpStatus.OK);
+            @RequestBody AdminGetUserDataDTO adminGetUserDataDTO) throws Throwable {
+        UserDTO result = adminService.getUserData(adminGetUserDataDTO);
+        return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
     @ApiResponses(value = {
@@ -142,9 +139,8 @@ public class AdminController {
     public ResponseEntity<?> updateUserData(
 //        @RequestHeader(value = "Authorization") @ApiParam(required = true, value = "JWT Token to authorize request made by user") String authorization,
 //        @Valid
-            @RequestBody @ApiParam(value = "Admin Object") User admin,
-            @RequestBody @ApiParam(value = "Target Object") User target) throws Throwable {
-        User response = userService.update(target);
+            @RequestBody AdminUpdateUserDTO updateUserDTO) throws Throwable {
+        User response = adminService.update(updateUserDTO);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
@@ -163,9 +159,8 @@ public class AdminController {
     public ResponseEntity<?> deleteUserData(
 //        @RequestHeader(value = "Authorization") @ApiParam(required = true, value = "JWT Token to authorize request made by user") String authorization,
 //        @Valid
-            @RequestBody @ApiParam(value = "Admin Object") User admin,
-            @RequestBody @ApiParam(value = "Target Object") User target) throws Throwable {
-        userRepository.deleteById(target.getId());
+            @RequestBody AdminUpdateUserDTO updateUserDTO) throws Throwable {
+        adminService.deleteUser(updateUserDTO);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
@@ -184,9 +179,8 @@ public class AdminController {
     public ResponseEntity<Product> updateProduct(
 //        @RequestHeader(value = "Authorization") @ApiParam(required = true, value = "JWT Token to authorize request made by product") String authorization,
 //        @Valid
-            @RequestBody @ApiParam(value = "Current User") User admin,
-            @RequestBody @ApiParam(value = "Current Product") Product currentProduct) throws Throwable {
-        Product response = productService.update(admin, currentProduct);
+            @RequestBody UpdateProductDTO updateProductDTO) throws Throwable {
+        Product response = productService.update(updateProductDTO);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
@@ -205,33 +199,29 @@ public class AdminController {
     public ResponseEntity<?> deleteProduct(
 //        @RequestHeader(value = "Authorization") @ApiParam(required = true, value = "JWT Token to authorize request made by product") String authorization,
 //        @Valid
-            @RequestBody @ApiParam(value = "Admin Object") User admin,
-            @RequestBody @ApiParam(value = "Current Product") Product currentProduct,
-            @RequestBody @ApiParam(value = "Target User") User target) throws Throwable {
-        List<Product> response = productService.delete(target, currentProduct);
+            @RequestBody UpdateProductDTO updateProductDTO) throws Throwable {
+        UserDTO response = productService.delete(updateProductDTO);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-//    @ApiResponses(value = {
-//            @ApiResponse(code = 200, message = "OK", response = User.class),
-//            @ApiResponse(code = 400, message = "Bad Request", response = ErrorMessage.class),
-//            @ApiResponse(code = 401, message = "Unauthorized", response = ErrorMessage.class),
-//            @ApiResponse(code = 404, message = "Not Found", response = ErrorMessage.class),
-//            @ApiResponse(code = 500, message = "Internal Server Error", response = ErrorMessage.class)
-//    })
-//    @RequestMapping(
-//            value = "/createuser",
-//            method = RequestMethod.POST,
-//            produces = {MediaType.APPLICATION_JSON_VALUE},
-//            consumes = {MediaType.APPLICATION_JSON_VALUE})
-//    public ResponseEntity<User> createUser(
-////        @RequestHeader(value = "Authorization") @ApiParam(required = true, value = "JWT Token to authorize request made by user") String authorization,
-////        @Valid
-//            @RequestBody @ApiParam(value = "Admin Object") User admin,
-//            @RequestBody @ApiParam(value = "New Username") String newUsername,
-//            @RequestBody @ApiParam(value = "New Password") String newPassword) throws Throwable {
-//        User newUser = new User(newUsername,newPassword);
-//        userService.registerUser(newUser);
-//        return new ResponseEntity<>(HttpStatus.OK);
-//    }
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "OK", response = User.class),
+            @ApiResponse(code = 400, message = "Bad Request", response = ErrorMessage.class),
+            @ApiResponse(code = 401, message = "Unauthorized", response = ErrorMessage.class),
+            @ApiResponse(code = 404, message = "Not Found", response = ErrorMessage.class),
+            @ApiResponse(code = 500, message = "Internal Server Error", response = ErrorMessage.class)
+    })
+    @RequestMapping(
+            value = "/createuser",
+            method = RequestMethod.POST,
+            produces = {MediaType.APPLICATION_JSON_VALUE},
+            consumes = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<User> createUser(
+//        @RequestHeader(value = "Authorization") @ApiParam(required = true, value = "JWT Token to authorize request made by user") String authorization,
+//        @Valid
+            @RequestBody AdminUpdateUserDTO adminUpdateUserDTO) throws Throwable {
+        User response = adminService.registerUser(adminUpdateUserDTO);
+
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
 }

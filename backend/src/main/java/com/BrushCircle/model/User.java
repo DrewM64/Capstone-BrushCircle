@@ -56,7 +56,7 @@ public class User {
     @JsonIgnore
     private List<Product> products;
 
-    @Column(columnDefinition = "varchar(255) default 'USER'")
+    @Column(name = "role", columnDefinition = "varchar(255) default 'USER'")
     private String role = "USER";
 
     public User() {
@@ -239,7 +239,6 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
@@ -252,10 +251,7 @@ public class User {
                 ", title='" + title + '\'' +
                 ", profileImageName='" + profileImageName + '\'' +
                 ", biography='" + biography + '\'' +
-                ", products=" + products +
                 ", role='" + role + '\'' +
                 '}';
     }
-
-
 }

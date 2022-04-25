@@ -33,10 +33,8 @@ public class HomeController {
 
     @Autowired
     ProductRepository productRepository;
-    //    @Autowired
+    @Autowired
     ProductService productService;
-//    private final GraphQLProvider graphQLProvider;
-//    private final SimpMessagingTemplate messagingTemplate;
 
 //    @ApiResponses(value = {
 //            @ApiResponse(code = 200, message = "OK", response = User.class),
@@ -56,7 +54,7 @@ public class HomeController {
 //        Collections.shuffle(returnedList);
 //        return new ResponseEntity<>(returnedList, HttpStatus.OK);
 //    }
-
+//
 //    @ApiResponses(value = {
 //            @ApiResponse(code = 200, message = "OK", response = User.class),
 //            @ApiResponse(code = 400, message = "Bad Request", response = ErrorMessage.class),

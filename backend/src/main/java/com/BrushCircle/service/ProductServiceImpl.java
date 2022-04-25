@@ -1,8 +1,11 @@
 package com.BrushCircle.service;
 
+import com.BrushCircle.dto.UpdateProductDTO;
+import com.BrushCircle.dto.UserDTO;
 import com.BrushCircle.model.Product;
 import com.BrushCircle.model.User;
 import com.BrushCircle.repository.ProductRepository;
+import com.BrushCircle.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.BeanWrapper;
@@ -11,85 +14,133 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.time.LocalDate;
 import java.util.*;
 
 @Service
 @Slf4j
 public class ProductServiceImpl implements ProductService {
 
+    public static String uploadDirectory = System.getProperty("user.dir") + "/BrushCircleUploads";
+
     @Autowired
     ProductRepository productRepository;
 
+    @Autowired
+    UserRepository userRepository;
+
     @Override
-    public Product registerProduct(Product newProduct, MultipartFile file) throws Exception {
+    public Product registerProduct(User user, Product product, MultipartFile file) throws Exception {
         log.info("Running RegisterProduct");
-        productRepository.save(newProduct);
-//        Product registeredProduct = productRepository.saveProduct(newProduct, file);
-        Product registeredProduct = productRepository.findByTitle(newProduct.getTitle());
         try {
-            if (newProduct == null) {
+            User existingUser = userRepository.findByEmail(user.getEmail());
+            log.info("\nExisting User Info:     " + existingUser);
+
+            Path fileNameAndPath = Paths.get(uploadDirectory, file.getOriginalFilename());
+            Files.write(fileNameAndPath, file.getBytes());
+
+            product.setFilename(file.getOriginalFilename());
+            product.setDate(LocalDate.now());
+            product.setUser(existingUser); //*NOTE* Given the table relation it is ideal to associate the user to the product not the other way around
+
+            userRepository.save(existingUser);
+            productRepository.save(product);
+
+            Product existingProduct = productRepository.findByTitle(product.getTitle());
+            if (existingProduct == null){
                 throw new Exception();
-            } else {
-                return registeredProduct;
             }
+
+            log.info("\nExisting Product Info:  " + existingProduct);
+            return existingProduct;
         } catch (Exception e) {
-            log.info("\n[Error Found] Product Title was not found..."
-                    + "\n Email Expected:   " + newProduct.getTitle());
+            log.info("\n[Error Found] Product was not registered...");
+            log.info("\nUser Info RQ:       " + user);
+            log.info("\nProduct Info RQ:    " + product);
+            log.info("\nFile Info:          "
+                    + "\n" + file.getOriginalFilename()
+                    + "\n" + file.getContentType());
         }
         return null;
     }
 
     public Product getProductInfo(Product product) throws Exception {
         log.info("Getting Product Info");
-        Product existing = productRepository.findByTitle(product.getTitle());
-        return existing;
+        Product existingProduct = productRepository.findByTitle(product.getTitle());
+        return existingProduct;
     }
 
-    public Product update(User user, Product product) throws Exception {
+    public Product update(UpdateProductDTO updateProductDTO) throws Exception {
         log.info("Updating Current Product Info");
-        Product existing = productRepository.findByTitle(product.getTitle());
-        boolean ifAdmin = false;
+
+        User existingUser = userRepository.findByEmail(updateProductDTO.getUser().getEmail());
+        Product existingProduct = productRepository.findByTitle(updateProductDTO.getProduct().getTitle());
+
         try {
-            if (user.getRole().equals("ADMIN")) {
-                ifAdmin = true;
-            }
-            if ((existing.getUser() != user || ifAdmin == false)) {
+            if (existingUser == null || existingProduct == null) {
                 throw new Exception();
             }
-            copyNonNullProperties(product, existing);
-            productRepository.save(existing);
-            return existing;
+            copyNonNullProperties(updateProductDTO.getProduct(), existingProduct);
+            productRepository.save(existingProduct);
+            return existingProduct;
         } catch (Exception e) {
             log.info("\n[Error Found] User from Product(s) does not match..."
-                    + "\n User Expected:    " + user.toString()
-                    + "\n User Provided:    " + product.getUser().toString()
-                    + "\n User Returned:    " + existing.getUser().toString());
+                    + "\n User Expected:        " + existingUser
+                    + "\n Product Expected:     " + existingProduct
+            );
         }
         return null;
     }
 
-    public List<Product> delete(User user, Product product) throws Exception {
+    public UserDTO delete(UpdateProductDTO updateProductDTO) throws Exception {
         log.info("Updating Current Product Info");
-        Product existing = productRepository.findByTitle(product.getTitle());
+        Product existingProduct = productRepository.findByTitle(updateProductDTO.getProduct().getTitle());
+        User existingUser = userRepository.findByEmail(existingProduct.getUser().getEmail());
+        UserDTO userDTO = new UserDTO();
+        Boolean isAdmin = false;
+
         try {
-            if (existing.getUser() != user) {
+            if (updateProductDTO.getUser().getRole().equals("ADMIN")) {
+                isAdmin = true;
+            }
+            if (existingProduct == null) {
+                log.info("Product Not Found In Database");
                 throw new Exception();
             }
-            copyNonNullProperties(product, existing);
-            productRepository.deleteById(existing.getId());
-            return user.getProducts();
+            if (!existingProduct.getUser().getEmail().equals(updateProductDTO.getUser().getEmail()) && isAdmin == false)
+            {
+                log.info("Product User and Logged In User Do Not Match");
+                throw new Exception();
+            }
+
+            log.info("\nDeleting Image");
+            Path fileNameAndPath = Paths.get(uploadDirectory, existingProduct.getFilename());
+            Files.delete(fileNameAndPath);
+
+            log.info("\nRunning Repository Actions");
+            productRepository.deleteById(existingProduct.getId());
+            userRepository.save(existingUser);
+
+            userDTO.setUser(existingUser);
+            userDTO.setProduct(existingUser.getProducts());
+
+            return userDTO;
         } catch (Exception e) {
             log.info("\n[Error Found] User from Product(s) does not match..."
-                    + "\n User Expected:    " + user.toString()
-                    + "\n User Provided:    " + product.getUser().toString()
-                    + "\n User Returned:    " + existing.getUser().toString());
+                    + "\n User Expected:        " + existingUser
+                    + "\n Product Provided:     " + existingProduct
+            );
         }
         return null;
     }
 
     public List<Product> getProductList(User user) throws Exception {
         log.info("Updating Current Product Info");
-        List<Product> existingList = productRepository.findByUser(user);
+        User existingUser = userRepository.findByEmail(user.getEmail());
+        List<Product> existingList = productRepository.findByUser(existingUser);
         try {
             if (existingList == null) {
                 throw new Exception();
@@ -97,7 +148,7 @@ public class ProductServiceImpl implements ProductService {
             return existingList;
         } catch (Exception e) {
             log.info("\n[Error Found] User does not match..."
-                    + "\n User Expected:    " + user.toString());
+                    + "\n User Expected:    " + user);
         }
         return null;
     }

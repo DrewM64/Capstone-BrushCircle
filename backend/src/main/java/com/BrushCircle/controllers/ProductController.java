@@ -1,5 +1,7 @@
 package com.BrushCircle.controllers;
 
+import com.BrushCircle.dto.UpdateProductDTO;
+import com.BrushCircle.dto.UserDTO;
 import com.BrushCircle.model.ErrorMessage;
 import com.BrushCircle.model.Product;
 import com.BrushCircle.model.Product;
@@ -10,6 +12,7 @@ import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +27,7 @@ import java.util.List;
 @RequestMapping("/product")
 public class ProductController {
 
+    @Autowired
     ProductService productService;
 
     @ApiResponses(value = {
@@ -37,12 +41,27 @@ public class ProductController {
             value = "/upload",
             method = RequestMethod.POST,
             produces = {MediaType.APPLICATION_JSON_VALUE},
-            consumes = {MediaType.APPLICATION_JSON_VALUE})
+            consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
     public ResponseEntity<Product> registerProduct(
 //        @RequestHeader(value = "Authorization") @ApiParam(required = true, value = "JWT Token to authorize request made by product") String authorization,
 //        @Valid
-            @RequestBody @ApiParam(value = "New Product to Register Information") Product newProduct, MultipartFile file) throws Throwable {
-        Product response = productService.registerProduct(newProduct, file);
+            @RequestPart("user") User user,
+            @RequestPart("product") Product product,
+            @RequestPart("file") MultipartFile file) throws Throwable {
+        if (user == null || product == null || file == null) {
+            throw new Exception();
+        }
+        log.info("\nUser Info:      " + user);
+        log.info("\nProduct Info:   " + product);
+        log.info("\nFile Info:      "
+                + "\n" + file.getOriginalFilename()
+                + "\n" + file.getContentType());
+
+        Product response = productService.registerProduct(user, product, file);
+        if (response == null){
+            log.info("\nError Found - Null");
+            throw new Exception();
+        }
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
@@ -54,11 +73,11 @@ public class ProductController {
             @ApiResponse(code = 500, message = "Internal Server Error", response = ErrorMessage.class)
     })
     @RequestMapping(
-            value = "/upload",
+            value = "/get",
             method = RequestMethod.GET,
             produces = {MediaType.APPLICATION_JSON_VALUE},
             consumes = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Product> getProduct(
+    public ResponseEntity<?> getProduct(
 //        @RequestHeader(value = "Authorization") @ApiParam(required = true, value = "JWT Token to authorize request made by product") String authorization,
 //        @Valid
             @RequestBody @ApiParam(value = "New Product to Register Information") Product product) throws Throwable {
@@ -81,9 +100,8 @@ public class ProductController {
     public ResponseEntity<Product> updateProduct(
 //        @RequestHeader(value = "Authorization") @ApiParam(required = true, value = "JWT Token to authorize request made by product") String authorization,
 //        @Valid
-            @RequestBody @ApiParam(value = "Current User") User currentUser,
-            @RequestBody @ApiParam(value = "Current Product") Product currentProduct) throws Throwable {
-        Product response = productService.update(currentUser, currentProduct);
+            @RequestBody UpdateProductDTO updateProductDTO) throws Throwable {
+        Product response = productService.update(updateProductDTO);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
@@ -102,9 +120,8 @@ public class ProductController {
     public ResponseEntity<?> deleteProduct(
 //        @RequestHeader(value = "Authorization") @ApiParam(required = true, value = "JWT Token to authorize request made by product") String authorization,
 //        @Valid
-            @RequestBody @ApiParam(value = "Current User") User currentUser,
-            @RequestBody @ApiParam(value = "Current Product") Product currentProduct) throws Throwable {
-        List<Product> response = productService.delete(currentUser, currentProduct);
+            @RequestBody UpdateProductDTO updateProductDTO) throws Throwable {
+        UserDTO response = productService.delete(updateProductDTO);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }

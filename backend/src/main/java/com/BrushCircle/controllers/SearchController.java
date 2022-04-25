@@ -60,10 +60,13 @@ public class SearchController {
             method = RequestMethod.GET,
             produces = {MediaType.APPLICATION_JSON_VALUE},
             consumes = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<?> searchProducts(@Valid Product filter) {
-        Specification<Product> spec = new ProductSpecification(filter);
+    public ResponseEntity<?> searchProducts(@RequestBody String style) {
 
-        List<Product> result = productRepository.findAll(spec);
+//        Specification<Product> spec = new ProductSpecification(filter);
+//        List<Product> result = productRepository.findAll(spec);
+
+        List<Product> result = productRepository.findByStyle(style);
+
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 }

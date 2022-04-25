@@ -33,4 +33,12 @@ public class UserDTO {
     public void setProduct(List<Product> products) {
         this.products = products;
     }
+
+    @Override
+    public String toString() {
+        return "UserDTO{" +
+                "user=" + user +
+                ", products=" + products +
+                '}';
+    }
 }
