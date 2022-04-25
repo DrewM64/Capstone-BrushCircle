@@ -6,6 +6,8 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import { ThemeProvider } from '@mui/system'
 import { Provider } from 'react-redux';
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterLuxon } from '@mui/x-date-pickers/AdapterLuxon';
 
 import theme from './theme'
 import { configureStore } from './redux/Store'
@@ -15,7 +17,9 @@ ReactDOM.render(
     <React.StrictMode>
     <BrowserRouter>
       <ThemeProvider theme={theme} >
+        <LocalizationProvider dateAdapter={AdapterLuxon}>
         <App />
+        </LocalizationProvider>
       </ThemeProvider>
     </BrowserRouter>
   </React.StrictMode>

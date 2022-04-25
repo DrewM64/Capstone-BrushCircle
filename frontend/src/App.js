@@ -7,22 +7,28 @@ import UploadTest from './views/UploadTest/UploadTest';
 import SlidingMenuTest from './views/SlidingMenuTest/SlidingMenuTest';
 import Register from './views/Authentication/Register/Register';
 import UserViewAccount from './views/UserAccount/UserAccount'
+import UserProfile from './views/UserProfile/UserProfile';
+import ImageView from './views/ImageView/ImageView';
+import { useSelector } from 'react-redux';
 
 function App() {
   const [messasge, setMessage] = useState("Hi");
+  const user = useSelector(state => state.Authentication.user)
 
-  // useEffect(() => {
-  //   axios.get('http://localhost:8080/')
-  //     .then((response) => {
-  //       setMessage(response.data)
-  //     })
-  // })
+  useEffect(() => {
+    // axios.get('http://localhost:8080/')
+    //   .then((response) => {
+    //     setMessage(response.data)
+    //   })
+  })
 
   return (
     <Routes>
       <Route path='/' element={<Navigate to={"/register"} />} />
       <Route path='/register' element={<Register />} />
       <Route path='/useraccount' element={<UserViewAccount />} />
+      <Route path='/userprofile' element={<UserProfile />} />
+      <Route path='/imageview' element={<ImageView />} />
       <Route path='/test-upload' element={<UploadTest />} />
       <Route path='/test-menu' element={<SlidingMenuTest />} />
     </Routes>

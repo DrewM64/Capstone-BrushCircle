@@ -1,7 +1,8 @@
 import * as types from './constants';
 
 const initialState = {
-    profilePhoto: null
+    profilePhoto: null,
+    user: null,
 }
 
 export default function(state = initialState, action){
@@ -16,6 +17,12 @@ export default function(state = initialState, action){
             return {
                 ...state,
                 profilePhoto: null,
+            }
+        
+        case types.USER_REGISTERED:
+            return {
+                ...state,
+                user: action.payload
             }
 
         default:

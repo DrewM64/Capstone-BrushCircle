@@ -2,40 +2,37 @@ import React, { useState } from 'react'
 import { Box } from '@mui/system'
 import { Button, TextField, Typography } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
 
 import styles from './styles'
-import { register } from "../../../actions/authenticationActions"
-
+import { registerUser } from '../../../actions/authenticationActions'
+import { useDispatch } from 'react-redux'
 
 function Register() {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [confirmationPassword, setConfirmationPassword] = useState("");
+    const [email, setEmail] = useState();
+    const [password, setPassword] = useState();
+    const [confirmationPassword, setConfirmationPassword] = useState();
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
     const onRegisterButtonClicked = (event) => {
-        // navigate("/useraccount");
+        // const userInfo = {
+        //     email
+        // }
 
-        const formData = {
-            email,
-            password,
-            confirmationPassword
-        }
-
-        dispatch(register(formData));
+        // dispatch(registerUser(userInfo));
+        
+        navigate("/useraccount");
     }
 
-    const onEmailFeildChanged = (event) => {
+    const onEmailChanged = (event) => {
         setEmail(event.target.value);
     }
 
-    const onPasswordFieldChanged = (event)=> {
+    const onPasswordChanged = (event) => {
         setPassword(event.target.value);
     }
 
-    const onConfirmationPasswordChanged = (event) => {
+    const onConfirmPasswordChanged = (event) => {
         setConfirmationPassword(event.target.value);
     }
 
@@ -47,9 +44,9 @@ function Register() {
             <Box sx={styles.formContainer} >
                 <Box sx={styles.form} >
                     <Typography variant='h4' align='center' >Register</Typography>
-                    <TextField variant='outlined' label='Email' value={email} onChange={onEmailFeildChanged} ></TextField>
-                    <TextField variant='outlined' label='Password' value={password} onChange={onPasswordFieldChanged} ></TextField>
-                    <TextField variant='outlined' label='Confirmation Password' value={confirmationPassword} onChange={onConfirmationPasswordChanged} ></TextField>
+                    <TextField variant='outlined' label='Email' value={email} onChange={onEmailChanged}></TextField>
+                    <TextField variant='outlined' type="password" label='Password' value={password} onClick={onPasswordChanged}></TextField>
+                    <TextField variant='outlined' type="password" label='Confirmation Password' value={confirmationPassword} onChange={onConfirmPasswordChanged}></TextField>
                     <Button onClick={onRegisterButtonClicked} variant='contained' >Register</Button>
                 </Box>
             </Box>

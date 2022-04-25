@@ -1,6 +1,6 @@
 const styles = {
     container: {
-        marginBottom: "50px",
+        marginBottom: "",
         flexGrow: 1,
     },
     toolbar: {
@@ -10,6 +10,14 @@ const styles = {
     },
     searchInput: {
         margin: "auto",
+    },
+    profileButton: {
+        overflow: "hidden",
+        img: {
+            borderRadius: "50%",
+            height: "25px",
+            width: "25px"
+        }
     }
 }
 

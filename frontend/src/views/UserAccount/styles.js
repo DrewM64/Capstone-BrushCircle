@@ -6,7 +6,7 @@ const styles = {
     },
     paper: {
         width: "1100px",
-        margin: "auto"
+        margin: "40px auto 0 auto",
     }
 }
 

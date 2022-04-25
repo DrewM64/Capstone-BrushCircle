@@ -9,10 +9,13 @@ const theme = createTheme({
         saveButtonColor: "#1AC447",
         cancelButtonColor: "#47505A",
         galleryItemHoverColor: "#BDCFDD",
-        galleryItemSelectedColor: "BDCFDD",
-        backgroundColor1: "#F7F7F7",
+        galleryItemSelectedColor: "#BDCFDD",
+        backgroundColor1: "#F7F8F9",
         
     },
+    shape: {
+        borderRadius: 5
+    }
 });
 
 export default theme;

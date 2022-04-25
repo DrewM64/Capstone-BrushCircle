@@ -37,7 +37,7 @@ function AccountPanel(props) {
             <Box sx={styles.accountHeader}>
                 <Typography variant='h6' sx={styles.profileTitle} >Profile Details</Typography>
                 <Paper sx={styles.profileImageContainer}>
-                    <img className='profileImage' alt='profile' src={'http://localhost:8080/' + profileImage}></img>
+                    <img className='profileImage' alt='' src={'http://localhost:8080/' + profileImage}></img>
                 </Paper>
                 <label htmlFor='contained-button-file-2'>
                     <Input accept="image/*" id="contained-button-file-2" type="file" sx={{ display: "none" }} onChange={onUploadProfileImage} />
