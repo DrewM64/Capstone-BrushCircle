@@ -9,6 +9,7 @@ import Register from './views/Authentication/Register/Register';
 import UserViewAccount from './views/UserAccount/UserAccount'
 import UserProfile from './views/UserProfile/UserProfile';
 import ImageView from './views/ImageView/ImageView';
+import AppComponent from './components/AppComponent/AppComponent';
 import { useSelector } from 'react-redux';
 
 function App() {
@@ -26,9 +27,13 @@ function App() {
     <Routes>
       <Route path='/' element={<Navigate to={"/register"} />} />
       <Route path='/register' element={<Register />} />
-      <Route path='/useraccount' element={<UserViewAccount />} />
       <Route path='/userprofile' element={<UserProfile />} />
       <Route path='/imageview' element={<ImageView />} />
+      <Route path='/app' element={<AppComponent />}>
+        <Route path='useraccount' element={<UserViewAccount />} />
+      </Route>
+
+      {/* The following routes are for testing elements */}
       <Route path='/test-upload' element={<UploadTest />} />
       <Route path='/test-menu' element={<SlidingMenuTest />} />
     </Routes>

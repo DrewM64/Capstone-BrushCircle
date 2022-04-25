@@ -1,7 +1,7 @@
 import * as types from './constants';
 
 const initialState = {
-    profilePhoto: null,
+    profilePhotoAddress: null,
     user: null,
 }
 

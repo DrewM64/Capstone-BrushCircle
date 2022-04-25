@@ -17,11 +17,11 @@ function Header() {
   const navigate = useNavigate();
 
   const onProfileButtonClicked = (event) => {
-    navigate("/userprofile");
+    navigate("/app/useraccount");
   }
 
   const onHomeButtonClicked = (event) => {
-    navigate("/useraccount");
+    navigate("/userprofile");
   }
 
   return (
