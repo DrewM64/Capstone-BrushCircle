@@ -4,6 +4,7 @@ import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 import ArrowBackOutlinedIcon from '@mui/icons-material/ArrowBackOutlined';
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
 import { DesktopDatePicker } from '@mui/x-date-pickers';
 
@@ -18,6 +19,7 @@ function AdminPanel(props) {
     const [isUserProductSelected, setIsUserProductSelected] = useState(false);
     const [toggleInfoEdit, setToggleInfoEdit] = useState(false);
     const [toggleProductEdit, setToggleProductEdit] = useState(false);
+    const user = useSelector(state => state.Authentication.user);
     const nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18];
 
     //state variables are passed to this style function to update the UI
@@ -29,6 +31,7 @@ function AdminPanel(props) {
         isUserProductSelected,
         toggleInfoEdit,
         toggleProductEdit,
+        user
     );
 
     const onTableRowClicked = (event) => {

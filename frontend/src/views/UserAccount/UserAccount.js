@@ -6,6 +6,7 @@ import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined
 import CollectionsOutlinedIcon from '@mui/icons-material/CollectionsOutlined';
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 import { Paper } from '@mui/material';
+import { useSelector } from 'react-redux';
 
 import Header from '../../components/Header/Header'
 import AccountPanel from './AccountPanel/AccountPanel';
@@ -15,6 +16,7 @@ import styles from  './styles';
 
 function UserViewAccount() {
     const [tabValue, setTabValue] = useState(0);
+    const user = useSelector(state => state.Authentication.user);
 
     const handleChange = (event, newValue) => {
         setTabValue(newValue);
@@ -29,7 +31,7 @@ function UserViewAccount() {
                     <Tabs value={tabValue} onChange={handleChange} aria-label="interface tabs" >
                         <Tab label="Account" icon={<PersonOutlineOutlinedIcon />} iconPosition="start" />
                         <Tab label="Gallery" icon={<CollectionsOutlinedIcon />} iconPosition="start" />
-                        <Tab label="Admin" icon={<AdminPanelSettingsIcon />} iconPosition="start" />
+                        {user.role === "ADMIN" && <Tab label="Admin" icon={<AdminPanelSettingsIcon />} iconPosition="start" />}
                     </Tabs>
                 </Box>
                 <AccountPanel value={tabValue} index={0} />

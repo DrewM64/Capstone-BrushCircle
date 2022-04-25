@@ -5,8 +5,10 @@ const makeStyles = (
     isSidebarOpen,
     isUserProductSelected,
     toggleInfoEdit,
-    toggleProductEdit) => {
-    const adminPanelDisplay = value == index ? "block" : "none";
+    toggleProductEdit,
+    user,) => {
+    const userAccessRole = user.role;
+    const adminPanelDisplay = value == index && userAccessRole === "ADMIN" ? "block" : "none";
     const searchContainerDisplay = isUserSelected ? "none" : "block";
     const selectionContainerDisplay = isUserSelected ? "flex" : "none";
     const sidebarDisplay = isSidebarOpen ? "block" : "none";

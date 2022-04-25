@@ -12,6 +12,7 @@ import { uploadFileToServer } from '../../../actions/imageActions';
 function AccountPanel(props) {
     const { value, index } = props;
     const profileImage = useSelector(state => state.Authentication.profilePhoto);
+    const user = useSelector(state => state.Authentication.user);
     const dispatch = useDispatch();
 
     /* first uploads the picture to the server which 
@@ -35,7 +36,7 @@ function AccountPanel(props) {
     return (
         <Box role="tabpanel" id="account-panel" hidden={value !== index} sx={styles.container} >
             <Box sx={styles.accountHeader}>
-                <Typography variant='h6' sx={styles.profileTitle} >Profile Details</Typography>
+                <Typography variant='h6' sx={styles.profileTitle} >{user.email}</Typography>
                 <Paper sx={styles.profileImageContainer}>
                     <img className='profileImage' alt='' src={'http://localhost:8080/' + profileImage}></img>
                 </Paper>

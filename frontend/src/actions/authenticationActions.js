@@ -2,6 +2,7 @@ import axios from 'axios';
 
 import * as types from '../redux/constants';
 import { userData } from '../data/mockData'
+import { register } from '../api/api';
 
 export const uploadProfilePicture = (formData) => async (dispatch) => {
     //send to the backend
@@ -19,6 +20,10 @@ export const resetProfilePicture = () => async (dispatch) => {
 }
 
 export const registerUser = (userInfo) => async (dispatch) => {
-    userData.username = userInfo.email;
-    dispatch({type: types.USER_REGISTERED, payload: userData});
+    try {
+        const response = await register(userInfo);
+        dispatch({type: types.USER_REGISTERED, payload: response.data});
+    } catch (error) {
+        console.log(error);
+    }
 }

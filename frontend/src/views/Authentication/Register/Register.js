@@ -8,20 +8,21 @@ import { registerUser } from '../../../actions/authenticationActions'
 import { useDispatch } from 'react-redux'
 
 function Register() {
-    const [email, setEmail] = useState();
-    const [password, setPassword] = useState();
-    const [confirmationPassword, setConfirmationPassword] = useState();
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [confirmationPassword, setConfirmationPassword] = useState("");
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
     const onRegisterButtonClicked = (event) => {
-        // const userInfo = {
-        //     email
-        // }
+        const userInfo = {
+            email,
+            password,
+            confirmationPassword,
+        }
 
-        // dispatch(registerUser(userInfo));
+        dispatch(registerUser(userInfo));
         
-        navigate("/useraccount");
     }
 
     const onEmailChanged = (event) => {
@@ -45,7 +46,7 @@ function Register() {
                 <Box sx={styles.form} >
                     <Typography variant='h4' align='center' >Register</Typography>
                     <TextField variant='outlined' label='Email' value={email} onChange={onEmailChanged}></TextField>
-                    <TextField variant='outlined' type="password" label='Password' value={password} onClick={onPasswordChanged}></TextField>
+                    <TextField variant='outlined' type="password" label='Password' value={password} onChange={onPasswordChanged}></TextField>
                     <TextField variant='outlined' type="password" label='Confirmation Password' value={confirmationPassword} onChange={onConfirmPasswordChanged}></TextField>
                     <Button onClick={onRegisterButtonClicked} variant='contained' >Register</Button>
                 </Box>

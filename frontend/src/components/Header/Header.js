@@ -10,11 +10,13 @@ import { IconButton, InputAdornment, TextField } from '@mui/material';
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
-import styles from './styles';
+import makeStyles from './styles';
 
 function Header() {
   const profileImage = useSelector(state => state.Authentication.profilePhoto);
+  const user = useSelector(state => state.Authentication.user);
   const navigate = useNavigate();
+  const styles = makeStyles(user);
 
   const onProfileButtonClicked = (event) => {
     navigate("/app/useraccount");
@@ -44,9 +46,9 @@ function Header() {
           </TextField>
           <Button color="inherit" onClick={onHomeButtonClicked}>Home</Button>
           <Button color="inherit">Explore</Button>
-          <Button color="inherit">Signup</Button>
-          <Button color="inherit">Login</Button>
-          {profileImage ? <IconButton sx={styles.profileButton} onClick={onProfileButtonClicked}><img src={profileImage}></img></IconButton> : <IconButton onClick={onProfileButtonClicked}><AccountCircleIcon/></IconButton>}
+          <Button color="inherit" sx={styles.signupButton}>Signup</Button>
+          <Button color="inherit" sx={styles.loginButton}>Login</Button>
+          {user.profileImage ? <IconButton sx={styles.profileButton} onClick={onProfileButtonClicked}><img src={profileImage}></img></IconButton> : <IconButton onClick={onProfileButtonClicked}><AccountCircleIcon/></IconButton>}
         </Toolbar>
       </AppBar>
     </Box>

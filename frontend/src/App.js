@@ -14,7 +14,7 @@ import { useSelector } from 'react-redux';
 
 function App() {
   const [messasge, setMessage] = useState("Hi");
-  const user = useSelector(state => state.Authentication.user)
+  const user = useSelector(state => state.Authentication.user);
 
   useEffect(() => {
     // axios.get('http://localhost:8080/')
@@ -26,10 +26,10 @@ function App() {
   return (
     <Routes>
       <Route path='/' element={<Navigate to={"/register"} />} />
-      <Route path='/register' element={<Register />} />
+      <Route path='/register' element={user ? <Navigate to="/app/useraccount" /> : <Register />} />
       <Route path='/userprofile' element={<UserProfile />} />
       <Route path='/imageview' element={<ImageView />} />
-      <Route path='/app' element={<AppComponent />}>
+      <Route path='/app' element={user ? <AppComponent /> : <Navigate to="/register" />}>
         <Route path='useraccount' element={<UserViewAccount />} />
       </Route>
 
