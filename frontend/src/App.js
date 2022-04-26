@@ -6,6 +6,7 @@ import { Route, Routes, Navigate } from 'react-router-dom';
 import UploadTest from './views/UploadTest/UploadTest';
 import SlidingMenuTest from './views/SlidingMenuTest/SlidingMenuTest';
 import Register from './views/Authentication/Register/Register';
+import Login from './views/Authentication/Login/Login';
 import UserViewAccount from './views/UserAccount/UserAccount'
 import UserProfile from './views/UserProfile/UserProfile';
 import ImageView from './views/ImageView/ImageView';
@@ -27,6 +28,7 @@ function App() {
     <Routes>
       <Route path='/' element={<Navigate to={"/register"} />} />
       <Route path='/register' element={user ? <Navigate to="/app/useraccount" /> : <Register />} />
+      <Route path='/login' element={user ? <Navigate to="/app/useraccount" /> : <Login />} />
       <Route path='/userprofile' element={<UserProfile />} />
       <Route path='/imageview' element={<ImageView />} />
       <Route path='/app' element={user ? <AppComponent /> : <Navigate to="/register" />}>

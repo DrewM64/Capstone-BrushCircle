@@ -25,6 +25,18 @@ export default function(state = initialState, action){
                 user: action.payload
             }
 
+        case types.USER_LOGGED_IN:
+            return {
+                ...state,
+                user: action.payload
+            }
+
+        case types.USER_LOGGED_OUT:
+            return {
+                ...state,
+                user: null,
+            }
+
         default:
             return state
     };

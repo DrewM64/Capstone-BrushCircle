@@ -33,6 +33,10 @@ function AccountPanel(props) {
         dispatch(resetProfilePicture());
     })
 
+    const onLogoutButtonClicked = (event) => {
+        dispatch({type: types.USER_LOGGED_OUT})
+    }
+
     return (
         <Box role="tabpanel" id="account-panel" hidden={value !== index} sx={styles.container} >
             <Box sx={styles.accountHeader}>
@@ -60,7 +64,7 @@ function AccountPanel(props) {
             </Box>
             <Box sx={styles.buttonContainer}>
                 <Button variant='contained' sx={styles.saveButton}>Save Changes</Button>
-                <Button variant='contained' >Cancel</Button>
+                <Button variant='contained' onClick={onLogoutButtonClicked} >Logout</Button>
             </Box>
         </Box>
     )
