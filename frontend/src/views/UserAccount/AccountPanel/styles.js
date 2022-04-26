@@ -41,11 +41,14 @@ const styles = {
     saveButton: {
         backgroundColor: "saveButtonColor",
     },
+    logoutButton: {
+        backgroundColor: "cancelButtonColor",
+    },
     profileImageContainer: {
         width: "124px",
         height: "124px",
         gridArea: "image",
-        overflow: "hidden"
+        overflow: "hidden",
     }
 }
 
