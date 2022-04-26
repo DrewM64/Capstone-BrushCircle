@@ -4,14 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="127cf08a-aa75-47a9-b2dc-53063a924fef" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/frontend/src/drafts/explore.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/drafts/home.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/drafts/img/brushcircle logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/drafts/results.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/drafts/styles/styles.css" afterDir="false" />
+    <list default="true" id="127cf08a-aa75-47a9-b2dc-53063a924fef" name="Changes" comment="Merge test_upload and test_sidebar from derrian_dev">
+      <change afterPath="$PROJECT_DIR$/frontend/src/drafts/img/bg img.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/drafts/img/birm-long.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/drafts/img/birm-short.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/drafts/img/doors.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/drafts/explore.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/drafts/explore.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/drafts/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/drafts/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/drafts/results.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/drafts/results.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/drafts/styles/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/drafts/styles/styles.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,7 +72,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="codeWithMe.voiceChat.enabledByDefault" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/frontend/src/drafts" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/frontend/src/drafts/img" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -79,6 +82,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Documents\Coding\Capstone-BrushCircle\frontend\src\drafts\img" />
       <recent name="D:\Documents\Coding\Capstone-BrushCircle\frontend\src\drafts" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -125,6 +129,8 @@
       <workItem from="1647891403764" duration="5606000" />
       <workItem from="1647991485378" duration="1351000" />
       <workItem from="1648073048616" duration="1786000" />
+      <workItem from="1650760092122" duration="17000" />
+      <workItem from="1650923477179" duration="8379000" />
     </task>
     <task id="LOCAL-00001" summary="Merge test_upload and test_sidebar from derrian_dev">
       <created>1647577302254</created>

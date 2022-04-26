@@ -9,7 +9,11 @@ body {
 }
 
 .splash {
-    height: 300px;
+    height: 400px;
+}
+
+.splash h1 {
+    color: white;
 }
 
 #exploreSearchBar {
