@@ -8,8 +8,10 @@ import styles from './styles';
 import createStyles from './containerStyles'; //this is needed to hide the second panel
 import { Button, IconButton, Input, InputAdornment, Stack, Switch, TextField, Typography } from '@mui/material';
 import GalleryItem from './GalleryItem/GalleryItem';
-import { getFileList, uploadFileToServer } from '../../../actions/imageActions';
+import { getFileList } from '../../../actions/imageActions';
+import { uploadFile } from "../../../actions/productActions";
 import { DesktopDatePicker } from '@mui/x-date-pickers';
+import { upload } from '@testing-library/user-event/dist/upload';
 
 function GalleryPanel(props) {
     const { value, index } = props;
@@ -17,7 +19,18 @@ function GalleryPanel(props) {
     const [isEditOpen, setIsEditOpen] = useState(true);
     const [selectedIndex, setSelectedIndex] = useState(null);
     const imageList = useSelector(state => state.ImageReducer.imageList);
+    const user = useSelector(state => state.Authentication.user);
     const dispatch = useDispatch();
+    const newProduct = {
+        title: "",
+        price: 0,
+        style: "",
+        featured: false,
+        description: "",
+        width: 0,
+        length: 0,
+        tags: "",
+    }
 
     // useEffect(() => {
     //     dispatch(getFileList());
@@ -53,20 +66,22 @@ function GalleryPanel(props) {
     /* this is the event handler for the upload button.
     files are returned in an array even if only one
     file is selected. */
-    const onFileSelected = (event) => {
+    const onUploadButtonPressed = (event) => {
         const newImage = event.target.files[0];
 
         //prepare the image then send it off
         let formData = new FormData();
         formData.append("file", newImage, newImage.name);
-        dispatch(uploadFileToServer(formData));
+        formData.append("user", new Blob([JSON.stringify(user)], {type:'application/json'}));
+        formData.append("product", new Blob([JSON.stringify(newProduct)], {type:'application/json'}));
+        dispatch(uploadFile(formData));
     }
 
     return (
         <Box hidden={value == index ? false : true} sx={createStyles(value !== index)}>
             <Box padding={2} sx={isSidebarOpen ? styles.content : styles.contentExpanded}>
                 <label htmlFor='contained-button-file-1'>
-                    <Input accept="image/*" id="contained-button-file-1" type="file" sx={{ display: "none" }} onChange={onFileSelected} />
+                    <Input accept="image/*" id="contained-button-file-1" type="file" sx={{ display: "none" }} onChange={onUploadButtonPressed} />
                     <Button variant='contained' component='span'>Upload</Button>
                 </label>
                 <hr />

@@ -9,3 +9,6 @@ export const USER_REGISTERED = "USER REGISTERED";
 export const USER_LOGGED_IN = "USER LOGGED IN";
 export const USER_LOGGED_OUT = "USER LOGGED OUT";
 export const USER_INFO_UPDATED = "USER INFO UPDATED";
+
+//product
+export const PRODUCT_UPLOADED = "PRODUCT UPLOADED";

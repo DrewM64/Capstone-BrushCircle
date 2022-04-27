@@ -18,7 +18,7 @@ public class Product {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 
-	@Column(name = "title", nullable = false, unique = true, length = 45)
+	@Column(name = "title", length = 45)
 	private String title; //name of artwork
 
 	@Column(name = "date")
