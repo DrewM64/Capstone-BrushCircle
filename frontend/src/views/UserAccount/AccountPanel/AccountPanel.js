@@ -25,14 +25,14 @@ function AccountPanel(props) {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        setFirstName(user.firstName);
-        setLastName(user.lastName);
-        setEmail(user.email);
-        setPhoneNumber(user.phoneNumber);
-        setAddress(user.address);
-        setState(user.state);
-        setPatreon(user.patreon);
-        setCashapp(user.cashapp);
+        setFirstName(user.firstName || "");
+        setLastName(user.lastName || "");
+        setEmail(user.email || "");
+        setPhoneNumber(user.phoneNumber || "");
+        setAddress(user.address || "");
+        setState(user.state || "");
+        setPatreon(user.patreon || "");
+        setCashapp(user.cashapp || "");
     }, [user])
 
     /* first uploads the picture to the server which 
@@ -42,7 +42,8 @@ function AccountPanel(props) {
         const newImage = event.target.files[0];
         const formData = new FormData();
         formData.append("file", newImage, newImage.name);
-
+        formData.append("user", new Blob([JSON.stringify(user)], {type:'application/json'}));
+        console.log(new Blob([JSON.stringify(user)], {type:'application/json'}));
         dispatch(uploadProfilePicture(formData));
     }
 

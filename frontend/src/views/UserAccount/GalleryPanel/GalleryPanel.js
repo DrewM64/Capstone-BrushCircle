@@ -19,9 +19,9 @@ function GalleryPanel(props) {
     const imageList = useSelector(state => state.ImageReducer.imageList);
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        dispatch(getFileList());
-    }, [])
+    // useEffect(() => {
+    //     dispatch(getFileList());
+    // }, [])
 
     const onButtonPress = (event) => {
         setIsSidebarOpen(!isSidebarOpen);
@@ -92,7 +92,7 @@ function GalleryPanel(props) {
                 </Box>
                 <Box sx={isEditOpen ? styles.sidebarInfoContainer : styles.sidebarInfoContainerHidden}>
                     <Box sx={styles.imageContainer}>
-                        {imageList && <img src={'http://localhost:8080/' + imageList[selectedIndex]} alt='selected image'></img>}
+                        {/* {imageList && <img src={'http://localhost:8080/' + imageList[selectedIndex]} alt='selected image'></img>} */}
                     </Box>
                     <Typography>Title</Typography>
                     <Typography align='right'>The light that shines bright</Typography>

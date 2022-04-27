@@ -10,7 +10,7 @@ export default function(state = initialState, action){
         case types.PROFILE_PHOTO_UPLOADED:
             return {
                 ...state,
-                profilePhoto: action.payload,
+                user: action.payload,
             }
 
         case types.RESET_PROFILE_PHOTO:

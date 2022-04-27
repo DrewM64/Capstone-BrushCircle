@@ -2,16 +2,16 @@ import axios from 'axios';
 
 import * as types from '../redux/constants';
 import { userData } from '../data/mockData'
-import { register, login, update } from '../api/api';
+import { register, login, update, uploadProfilePhoto } from '../api/api';
 
 export const uploadProfilePicture = (formData) => async (dispatch) => {
     //send to the backend
-    axios.post("http://localhost:8080/reactuploadprofileimage", formData).then((response) => {
-        const data = (response.data);
-        dispatch({type: types.PROFILE_PHOTO_UPLOADED, payload: data});
-    }).catch((error) => {
+    try {
+        const response = await uploadProfilePhoto(formData);
+        dispatch({type: types.PROFILE_PHOTO_UPLOADED, payload: response.data});
+    } catch (error) {
         console.log(error);
-    })
+    }
     
 }
 

@@ -36,8 +36,8 @@ function App() {
       </Route>
 
       {/* The following routes are for testing elements */}
-      <Route path='/test-upload' element={<UploadTest />} />
-      <Route path='/test-menu' element={<SlidingMenuTest />} />
+      {/* <Route path='/test-upload' element={<UploadTest />} /> */}
+      {/* <Route path='/test-menu' element={<SlidingMenuTest />} /> */}
     </Routes>
   );
 }
