@@ -16,7 +16,7 @@ export default function(state = initialState, action){
         case types.RESET_PROFILE_PHOTO:
             return {
                 ...state,
-                profilePhoto: null,
+                user: action.payload,
             }
         
         case types.USER_REGISTERED:

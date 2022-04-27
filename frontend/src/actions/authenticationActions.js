@@ -2,7 +2,7 @@ import axios from 'axios';
 
 import * as types from '../redux/constants';
 import { userData } from '../data/mockData'
-import { register, login, update, uploadProfilePhoto } from '../api/api';
+import { register, login, update, uploadProfilePhoto, resetProfilePhoto } from '../api/api';
 
 export const uploadProfilePicture = (formData) => async (dispatch) => {
     //send to the backend
@@ -15,8 +15,13 @@ export const uploadProfilePicture = (formData) => async (dispatch) => {
     
 }
 
-export const resetProfilePicture = () => async (dispatch) => {
-    dispatch({type: types.RESET_PROFILE_PHOTO});
+export const resetProfilePicture = (user) => async (dispatch) => {
+    try {
+        const response = await resetProfilePhoto(user);
+        dispatch({type: types.RESET_PROFILE_PHOTO, payload: response.data});
+    } catch (error) {
+        console.log(error);
+    }
 }
 
 export const registerUser = (userInfo) => async (dispatch) => {

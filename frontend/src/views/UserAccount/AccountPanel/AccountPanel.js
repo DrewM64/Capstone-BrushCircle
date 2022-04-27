@@ -50,7 +50,7 @@ function AccountPanel(props) {
     /* clears the profile image link in redux state
     which will clear the profile pic */
     const onResetButtonClicked = (event => {
-        dispatch(resetProfilePicture());
+        dispatch(resetProfilePicture(user));
     })
 
     const onLogoutButtonClicked = (event) => {
