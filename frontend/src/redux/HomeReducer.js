@@ -5,6 +5,8 @@ const initialState = {
     homeCategoriesArray: null,
     exploreCategoriesArray: null,
     searchResultsArray: null,
+    userProfileObject: null,
+    userProfileProducts: null,
 }
 
 export default function(state = initialState, action){
@@ -31,6 +33,13 @@ export default function(state = initialState, action){
             return {
                 ...state,
                 searchResultsArray: action.payload,
+            }
+            
+        case types.USER_PROFILE_REQUESTED:
+            return {
+                ...state,
+                userProfileObject: action.payload.user,
+                userProfileProducts: action.payload.productsArray,
             }
 
         default:
