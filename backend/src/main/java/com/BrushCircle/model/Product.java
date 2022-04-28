@@ -18,6 +18,7 @@ public class Product {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 
+<<<<<<< Updated upstream
 	@Column(name = "title", length = 45)
 	private String title; //name of artwork
 
