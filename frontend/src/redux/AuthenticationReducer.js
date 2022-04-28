@@ -1,7 +1,6 @@
 import * as types from './constants';
 
 const initialState = {
-    profilePhotoAddress: null,
     user: null,
 }
 
@@ -38,6 +37,12 @@ export default function(state = initialState, action){
             }
 
         case types.USER_INFO_UPDATED:
+            return {
+                ...state,
+                user: action.payload,
+            }
+
+        case types.USER_INFO_FETCHED:
             return {
                 ...state,
                 user: action.payload,

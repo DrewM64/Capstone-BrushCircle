@@ -2,7 +2,7 @@ import axios from 'axios';
 
 import * as types from '../redux/constants';
 import { userData } from '../data/mockData'
-import { register, login, update, uploadProfilePhoto, resetProfilePhoto } from '../api/api';
+import { register, login, update, uploadProfilePhoto, resetProfilePhoto, getUser } from '../api/api';
 
 export const uploadProfilePicture = (formData) => async (dispatch) => {
     //send to the backend
@@ -46,6 +46,16 @@ export const updateUser = (userInfo) => async (dispatch) => {
     try {
         const response = await update(userInfo);
         dispatch({type: types.USER_INFO_UPDATED, payload: response.data})
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export const getUserData = (email) => async (dispatch) => {
+    try {
+        const response = await getUser(email);
+        dispatch({type: types.USER_INFO_FETCHED, payload: response.data.user});
+        dispatch({type: types.USER_PRODUCT_LIST_RETRIEVED, payload: response.data.productsArray});
     } catch (error) {
         console.log(error);
     }

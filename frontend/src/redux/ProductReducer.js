@@ -1,16 +1,43 @@
 import * as types from '../redux/constants';
 
 const initialState = {
-    userProductList: null
+    userProductList: null,
+    gallerySelectedProduct: null,
 }
 
 export default function (state = initialState, action){
     switch(action.type){
-        // case types.PRODUCT_UPLOADED:
-        //     return {
-        //         ...state,
-        //         imageList: action.payload,
-        //     }
+        case types.PRODUCT_UPLOADED:
+            return {
+                ...state,
+                userProductList: action.payload,
+            }
+
+        case types.USER_PRODUCT_LIST_RETRIEVED:
+            return {
+                ...state,
+                userProductList: action.payload,
+            }
+        
+        case types.GALLERY_ITEM_INFO_RETRIEVED:
+            return {
+                ...state,
+                gallerySelectedProduct: action.payload,
+            }
+
+        case types.GALLERY_ITEM_INFO_UPDATED:
+            return {
+                ...state,
+                gallerySelectedProduct: action.payload,
+            }
+        
+        case types.GALLERY_ITEM_DELETED:
+            return {
+                ...state,
+                gallerySelectedProduct: null,
+                userProductList: action.payload,
+            }
+
         default:
             return state;
     }
