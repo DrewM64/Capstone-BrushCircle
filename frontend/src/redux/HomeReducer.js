@@ -7,6 +7,7 @@ const initialState = {
     searchResultsArray: null,
     userProfileObject: null,
     userProfileProducts: null,
+    selectedProduct: null,
 }
 
 export default function(state = initialState, action){
@@ -40,6 +41,12 @@ export default function(state = initialState, action){
                 ...state,
                 userProfileObject: action.payload.user,
                 userProfileProducts: action.payload.productsArray,
+            }
+
+        case types.PRODUCT_INFO_REQUESTED:
+            return {
+                ...state,
+                selectedProduct: action.payload,
             }
 
         default:

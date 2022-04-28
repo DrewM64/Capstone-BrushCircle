@@ -1,5 +1,5 @@
 import * as types from '../redux/constants';
-import { getAllProducts, fetchHomeData, fetchExploreData, fetchSearchResults, getUser } from "../api/api";
+import { getAllProducts, fetchHomeData, fetchExploreData, fetchSearchResults, getUser, getProduct } from "../api/api";
 
 export const getProductsList = () => async (dispatch) => {
     try {
@@ -41,6 +41,15 @@ export const getUserProfile = (email) => async (dispatch) => {
     try {
         const response = await getUser(email);
         dispatch({type: types.USER_PROFILE_REQUESTED, payload: response.data});
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export const getProductInfo = (product) => async (dispatch) => {
+    try {
+        const response = await getProduct(product);
+        dispatch({type: types.PRODUCT_INFO_REQUESTED, payload: response.data});
     } catch (error) {
         console.log(error);
     }
