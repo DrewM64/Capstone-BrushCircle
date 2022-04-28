@@ -4,6 +4,7 @@ const initialState = {
     allProductsArray: null,
     homeCategoriesArray: null,
     exploreCategoriesArray: null,
+    searchResultsArray: null,
 }
 
 export default function(state = initialState, action){
@@ -24,6 +25,12 @@ export default function(state = initialState, action){
             return {
                 ...state,
                 exploreCategoriesArray: action.payload,
+            }
+
+        case types.SEARCH_RESULTS_RECIEVED:
+            return {
+                ...state,
+                searchResultsArray: action.payload,
             }
 
         default:
