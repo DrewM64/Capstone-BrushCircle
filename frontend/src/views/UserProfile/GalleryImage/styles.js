@@ -5,6 +5,12 @@ const makeStyles = () => {
             height: "200px",
             backgroundColor: "red",
             borderRadius: 1,
+            overflow: "hidden",
+            cursor: "pointer",
+            img: {
+                width: "200px",
+                minHeight: "200px",
+            }
         },
     }
 }

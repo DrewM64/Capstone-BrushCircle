@@ -31,7 +31,7 @@ function App() {
       <Route path='/' element={<Home />} />
       <Route path='/register' element={user ? <Navigate to="/app/useraccount" /> : <Register />} />
       <Route path='/login' element={user ? <Navigate to="/app/useraccount" /> : <Login />} />
-      <Route path='/userprofile' element={<UserProfile />} />
+      <Route path='/userprofile/:email' element={<UserProfile />} />
       <Route path='/imageview' element={<ImageView />} />
       <Route path='/app' element={user ? <AppComponent /> : <Navigate to="/login" />}>
         <Route path='useraccount' element={<UserViewAccount />} />

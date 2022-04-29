@@ -27,6 +27,34 @@ const makeStyles = () => {
             columnGap: "15px",
             rowGap: "15px",
             flexWrap: "wrap",
+        },
+        exploreTextContainer: {
+            margin: "0 0 10px 60px",
+            a: {
+                fontSize: "22px",
+                textDecoration: "none",
+            }
+        },
+        moreLink: {
+            display: "flex",
+            justifyContent: "center",
+            a: {
+                fontSize: "22px",
+                textDecoration: "none",
+            }
+        },
+        categoriesContainer: {
+            maxWidth: contentWidth,
+            margin: "0 auto 40px auto",
+        },
+        linksContainer: {
+            display: "flex",
+            justifyContent: "space-between",
+            margin: "0 52px 20px 52px",
+        },
+        categories: {
+            display: "flex",
+            justifyContent: "space-evenly",
         }
     }
 }

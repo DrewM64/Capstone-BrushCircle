@@ -1,7 +1,7 @@
 const styles = {
     container: {
-        width: "100px",
-        height: "100px",
+        width: "150px",
+        height: "150px",
         backgroundColor: 'black',
         cursor: "grab",
         overflow: "hidden",
@@ -11,13 +11,13 @@ const styles = {
         },
     },
     selected: {
-        width: "100px",
-        height: "100px",
+        width: "150px",
+        height: "150px",
         backgroundColor: 'primaryButtonColor',
         cursor: "grab",
         borderRadius: "5px",
         overflow: "hidden",
-        border: "5px solid #BFDBDE",
+        border: "5px solid #1AC447",
     }
 }
 

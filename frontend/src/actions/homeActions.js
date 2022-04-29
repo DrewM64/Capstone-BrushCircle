@@ -43,7 +43,9 @@ export const search = (query) => async (dispatch) => {
 
 export const getUserProfile = (email) => async (dispatch) => {
     try {
+        output("Get Profile Reuqest", email);
         const response = await getUser(email);
+        output("Get Profile Response", response.data);
         dispatch({type: types.USER_PROFILE_REQUESTED, payload: response.data});
     } catch (error) {
         console.log(error);
@@ -52,7 +54,9 @@ export const getUserProfile = (email) => async (dispatch) => {
 
 export const getProductInfo = (product) => async (dispatch) => {
     try {
+        output("Request Info", product);
         const response = await getProduct(product);
+        output("Response", response.data);
         dispatch({type: types.PRODUCT_INFO_REQUESTED, payload: response.data});
     } catch (error) {
         console.log(error);

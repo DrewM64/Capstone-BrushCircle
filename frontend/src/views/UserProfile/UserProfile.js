@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box, Typography } from '@mui/material';
 import EmailIcon from '@mui/icons-material/Email';
 import PaidIcon from '@mui/icons-material/Paid';
@@ -6,17 +6,29 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 
 import FeaturedImage from './FeaturedImage/FeaturedImage';
 import GalleryImage from './GalleryImage/GalleryImage';
-import Header from '../../components/Header/Header'
+import Header from '../../components/Header/Header';
+import { getUserProfile, getProductInfo } from '../../actions/homeActions';
 
 import makeStyles from './styles';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 function UserProfile() {
   const nums = [1, 2, 3, 4];
   const nums2 = [1, 2, 3, 4, 5, 6, 7, 8, 9];
   const styles = makeStyles();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const userProfileObject = useSelector(state => state.Home.userProfileObject);
+  const userProfileProducts = useSelector(state => state.Home.userProfileProducts);
+  const serverAddress = useSelector(state => state.Home.serverAddress);
+  const { email } = useParams();
 
-  const onItemClicked = (event) => {
+  useEffect(() => {
+    dispatch(getUserProfile(email));
+  }, [email])
+
+  const onItemClicked = (product) => {
+    dispatch(getProductInfo(product));
     navigate("/imageview");
   }
 
@@ -28,29 +40,25 @@ function UserProfile() {
           <Box sx={styles.userCard}>
             <Box sx={styles.userCardHeader}>
               <Box sx={styles.imageContainer}>
-                <img src='stefan-stefancik-QXevDflbl8A-unsplash.jpg'></img>
+                <img src={`${serverAddress}${userProfileObject?.profileImageName}`}></img>
               </Box>
-              <Typography align='center' variant='h6'>Stacy Woodard</Typography>
-              <Typography align='center' variant='caption'>Photographer</Typography>
+              <Typography align='center' variant='h6'>{`${userProfileObject?.firstName} ${userProfileObject?.lastName}`}</Typography>
+              <Typography align='center' variant='caption'>{userProfileObject?.title}</Typography>
             </Box>
             <Box sx={styles.productsTextContainer}>
-              <Typography variant='subtitle1' align='center' >30 Products</Typography>
+              <Typography variant='subtitle1' align='center' >{`${userProfileProducts?.length} Products`} </Typography>
             </Box>
             <Box sx={styles.linksContainer}>
               <EmailIcon fontSize='small' sx={{ width: '100%' }}></EmailIcon>
-              <Typography>somename@gmail.com</Typography>
+              <Typography>{userProfileObject?.email}</Typography>
               <PaidIcon fontSize='small'></PaidIcon>
-              <Typography>$swoodard</Typography>
+              <Typography>{userProfileObject?.cashapp}</Typography>
               <TwitterIcon fontSize='small'></TwitterIcon>
-              <Typography>stazzywoo</Typography>
+              <Typography>{userProfileObject?.twitter}</Typography>
             </Box>
             <Box sx={styles.biographyContainer}>
               <Typography align='center'>Bio</Typography>
-              <Typography align='left' >Lorem ipsum alca beta apha som
-                more painting card terrace indo
-                ishi alphaza lorem remi mus ipsu
-                apha beta omega supreme reach
-                rinnegan sharingon eternal mang</Typography>
+              <Typography align='left' >{userProfileObject?.biography}</Typography>
             </Box>
           </Box>
         </Box>
@@ -58,16 +66,17 @@ function UserProfile() {
           <Box sx={styles.featuredContainer} mb={4}>
             <Typography mb={2}>Featured Images</Typography>
             <Box sx={styles.featuredImages}>
-              {nums.map((val, index) => {
-                return <FeaturedImage number={val} key={index} action={onItemClicked} />
+              {userProfileProducts.map((item, index) => {
+                if(!item.featured){return null}
+                return <FeaturedImage key={index} action={onItemClicked} product={item} />
               })}
             </Box>
           </Box>
           <Box sx={styles.galleryContainer}>
             <Typography mb={2}>Gallery</Typography>
             <Box sx={styles.galleryImages}>
-              {nums2.map((val, index) => {
-                return <GalleryImage number={val} key={index} action={onItemClicked} />
+              {userProfileProducts.map((item, index) => {
+                return <GalleryImage key={index} action={onItemClicked} product={item} />
               })}
             </Box>
           </Box>

@@ -19,7 +19,7 @@ export const deleteProduct = (data) => API.post('/product/delete', data);
 
 // home
 export const getAllProducts = () => API.get('/home/products');
-export const fetchHomeData = () => API.get('/home/categories');
+export const fetchHomeData = () => API.get('/home/popularcategories');
 export const fetchExploreData = () => API.get('/explore/home');
 export const fetchSearchResults = (query) => API.get('/search', query);
 

@@ -9,7 +9,7 @@ const theme = createTheme({
         saveButtonColor: "#1AC447",
         cancelButtonColor: "#47505A",
         galleryItemHoverColor: "#BDCFDD",
-        galleryItemSelectedColor: "#BDCFDD",
+        galleryItemSelectedColor: "#1AC447",
         backgroundColor1: "#F7F8F9",
         
     },

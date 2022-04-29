@@ -42,7 +42,7 @@ export default function(state = initialState, action){
             return {
                 ...state,
                 userProfileObject: action.payload.user,
-                userProfileProducts: action.payload.productsArray,
+                userProfileProducts: action.payload.product,
             }
 
         case types.PRODUCT_INFO_REQUESTED:

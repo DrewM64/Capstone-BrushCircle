@@ -4,10 +4,13 @@ import { Box, Paper, Typography } from '@mui/material';
 
 import createStyles from './styles';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 function ImageView() {
     const [shrinkOverlay, setShrinkOverlay] = useState(false);
     const styles = createStyles({ shrinkOverlay });
+    const selectedProduct = useSelector(state => state.Home.selectedProduct);
+    const serverAddress = useSelector(state => state.Home.serverAddress);
 
     // this method causes the styles to change for the
     // overlay section
@@ -19,36 +22,32 @@ function ImageView() {
         <Box sx={styles.container}>
             <Header />
             <Box sx={styles.imageContainer}>
-                <img src='/david-zieglgansberger--M_J7gGTg6k-unsplash.jpg' onClick={onImageClicked} ></img>
+                <img src={`${serverAddress}${selectedProduct?.filename}`} onClick={onImageClicked} ></img>
             </Box>
             <Paper onClick={onImageClicked}>
                 <Box sx={styles.overlayContainer}>
                     <Box sx={styles.overlayHeader}>
-                        <Typography variant='h4' fontWeight={600}>The Light That Shines Bright</Typography>
-                        <Typography variant='h6' ml={3} color='primary'>$499.00</Typography>
+                        <Typography variant='h4' fontWeight={600}>{selectedProduct?.title}</Typography>
+                        <Typography variant='h6' ml={3} color='primary'>{selectedProduct?.price}</Typography>
                         <Box sx={styles.authorColumn}>
-                            <Typography>By: <Link to="/userprofile">Stacy Woodard</Link></Typography>
+                            <Typography>By: <Link to={`/userprofile/${selectedProduct?.user.email}`}>{selectedProduct?.user.firstName != "" || selectedProduct?.user.lastName != "" ? `${selectedProduct?.user.firstName} ${selectedProduct?.user.lastName}` : selectedProduct?.user.email}</Link></Typography>
                         </Box>
                     </Box>
                     <Box sx={styles.detailsContainer}>
                         <Box sx={styles.dateContainer}>
                             <Typography variant='subtitle1'>Date Created</Typography>
-                            <Typography variant='h5' color='primary'>10/26/2006</Typography>
+                            <Typography variant='h5' color='primary'>{selectedProduct?.date}</Typography>
                         </Box>
                         <Box sx={styles.biographyContainer}>
-                            <Typography variant='body1' color='primary'>This is a lovely piece that was created by Stacy
-                                Woodard, who created this piece just after giving
-                                birth to her first child. This piece presents a
-                                modern look and represents the beautiful splash
-                                of the energy of life.</Typography>
+                            <Typography variant='body1' color='primary'>{selectedProduct?.biography}</Typography>
                         </Box>
                         <Box sx={styles.attributesContainer}>
                             <Typography variant='subtitle1' align='right'>Dimensions</Typography>
-                            <Typography variant='h6' color='primary'>40 x 50</Typography>
+                            <Typography variant='h6' color='primary'>{selectedProduct?.width} x {selectedProduct?.length}</Typography>
                             <Typography variant='subtitle1' align='right'>Style</Typography>
-                            <Typography variant='h6' color='primary'>Abstract</Typography>
+                            <Typography variant='h6' color='primary'>{selectedProduct?.style}</Typography>
                             <Typography variant='subtitle1' align='right'>Tags</Typography>
-                            <Typography variant='h6' color='primary'>pink, abstract</Typography>
+                            <Typography variant='h6' color='primary'>{selectedProduct?.tags}</Typography>
                         </Box>
                     </Box>
                 </Box>

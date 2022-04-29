@@ -17,10 +17,12 @@ const createStyles = (options) => {
             display: "flex",
             marginTop: "40px",
             justifyContent: "center",
+            
             img: {
                 height: "73vh",
                 borderRadius: "8px",
                 cursor: "grabbing",
+                border: "2px solid lightgrey",
             },
         },
         overlayContainer: {
