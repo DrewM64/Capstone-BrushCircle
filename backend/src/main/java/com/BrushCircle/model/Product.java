@@ -49,7 +49,7 @@ public class Product {
 	public Product() {
 	}
 
-	public Product(String title, Integer price, String style, boolean featured, String description, int width, int length, String tags) {
+	public Product(String title, float price, String style, boolean featured, String description, int width, int length, String tags) {
 		super();
 		this.title = title;
 		this.price = price;
@@ -61,7 +61,7 @@ public class Product {
 		this.tags = tags;
 	}
 
-	public Product(String title, LocalDate date, Integer price, String style, boolean featured, String description, int width, int length, String tags) {
+	public Product(String title, LocalDate date, float price, String style, boolean featured, String description, int width, int length, String tags) {
 		super();
 		this.title = title;
 		this.date = date;
@@ -74,7 +74,7 @@ public class Product {
 		this.tags = tags;
 	}
 
-	public Product(String title, LocalDate date, Integer price, String style, boolean featured, String description, int width, int length, String tags, String filename) {
+	public Product(String title, LocalDate date, float price, String style, boolean featured, String description, int width, int length, String tags, String filename) {
 		super();
 		this.title = title;
 		this.date = date;
@@ -88,7 +88,7 @@ public class Product {
 		this.filename = filename;
 	}
 
-	public Product(String title, LocalDate date, Integer price, String style, boolean featured, String description, int width, int length, String tags, String filename, User user) {
+	public Product(String title, LocalDate date, float price, String style, boolean featured, String description, int width, int length, String tags, String filename, User user) {
 		super();
 		this.title = title;
 		this.date = date;
@@ -131,7 +131,7 @@ public class Product {
 		return price;
 	}
 
-	public void setPrice(Integer price) {
+	public void setPrice(float price) {
 		this.price = price;
 	}
 

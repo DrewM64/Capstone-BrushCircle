@@ -36,7 +36,7 @@ public interface ProductRepository extends CrudRepository <Product, Long>, JpaSp
 
 //    List<Product> findProductsByIds(List<Long> productsId);
 //
-//    List<Product> filter(List<String> products, List<String> genders, List<Integer> prices, boolean sortByPrice);
+//    List<Product> filter(List<String> products, List<String> genders, List<float> prices, boolean sortByPrice);
 
 //    Product saveProduct(Product product, MultipartFile file);
 
