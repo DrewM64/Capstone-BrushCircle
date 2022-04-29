@@ -15,7 +15,8 @@ const makeStyles = () => {
                 transition: "all 0.1s 0.01s",
             },
             img: {
-                width: "200px"
+                width: "200px",
+                minHeight: "200px",
             }
         }
     }

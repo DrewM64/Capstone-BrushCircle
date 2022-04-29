@@ -28,7 +28,7 @@ function ImageView() {
                 <Box sx={styles.overlayContainer}>
                     <Box sx={styles.overlayHeader}>
                         <Typography variant='h4' fontWeight={600}>{selectedProduct?.title}</Typography>
-                        <Typography variant='h6' ml={3} color='primary'>{selectedProduct?.price}</Typography>
+                        <Typography variant='h6' ml={3} color='primary'>{"$" + selectedProduct?.price}</Typography>
                         <Box sx={styles.authorColumn}>
                             <Typography>By: <Link to={`/userprofile/${selectedProduct?.user.email}`}>{selectedProduct?.user.firstName != "" || selectedProduct?.user.lastName != "" ? `${selectedProduct?.user.firstName} ${selectedProduct?.user.lastName}` : selectedProduct?.user.email}</Link></Typography>
                         </Box>
@@ -39,7 +39,7 @@ function ImageView() {
                             <Typography variant='h5' color='primary'>{selectedProduct?.date}</Typography>
                         </Box>
                         <Box sx={styles.biographyContainer}>
-                            <Typography variant='body1' color='primary'>{selectedProduct?.biography}</Typography>
+                            <Typography variant='body1' color='primary'>{selectedProduct?.description}</Typography>
                         </Box>
                         <Box sx={styles.attributesContainer}>
                             <Typography variant='subtitle1' align='right'>Dimensions</Typography>
