@@ -9,7 +9,7 @@ import createStyles from './containerStyles'; //this is needed to hide the secon
 import { Button, IconButton, Input, InputAdornment, Stack, Switch, TextField, Typography } from '@mui/material';
 import GalleryItem from './GalleryItem/GalleryItem';
 import { DesktopDatePicker } from '@mui/x-date-pickers';
-import { updateGalleryProduct, uploadFile } from '../../../actions/productActions';
+import { updateGalleryProduct, uploadFile, deleteGalleryProduct } from '../../../actions/productActions';
 import { getUserData } from '../../../actions/authenticationActions';
 
 function GalleryPanel(props) {
@@ -71,6 +71,12 @@ function GalleryPanel(props) {
         formData.append("file", newImage, newImage.name);
         formData.append("user", new Blob([JSON.stringify(user)], { type: 'application/json' }));
         dispatch(uploadFile(formData));
+    }
+
+    const onDeleteButtonPressed = (event) => {
+        dispatch(deleteGalleryProduct(selectedProduct));
+        setIsSidebarOpen(false);
+        setSelectedIndex(null);
     }
 
     const onSaveButtonClicked = (event) => {
@@ -162,7 +168,7 @@ function GalleryPanel(props) {
                         <IconButton sx={!isEditOpen ? { display: "none" } : styles.rightActionButton} onClick={onEditButtonClicked}>
                             <EditOutlinedIcon />
                         </IconButton >
-                        <IconButton sx={!isEditOpen ? { display: "none" } : styles.actionButton}>
+                        <IconButton sx={!isEditOpen ? { display: "none" } : styles.actionButton} onClick={onDeleteButtonPressed}>
                             <DeleteOutlineOutlinedIcon sx={styles.actionButton} />
                         </IconButton>
                     </Stack>
