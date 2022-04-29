@@ -6,6 +6,7 @@ import com.BrushCircle.model.ErrorMessage;
 import com.BrushCircle.model.Product;
 import com.BrushCircle.model.Product;
 import com.BrushCircle.model.User;
+import com.BrushCircle.repository.ProductRepository;
 import com.BrushCircle.service.ProductService;
 import com.BrushCircle.service.ProductService;
 import io.swagger.annotations.ApiParam;
@@ -30,6 +31,9 @@ public class ProductController {
     @Autowired
     ProductService productService;
 
+    @Autowired
+    ProductRepository productRepository;
+
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "OK", response = Product.class),
             @ApiResponse(code = 400, message = "Bad Request", response = ErrorMessage.class),
@@ -42,27 +46,34 @@ public class ProductController {
             method = RequestMethod.POST,
             produces = {MediaType.APPLICATION_JSON_VALUE},
             consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
-    public ResponseEntity<Product> registerProduct(
+    public ResponseEntity<List<Product>> registerProduct(
 //        @RequestHeader(value = "Authorization") @ApiParam(required = true, value = "JWT Token to authorize request made by product") String authorization,
 //        @Valid
             @RequestPart("user") User user,
-            @RequestPart("product") Product product,
             @RequestPart("file") MultipartFile file) throws Throwable {
-        if (user == null || product == null || file == null) {
-            throw new Exception();
-        }
-        log.info("\nUser Info:      " + user);
-        log.info("\nProduct Info:   " + product);
-        log.info("\nFile Info:      "
-                + "\n" + file.getOriginalFilename()
-                + "\n" + file.getContentType());
+        try {
 
-        Product response = productService.registerProduct(user, product, file);
-        if (response == null){
-            log.info("\nError Found - Null");
-            throw new Exception();
+            if (user == null || file == null) {
+                log.info("\nRequest Body gave null values");
+                productService.getLogs(user, file, null);
+                throw new Exception();
+            }
+
+            String customTitle = productService.getFileNameNoExtension(file.getOriginalFilename());
+            log.info("\nTitle of Product is:  " + customTitle);
+
+            List<Product> response = productService.registerProduct(user, file);
+            if (response == null) {
+                log.info("\nResponse body returned null");
+                throw new Exception();
+            }
+            return new ResponseEntity<>(response, HttpStatus.OK);
+
+        } catch(Exception e) {
+            log.info("Exception Found");
+            e.printStackTrace();
+            return null;
         }
-        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @ApiResponses(value = {

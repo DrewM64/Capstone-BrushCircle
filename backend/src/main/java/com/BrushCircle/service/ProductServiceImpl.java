@@ -33,59 +33,68 @@ public class ProductServiceImpl implements ProductService {
     UserRepository userRepository;
 
     @Override
-    public Product registerProduct(User user, Product product, MultipartFile file) throws Exception {
+    public List<Product> registerProduct(User user, MultipartFile file) throws Exception {
         log.info("Running RegisterProduct");
+        Product product = new Product();
         try {
             User existingUser = userRepository.findByEmail(user.getEmail());
             log.info("\nExisting User Info:     " + existingUser);
 
             Path fileNameAndPath = Paths.get(uploadDirectory, file.getOriginalFilename());
             Files.write(fileNameAndPath, file.getBytes());
+            String customTitle = getFileNameNoExtension(file.getOriginalFilename());
 
+            product.setTitle(customTitle);
             product.setFilename(file.getOriginalFilename());
             product.setDate(LocalDate.now());
+            product.setPrice(0);
+            product.setLength(0);
+            product.setWidth(0);
+            product.setStyle("");
+            product.setDescription("");
+            product.setTags("");
             product.setUser(existingUser); //*NOTE* Given the table relation it is ideal to associate the user to the product not the other way around
-
-            userRepository.save(existingUser);
             productRepository.save(product);
 
-            Product existingProduct = productRepository.findByTitle(product.getTitle());
-            if (existingProduct == null){
+
+            Optional<Product> existingProduct = productRepository.findById(product.getId());
+            if (existingProduct.isEmpty()) {
+                log.info("\nExisting Product Info:  " + existingProduct);
                 throw new Exception();
             }
 
-            log.info("\nExisting Product Info:  " + existingProduct);
-            return existingProduct;
+            log.info("\nGetting List of Products from User");
+            List<Product> existingList = getProductList(user);
+
+            log.info("\nList of Products:   " + existingList);
+            return existingList;
+
         } catch (Exception e) {
-            log.info("\n[Error Found] Product was not registered...");
-            log.info("\nUser Info RQ:       " + user);
-            log.info("\nProduct Info RQ:    " + product);
-            log.info("\nFile Info:          "
-                    + "\n" + file.getOriginalFilename()
-                    + "\n" + file.getContentType());
+            getLogs(user, file, product);
+            return null;
         }
-        return null;
     }
 
     public Product getProductInfo(Product product) throws Exception {
         log.info("Getting Product Info");
-        Product existingProduct = productRepository.findByTitle(product.getTitle());
-        return existingProduct;
+        Optional<Product> existingProduct = productRepository.findById(product.getId());
+        log.info("Existing Product Details: " + existingProduct);
+        return existingProduct.orElse(null);
     }
 
     public Product update(UpdateProductDTO updateProductDTO) throws Exception {
         log.info("Updating Current Product Info");
 
         User existingUser = userRepository.findByEmail(updateProductDTO.getUser().getEmail());
-        Product existingProduct = productRepository.findByTitle(updateProductDTO.getProduct().getTitle());
+        Optional<Product> existingProduct = productRepository.findById(updateProductDTO.getProduct().getId());
 
         try {
-            if (existingUser == null || existingProduct == null) {
+            if (existingUser == null || existingProduct.isEmpty()) {
                 throw new Exception();
             }
-            copyNonNullProperties(updateProductDTO.getProduct(), existingProduct);
-            productRepository.save(existingProduct);
-            return existingProduct;
+            copyNonNullProperties(updateProductDTO.getProduct(), existingProduct.get());
+            productRepository.save(existingProduct.get());
+            return existingProduct.get();
         } catch (Exception e) {
             log.info("\n[Error Found] User from Product(s) does not match..."
                     + "\n User Expected:        " + existingUser
@@ -97,48 +106,56 @@ public class ProductServiceImpl implements ProductService {
 
     public UserDTO delete(UpdateProductDTO updateProductDTO) throws Exception {
         log.info("Updating Current Product Info");
-        Product existingProduct = productRepository.findByTitle(updateProductDTO.getProduct().getTitle());
-        User existingUser = userRepository.findByEmail(existingProduct.getUser().getEmail());
-        UserDTO userDTO = new UserDTO();
-        Boolean isAdmin = false;
-
+        User existingUser;
+        Optional<Product> existingProduct = productRepository.findById(updateProductDTO.getProduct().getId());
         try {
-            if (updateProductDTO.getUser().getRole().equals("ADMIN")) {
-                isAdmin = true;
-            }
-            if (existingProduct == null) {
+            if (existingProduct.isPresent()) {
+                existingUser = userRepository.findByEmail(existingProduct.get().getUser().getEmail());
+
+                UserDTO userDTO = new UserDTO();
+                Boolean isAdmin = true;
+
+                try {
+                    if (updateProductDTO.getUser().getRole().equals("USER")) {
+                        isAdmin = false;
+                    }
+
+                    if (!existingProduct.get().getUser().getEmail().equals(updateProductDTO.getUser().getEmail()) && !isAdmin) {
+                        log.info("\nProduct User and Logged In User Do Not Match");
+                        throw new Exception();
+                    }
+
+//                    log.info("\nDeleting Image");
+//                    Path fileNameAndPath = Paths.get(uploadDirectory, existingProduct.get().getFilename());
+//                    Files.delete(fileNameAndPath);
+
+                    log.info("\nRunning Repository Actions");
+                    productRepository.deleteById(existingProduct.get().getId());
+                    userRepository.save(existingUser);
+
+                    userDTO.setUser(existingUser);
+                    userDTO.setProduct(existingUser.getProducts());
+
+                    return userDTO;
+                } catch (Exception e) {
+                    log.info("\nException Found"
+                            + "\n User Expected:        " + existingUser
+                            + "\n Product Provided:     " + existingProduct.get()
+                    );
+                }
+            } else {
                 log.info("Product Not Found In Database");
                 throw new Exception();
             }
-            if (!existingProduct.getUser().getEmail().equals(updateProductDTO.getUser().getEmail()) && isAdmin == false)
-            {
-                log.info("Product User and Logged In User Do Not Match");
-                throw new Exception();
-            }
-
-            log.info("\nDeleting Image");
-            Path fileNameAndPath = Paths.get(uploadDirectory, existingProduct.getFilename());
-            Files.delete(fileNameAndPath);
-
-            log.info("\nRunning Repository Actions");
-            productRepository.deleteById(existingProduct.getId());
-            userRepository.save(existingUser);
-
-            userDTO.setUser(existingUser);
-            userDTO.setProduct(existingUser.getProducts());
-
-            return userDTO;
         } catch (Exception e) {
-            log.info("\n[Error Found] User from Product(s) does not match..."
-                    + "\n User Expected:        " + existingUser
-                    + "\n Product Provided:     " + existingProduct
-            );
+            log.info("Exception Found");
+            e.printStackTrace();
         }
         return null;
     }
 
     public List<Product> getProductList(User user) throws Exception {
-        log.info("Updating Current Product Info");
+        log.info("Getting Current Users Product(s)");
         User existingUser = userRepository.findByEmail(user.getEmail());
         List<Product> existingList = productRepository.findByUser(existingUser);
         try {
@@ -149,8 +166,8 @@ public class ProductServiceImpl implements ProductService {
         } catch (Exception e) {
             log.info("\n[Error Found] User does not match..."
                     + "\n User Expected:    " + user);
+            return null;
         }
-        return null;
     }
 
     @Override
@@ -158,26 +175,26 @@ public class ProductServiceImpl implements ProductService {
         int i, j;
         int k = 0;
         boolean t = false;
-    
+
         for (i = 0; i < styleList.length; i++) {
             for (j = 0; j < styleList.length; j++) {
-                if((styleList[i].equals(styleList[j]))&&(j>i)){
-                    t=true;
+                if ((styleList[i].equals(styleList[j])) && (j > i)) {
+                    t = true;
                 }
             }
-            if(t){
+            if (t) {
                 k++;
             }
         }
         String[] styleList1 = new String[k];
         for (i = 0; i < styleList.length; i++) {
             for (j = 0; j < styleList.length; j++) {
-                if(!(styleList[i].equals(styleList[j]))&&(j>i)){
-                    t=true;
+                if (!(styleList[i].equals(styleList[j])) && (j > i)) {
+                    t = true;
                 }
             }
-            if(t){
-                styleList1[i]=styleList[i];
+            if (t) {
+                styleList1[i] = styleList[i];
                 t = false;
             }
         }
@@ -229,12 +246,12 @@ public class ProductServiceImpl implements ProductService {
         BeanUtils.copyProperties(src, target, getNullPropertyNames(src));
     }
 
-    public static String[] getNullPropertyNames (Object source) {
+    public static String[] getNullPropertyNames(Object source) {
         final BeanWrapper src = new BeanWrapperImpl(source);
         java.beans.PropertyDescriptor[] pds = src.getPropertyDescriptors();
 
         Set<String> emptyNames = new HashSet<String>();
-        for(java.beans.PropertyDescriptor pd : pds) {
+        for (java.beans.PropertyDescriptor pd : pds) {
             Object srcValue = src.getPropertyValue(pd.getName());
             if (srcValue == null) emptyNames.add(pd.getName());
         }
@@ -242,5 +259,22 @@ public class ProductServiceImpl implements ProductService {
         return emptyNames.toArray(result);
     }
 
+    public String getFileNameNoExtension(String fileName) {
+        if(fileName.indexOf(".")>0)
+        {
+            return fileName.substring(0, fileName.lastIndexOf("."));
+        } else {
+            return fileName;
+        }
+    }
 
+    public void getLogs(User user, MultipartFile file, Product product){
+        log.info("\nUser Info:      " + user);
+        log.info("\nFile Info:      "
+                + "\n" + file.getOriginalFilename()
+                + "\n" + file.getContentType());
+        if(!(product == null)) {
+            log.info("\nProduct Info:   " + product);
+        }
+    }
 }
