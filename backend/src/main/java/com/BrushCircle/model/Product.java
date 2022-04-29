@@ -1,14 +1,7 @@
 package com.BrushCircle.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Set;
 
 
 @Entity
@@ -26,7 +19,7 @@ public class Product {
 	private LocalDate date;
 
 	@Column(name = "price")
-	private Integer price; //cost
+	private float price; //cost
 
 	@Column(name = "style")
 	private String style; //art style
@@ -134,7 +127,7 @@ public class Product {
 		this.date = date;
 	}
 
-	public Integer getPrice() {
+	public float getPrice() {
 		return price;
 	}
 
@@ -210,7 +203,7 @@ public class Product {
 	public String toString() {
 		return "Product{" +
 				", title='" + title + '\'' +
-				", price=" + price.toString() +
+				", price=" + price +
 				", style='" + style + '\'' +
 				", featured=" + featured +
 				", description='" + description + '\'' +
