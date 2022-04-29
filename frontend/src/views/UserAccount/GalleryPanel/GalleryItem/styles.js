@@ -6,8 +6,11 @@ const styles = {
         cursor: "grab",
         overflow: "hidden",
         borderRadius: "5px",
-        [':hover'] : {
-            backgroundColor: "galleryItemHoverColor"
+        border: "2px solid lightgrey",
+        [':hover']: {
+            border: "3px solid blue",
+            backgroundColor: "galleryItemHoverColor",
+            transition: "all 0.1s 0.01s",
         },
     },
     selected: {

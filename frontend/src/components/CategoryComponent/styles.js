@@ -26,7 +26,7 @@ const makeStyles = () => {
         title: {
             color: "white",
             fontWeight: "500",
-            fontSize: "40px",
+            fontSize: "30px",
             position: "absolute",
         }
     }

@@ -13,6 +13,7 @@ import ImageView from './views/ImageView/ImageView';
 import Home from './views/Home/Home';
 import AppComponent from './components/AppComponent/AppComponent';
 import { useSelector } from 'react-redux';
+import Explore from './views/Explore/Explore';
 
 function App() {
   const [messasge, setMessage] = useState("Hi");
@@ -29,6 +30,7 @@ function App() {
   return (
     <Routes>
       <Route path='/' element={<Home />} />
+      <Route path='/explore' element={<Explore />} />
       <Route path='/register' element={user ? <Navigate to="/app/useraccount" /> : <Register />} />
       <Route path='/login' element={user ? <Navigate to="/app/useraccount" /> : <Login />} />
       <Route path='/userprofile/:email' element={<UserProfile />} />

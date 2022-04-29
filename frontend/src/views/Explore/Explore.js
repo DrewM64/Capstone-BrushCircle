@@ -11,7 +11,7 @@ import { getProductsList, getHomeData } from "../../actions/homeActions";
 import { Link } from 'react-router-dom';
 import CategoryComponent from "../../components/CategoryComponent/CategoryComponent";
 
-function Home() {
+function Explore() {
     const [categoriesReduced, setCategoriesReduced] = useState([]);
     const styles = makeStyles();
     const products = useSelector(state => state.Home.allProductsArray);
@@ -47,9 +47,9 @@ function Home() {
         <Box sx={styles.container}>
             <Header />
             <Box sx={styles.headingContainer}>
-                <Typography variant='h2'>ART REIMAGINED</Typography>
+                <Typography variant='h2'>Discover Amazing Art</Typography>
             </Box>
-            <Box sx={styles.categoriesContainer}>
+            {/* <Box sx={styles.categoriesContainer}>
                 <Box sx={styles.linksContainer}>
                     <Typography>Popular Categories</Typography>
                     <Link to="/explore">More</Link>
@@ -59,14 +59,13 @@ function Home() {
                         return <CategoryComponent key={index} category={item} />
                     })}
                 </Box>
-            </Box>
+            </Box> */}
             <Box sx={styles.productsContainer}>
                 <Box sx={styles.exploreTextContainer}>
                     <Link to="/explore">Explore</Link>
                 </Box>
                 <Box sx={styles.products}>
                     {products?.map((item, index) => {
-                        if(index >= 10){return};
                         return <HomeProduct product={item} key={index} />
                     })}
                 </Box>
@@ -78,4 +77,4 @@ function Home() {
     )
 }
 
-export default Home
+export default Explore;

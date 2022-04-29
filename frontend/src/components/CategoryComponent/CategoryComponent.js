@@ -26,7 +26,7 @@ function CategoryComponent(props) {
     return (
         <Box sx={styles.container}>
             <img src={`${serverAddress + product?.filename}`}></img>
-            <Typography sx={styles.title}>{category}</Typography>
+            <Typography sx={styles.title}>{category.toUpperCase()}</Typography>
         </Box>
     )
 }

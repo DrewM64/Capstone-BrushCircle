@@ -20,6 +20,7 @@ function Header() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const styles = makeStyles(user);
+  const serverAddress = useSelector(state => state.Home.serverAddress);
 
   const onSearchButtonClicked = (event) => {
     dispatch(search(query));
@@ -31,6 +32,10 @@ function Header() {
 
   const onHomeButtonClicked = (event) => {
     navigate("/");
+  }
+
+  const onExploreButtonClicked = (event) => {
+    navigate("/explore");
   }
 
   const onSignupButtonClicked = (event) => {
@@ -66,10 +71,10 @@ function Header() {
           >
           </TextField>
           <Button color="inherit" onClick={onHomeButtonClicked}>Home</Button>
-          <Button color="inherit">Explore</Button>
+          <Button color="inherit" onClick={onExploreButtonClicked}>Explore</Button>
           <Button color="inherit" onClick={onSignupButtonClicked} sx={styles.signupButton}>Signup</Button>
           <Button color="inherit" onClick={onLoginButtonClicked} sx={styles.loginButton}>Login</Button>
-          {user?.profileImage ? <IconButton sx={styles.profileButton} onClick={onProfileButtonClicked}><img src={profileImage}></img></IconButton> : <IconButton onClick={onProfileButtonClicked}><AccountCircleIcon/></IconButton>}
+          {user?.profileImageName ? <IconButton sx={styles.profileButton} onClick={onProfileButtonClicked}><img src={serverAddress + user?.profileImageName}></img></IconButton> : <IconButton onClick={onProfileButtonClicked}><AccountCircleIcon/></IconButton>}
         </Toolbar>
       </AppBar>
     </Box>

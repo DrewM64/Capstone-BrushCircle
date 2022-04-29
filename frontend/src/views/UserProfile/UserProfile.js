@@ -66,7 +66,7 @@ function UserProfile() {
           <Box sx={styles.featuredContainer} mb={4}>
             <Typography mb={2}>Featured Images</Typography>
             <Box sx={styles.featuredImages}>
-              {userProfileProducts.map((item, index) => {
+              {userProfileProducts?.map((item, index) => {
                 if(!item.featured){return null}
                 return <FeaturedImage key={index} action={onItemClicked} product={item} />
               })}
@@ -75,7 +75,7 @@ function UserProfile() {
           <Box sx={styles.galleryContainer}>
             <Typography mb={2}>Gallery</Typography>
             <Box sx={styles.galleryImages}>
-              {userProfileProducts.map((item, index) => {
+              {userProfileProducts?.map((item, index) => {
                 return <GalleryImage key={index} action={onItemClicked} product={item} />
               })}
             </Box>
