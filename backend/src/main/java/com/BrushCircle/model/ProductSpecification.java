@@ -27,9 +27,9 @@ public class ProductSpecification implements Specification<Product> {
             p.getExpressions().add(cb.equal(root.get("date"), filter.getDate()));
         }
 
-        if (filter.getPrice() != null) {
-            p.getExpressions().add(cb.equal(root.get("price"), filter.getPrice()));
-        }
+//        if (filter.getPrice() != 0) {
+//            p.getExpressions().add(cb.equal(root.get("price"), filter.getPrice()));
+//        }
 
         if (filter.getStyle() != null) {
             p.getExpressions().add(cb.equal(root.get("style"), filter.getStyle()));
