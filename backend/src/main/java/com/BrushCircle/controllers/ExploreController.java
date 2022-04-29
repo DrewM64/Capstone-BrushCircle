@@ -52,36 +52,25 @@ public class ExploreController {
     @Autowired
     ProductService productService;
 
-//    @ApiResponses(value = {
-//            @ApiResponse(code = 200, message = "OK", response = User.class),
-//            @ApiResponse(code = 400, message = "Bad Request", response = ErrorMessage.class),
-//            @ApiResponse(code = 401, message = "Unauthorized", response = ErrorMessage.class),
-//            @ApiResponse(code = 404, message = "Not Found", response = ErrorMessage.class),
-//            @ApiResponse(code = 500, message = "Internal Server Error", response = ErrorMessage.class)
-//    })
-//    @RequestMapping(
-//            value = "/home",
-//            method = RequestMethod.GET,
-//            produces = {MediaType.APPLICATION_JSON_VALUE},
-//            consumes = {MediaType.APPLICATION_JSON_VALUE})
-//    public ResponseEntity<?> randomImages() throws Exception {
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "OK", response = User.class),
+            @ApiResponse(code = 400, message = "Bad Request", response = ErrorMessage.class),
+            @ApiResponse(code = 401, message = "Unauthorized", response = ErrorMessage.class),
+            @ApiResponse(code = 404, message = "Not Found", response = ErrorMessage.class),
+            @ApiResponse(code = 500, message = "Internal Server Error", response = ErrorMessage.class)
+    })
+    @RequestMapping(
+            value = "/home",
+            method = RequestMethod.GET,
+            produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<?> randomImages() throws Exception {
 //        ProductDTO response = new ProductDTO();
-//        String[] styleList = productRepository.getStyles().toArray(new String[0]);
-//        List<String> categoryList = productService.removeStyleDuplicates(styleList);
-//        List<String> stylesAdded = new ArrayList<>();
-//        List<Product> productsAdded = new ArrayList<>();
-//        List<Product> allProductsFromStyle = new ArrayList<>();
-//        Collections.shuffle(categoryList);
-//        for (int i= 0; i < 4; i++) {
-//            String x = categoryList.get(i);
-//            stylesAdded.add(x);
-//            allProductsFromStyle = productRepository.findByStyle(x);
-//            Collections.shuffle(allProductsFromStyle);
-//            productsAdded.add(allProductsFromStyle.get(0));
-//        }
+        List<String> styleList = productRepository.getStyles();
+        List<String> categoryList = productService.removeStyleDuplicates(styleList);
+
 //        response.setStyles(stylesAdded);
 //        response.setProducts(productsAdded);
-//
-//        return new ResponseEntity<ProductDTO>(response, HttpStatus.OK);
-//    }
+
+        return new ResponseEntity<>(categoryList, HttpStatus.OK);
+    }
 }

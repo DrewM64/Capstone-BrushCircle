@@ -22,7 +22,7 @@ public interface ProductService {
 
     List<Product> getProductList(User currentUser) throws Exception;
 
-    List<String> removeStyleDuplicates(String[] styleList) throws Exception;
+    List<String> removeStyleDuplicates(List<String> styleList) throws Exception;
 
     String getFileNameNoExtension(String fileName);
 
