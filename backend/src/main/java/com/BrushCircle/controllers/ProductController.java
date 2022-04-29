@@ -85,7 +85,7 @@ public class ProductController {
     })
     @RequestMapping(
             value = "/get",
-            method = RequestMethod.GET,
+            method = RequestMethod.POST,
             produces = {MediaType.APPLICATION_JSON_VALUE},
             consumes = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<?> getProduct(
