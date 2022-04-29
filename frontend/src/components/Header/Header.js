@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -7,16 +7,23 @@ import Button from '@mui/material/Button';
 import SearchIcon from '@mui/icons-material/Search';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { IconButton, InputAdornment, TextField } from '@mui/material';
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
 import makeStyles from './styles';
+import { search } from '../../actions/homeActions';
 
 function Header() {
   const profileImage = useSelector(state => state.Authentication.profilePhoto);
   const user = useSelector(state => state.Authentication.user);
+  const [query, setQuery] = useState("");
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const styles = makeStyles(user);
+
+  const onSearchButtonClicked = (event) => {
+    dispatch(search(query));
+  }
 
   const onProfileButtonClicked = (event) => {
     navigate("/app/useraccount");
@@ -32,6 +39,10 @@ function Header() {
 
   const onLoginButtonClicked = (event) => {
     navigate("/login");
+  }
+
+  const onQueryChanged = (event) => {
+    setQuery(event.target.value);
   }
 
   return (
@@ -50,6 +61,8 @@ function Header() {
             InputProps={{
               startAdornment: <InputAdornment position='start'><SearchIcon /></InputAdornment>
             }}
+            value={query}
+            onChange={onQueryChanged}
           >
           </TextField>
           <Button color="inherit" onClick={onHomeButtonClicked}>Home</Button>

@@ -1,5 +1,8 @@
 import * as types from '../redux/constants';
 import { getAllProducts, fetchHomeData, fetchExploreData, fetchSearchResults, getUser, getProduct } from "../api/api";
+import debug from 'debug';
+
+const output = debug("home")
 
 export const getProductsList = () => async (dispatch) => {
     try {
@@ -31,6 +34,7 @@ export const getExploreData = () => async (dispatch) => {
 export const search = (query) => async (dispatch) => {
     try {
         const response = await fetchSearchResults(query);
+        output("Search Results", response.data);
         dispatch({type: types.SEARCH_RESULTS_RECIEVED, payload: response.data});
     } catch (error) {
         console.log(error);

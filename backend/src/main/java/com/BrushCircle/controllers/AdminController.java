@@ -153,7 +153,7 @@ public class AdminController {
     })
     @RequestMapping(
             value = "/deleteuser",
-            method = RequestMethod.DELETE,
+            method = RequestMethod.POST,
             produces = {MediaType.APPLICATION_JSON_VALUE},
             consumes = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<?> deleteUserData(
