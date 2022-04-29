@@ -4,12 +4,14 @@ import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 import ArrowBackOutlinedIcon from '@mui/icons-material/ArrowBackOutlined';
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
 import { DesktopDatePicker } from '@mui/x-date-pickers';
+import { debug } from 'debug';
 
 import makeStyles from './styles'
 import AdminGalleryItem from './AdminGalleryItem/AdminGalleryItem';
+import { getAllUsers, searchUsers } from '../../../actions/adminActions';
 
 function AdminPanel(props) {
     const { value, index } = props;
@@ -19,8 +21,12 @@ function AdminPanel(props) {
     const [isUserProductSelected, setIsUserProductSelected] = useState(false);
     const [toggleInfoEdit, setToggleInfoEdit] = useState(false);
     const [toggleProductEdit, setToggleProductEdit] = useState(false);
+    const [query, setQuery] = useState("");
     const user = useSelector(state => state.Authentication.user);
     const nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18];
+    const output = debug("admin");
+    const usersArray = useSelector(state => state.Admin.usersArray);
+    const dispatch = useDispatch();
 
     //state variables are passed to this style function to update the UI
     const styles = makeStyles(
@@ -35,7 +41,16 @@ function AdminPanel(props) {
     );
 
     const onTableRowClicked = (event) => {
+        output(event.target.childNodes[0].data);
         setIsUserSelected(true);
+    }
+
+    const onSearchButtonClicked = (event) => {
+        if(query === ""){
+            dispatch(getAllUsers(user));
+        }else{
+            dispatch(searchUsers({user, filter: query}));
+        }
     }
 
     const onMainBackButtonClicked = (event) => {
@@ -70,6 +85,10 @@ function AdminPanel(props) {
         setToggleInfoEdit(false);
     }
 
+    const onQueryChanged = (event) => {
+        setQuery(event.target.value);
+    }
+
     const onDeleteButtonClicked = (event) => {
 
     }
@@ -89,13 +108,15 @@ function AdminPanel(props) {
                         InputProps={{
                             startAdornment: <InputAdornment position='start'><SearchIcon /></InputAdornment>
                         }}
+                        value={query}
+                        onChange={onQueryChanged}
                     />
-                    <Button variant='contained' >Search</Button>
+                    <Button variant='contained' onClick={onSearchButtonClicked}>Search</Button>
                     <Button variant='contained' sx={styles.addUserButton}><PersonAddAltIcon /></Button>
                 </Box>
                 <hr id="searchHR" />
                 <Box sx={styles.resultsContainer}>
-                    <Typography>7 Results</Typography>
+                    <Typography>{usersArray?.length} {usersArray && "results"}</Typography>
                     <TableContainer component={Paper}>
                         <Table>
                             <TableHead>
@@ -105,10 +126,10 @@ function AdminPanel(props) {
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {nums.map((val, index) => (
+                                {usersArray?.map((item, index) => (
                                     <TableRow key={index} sx={styles.tableRow} onClick={onTableRowClicked}>
-                                        <TableCell>{val}</TableCell>
-                                        <TableCell>{val}</TableCell>
+                                        <TableCell>{item?.email}</TableCell>
+                                        <TableCell>{item?.id}</TableCell>
                                     </TableRow>
                                 ))}
                             </TableBody>

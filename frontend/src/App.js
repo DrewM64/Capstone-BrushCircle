@@ -17,7 +17,7 @@ import { useSelector } from 'react-redux';
 function App() {
   const [messasge, setMessage] = useState("Hi");
   const user = useSelector(state => state.Authentication.user);
-  localStorage.setItem("debug", "product, auth");
+  localStorage.setItem("debug", "product, auth, admin");
 
   useEffect(() => {
     // axios.get('http://localhost:8080/')
