@@ -6,10 +6,9 @@ const output = debug("product");
 
 export const uploadFile = (formData) => async (dispatch) => {
     try {
-        output("Upload Data", formData);
         const response = await uploadFileToServer(formData);
-        dispatch({type: types.USER_INFO_FETCHED, payload: response.data.user});
-        dispatch({type: types.PRODUCT_UPLOADED, payload: response.data.productsArray});
+        output("Upload Response", formData);
+        dispatch({type: types.PRODUCT_UPLOADED, payload: response.data});
     } catch (error) {
         console.log(error);
     }

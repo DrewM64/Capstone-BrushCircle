@@ -23,7 +23,7 @@ function Header() {
   }
 
   const onHomeButtonClicked = (event) => {
-    navigate("/userprofile");
+    navigate("/");
   }
 
   const onSignupButtonClicked = (event) => {
