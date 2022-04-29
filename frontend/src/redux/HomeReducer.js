@@ -9,7 +9,7 @@ const initialState = {
     userProfileObject: null,
     userProfileProducts: null,
     selectedProduct: null,
-    serverAddress: "/",
+    serverAddress: "http://localhost:8000/",
 }
 
 export default function(state = initialState, action){

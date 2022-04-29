@@ -33,14 +33,16 @@ function GalleryPanel(props) {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        setTitle(selectedProduct.title);
-        setDate(selectedProduct.date);
-        setPrice(selectedProduct.price);
-        setFeatured(selectedProduct.featured);
-        setDescription(selectedProduct.description);
-        setWidth(selectedProduct.width);
-        setLength(selectedProduct.length);
-        setTags(selectedProduct.tags);
+        if (selectedProduct) {
+            setTitle(selectedProduct.title);
+            setDate(selectedProduct.date);
+            setPrice(selectedProduct.price);
+            setFeatured(selectedProduct.featured);
+            setDescription(selectedProduct.description);
+            setWidth(selectedProduct.width);
+            setLength(selectedProduct.length);
+            setTags(selectedProduct.tags);
+        }
     }, [selectedProduct]);
 
     useEffect(() => {
@@ -85,7 +87,7 @@ function GalleryPanel(props) {
             tags,
         }
 
-        const data = {user, product: tempProduct};
+        const data = { user, product: tempProduct };
 
         dispatch(updateGalleryProduct(data));
     }
@@ -167,24 +169,24 @@ function GalleryPanel(props) {
                 </Box>
                 <Box sx={isEditOpen ? styles.sidebarInfoContainer : styles.sidebarInfoContainerHidden}>
                     <Box sx={styles.imageContainer}>
-                        {productList && <img src={serverAddress + selectedProduct.filename} alt='selected image'></img>}
+                        {productList && <img src={serverAddress + selectedProduct?.filename} alt='selected image'></img>}
                     </Box>
                     <Typography>Title</Typography>
-                    <Typography align='right'>{selectedProduct.title}</Typography>
+                    <Typography align='right'>{selectedProduct?.title}</Typography>
                     <Typography>Price</Typography>
-                    <Typography align='right'>{selectedProduct.price}</Typography>
+                    <Typography align='right'>{selectedProduct?.price}</Typography>
                     <Typography>Size</Typography>
-                    <Typography align='right'>{selectedProduct.width} x {selectedProduct.length}</Typography>
+                    <Typography align='right'>{selectedProduct?.width} x {selectedProduct?.length}</Typography>
                     <Typography>Tags</Typography>
-                    <Typography align='right'>{selectedProduct.tags}</Typography>
+                    <Typography align='right'>{selectedProduct?.tags}</Typography>
                     <Typography>Date Created</Typography>
-                    <Typography align='right'>{selectedProduct.date.toString()}</Typography>
+                    <Typography align='right'>{selectedProduct?.date.toString()}</Typography>
                     <Typography>Featured</Typography>
                     <Box id='toggleSwitchContainer' sx={styles.toggleSwitchContainer}>
-                        <Switch size='small' checked={selectedProduct.featured} ></Switch>
+                        <Switch size='small' checked={selectedProduct?.featured} ></Switch>
                     </Box>
                     <Typography sx={styles.descriptionLabel}>Description</Typography>
-                    <Typography sx={styles.descriptionText}>{selectedProduct.description}</Typography>
+                    <Typography sx={styles.descriptionText}>{selectedProduct?.description}</Typography>
                 </Box>
                 <Box sx={isEditOpen ? styles.sidebarFormContainerHidden : styles.sidebarFormContainer}>
                     <Box sx={styles.formGroup}>

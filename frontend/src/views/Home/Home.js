@@ -19,7 +19,7 @@ function Home() {
             <Box sx={styles.productsContainer}>
                 <Typography></Typography>
                 <Box sx={styles.products}>
-                    {products.map((item, index) => {
+                    {products?.map((item, index) => {
                         return <HomeProduct product={item} key={index} />
                     })}
                 </Box>

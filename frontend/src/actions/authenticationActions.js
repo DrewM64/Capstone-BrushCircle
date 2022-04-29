@@ -57,8 +57,9 @@ export const getUserData = (email) => async (dispatch) => {
     try {
         output("Get User", email);
         const response = await getUser(email);
+        output("Response Data", response.data);
         dispatch({type: types.USER_INFO_FETCHED, payload: response.data.user});
-        dispatch({type: types.USER_PRODUCT_LIST_RETRIEVED, payload: response.data.productsArray});
+        dispatch({type: types.USER_PRODUCT_LIST_RETRIEVED, payload: response.data.product});
     } catch (error) {
         console.log(error);
     }
