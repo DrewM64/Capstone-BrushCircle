@@ -1,14 +1,21 @@
 import { Box, Typography } from '@mui/material';
-import React from 'react'
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 
 import makeStyles from './styles';
 import Header from '../../components/Header/Header';
 import { useSelector } from 'react-redux';
 import HomeProduct from '../../components/HomeProduct/HomeProduct';
+import { getProductsList } from "../../actions/homeActions";
 
 function Home() {
     const styles = makeStyles();
     const products = useSelector(state => state.Home.allProductsArray);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getProductsList());
+    }, [])
 
     return (
         <Box sx={styles.container}>
