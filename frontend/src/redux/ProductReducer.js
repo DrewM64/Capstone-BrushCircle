@@ -1,8 +1,9 @@
 import * as types from '../redux/constants';
+import { mockProducts } from '../data/mockData';
 
 const initialState = {
-    userProductList: null,
-    gallerySelectedProduct: null,
+    userProductList: mockProducts,
+    gallerySelectedProduct: mockProducts[0],
 }
 
 export default function (state = initialState, action){

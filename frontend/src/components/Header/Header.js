@@ -26,6 +26,14 @@ function Header() {
     navigate("/userprofile");
   }
 
+  const onSignupButtonClicked = (event) => {
+    navigate("/register");
+  }
+
+  const onLoginButtonClicked = (event) => {
+    navigate("/login");
+  }
+
   return (
     <Box sx={styles.container}>
       <AppBar position="static" color='primaryButtonColor' elevation={0}>
@@ -46,9 +54,9 @@ function Header() {
           </TextField>
           <Button color="inherit" onClick={onHomeButtonClicked}>Home</Button>
           <Button color="inherit">Explore</Button>
-          <Button color="inherit" sx={styles.signupButton}>Signup</Button>
-          <Button color="inherit" sx={styles.loginButton}>Login</Button>
-          {user.profileImage ? <IconButton sx={styles.profileButton} onClick={onProfileButtonClicked}><img src={profileImage}></img></IconButton> : <IconButton onClick={onProfileButtonClicked}><AccountCircleIcon/></IconButton>}
+          <Button color="inherit" onClick={onSignupButtonClicked} sx={styles.signupButton}>Signup</Button>
+          <Button color="inherit" onClick={onLoginButtonClicked} sx={styles.loginButton}>Login</Button>
+          {user?.profileImage ? <IconButton sx={styles.profileButton} onClick={onProfileButtonClicked}><img src={profileImage}></img></IconButton> : <IconButton onClick={onProfileButtonClicked}><AccountCircleIcon/></IconButton>}
         </Toolbar>
       </AppBar>
     </Box>
