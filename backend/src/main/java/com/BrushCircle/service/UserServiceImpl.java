@@ -86,12 +86,12 @@ public class UserServiceImpl implements UserService {
         log.info("\nAdd Profile Picture");
         log.info("\nUser Info:      " + user);
         log.info("\nFile Info:      "
-                + "\n" + file.getOriginalFilename()
+                + "\n" + file.getOriginalFilename().replaceAll(" ", "-")
                 + "\n" + file.getContentType());
         User existing = userRepository.findByEmail(user.getEmail());
-        existing.setProfileImageName(file.getOriginalFilename());
+        existing.setProfileImageName(file.getOriginalFilename().replaceAll(" ", "-"));
         userRepository.save(existing);
-        Path fileNameAndPath = Paths.get(uploadDirectory, file.getOriginalFilename());
+        Path fileNameAndPath = Paths.get(uploadDirectory, file.getOriginalFilename().replaceAll(" ", "-"));
         Files.write(fileNameAndPath, file.getBytes());
         return existing;
     }

@@ -59,7 +59,7 @@ public class ProductController {
                 throw new Exception();
             }
 
-            String customTitle = productService.getFileNameNoExtension(file.getOriginalFilename());
+            String customTitle = productService.getFileNameNoExtension(file.getOriginalFilename().replaceAll(" ", "-"));
             log.info("\nTitle of Product is:  " + customTitle);
 
             List<Product> response = productService.registerProduct(user, file);

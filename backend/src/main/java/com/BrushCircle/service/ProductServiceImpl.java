@@ -40,12 +40,12 @@ public class ProductServiceImpl implements ProductService {
             User existingUser = userRepository.findByEmail(user.getEmail());
             log.info("\nExisting User Info:     " + existingUser);
 
-            Path fileNameAndPath = Paths.get(uploadDirectory, file.getOriginalFilename());
+            Path fileNameAndPath = Paths.get(uploadDirectory, file.getOriginalFilename().replaceAll(" ", "-"));
             Files.write(fileNameAndPath, file.getBytes());
-            String customTitle = getFileNameNoExtension(file.getOriginalFilename());
+            String customTitle = getFileNameNoExtension(file.getOriginalFilename().replaceAll(" ", "-"));
 
             product.setTitle(customTitle);
-            product.setFilename(file.getOriginalFilename());
+            product.setFilename(file.getOriginalFilename().replaceAll(" ", "-"));
             product.setDate(LocalDate.now());
             product.setPrice(0);
             product.setLength(0);
@@ -238,7 +238,7 @@ public class ProductServiceImpl implements ProductService {
     public void getLogs(User user, MultipartFile file, Product product){
         log.info("\nUser Info:      " + user);
         log.info("\nFile Info:      "
-                + "\n" + file.getOriginalFilename()
+                + "\n" + file.getOriginalFilename().replaceAll(" ", "-")
                 + "\n" + file.getContentType());
         if(!(product == null)) {
             log.info("\nProduct Info:   " + product);
