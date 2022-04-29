@@ -11,6 +11,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.BeanWrapper;
 import org.springframework.beans.BeanWrapperImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
 import java.nio.file.Files;
@@ -27,6 +28,8 @@ public class AdminServiceImpl implements AdminService{
 
     @Autowired
     ProductRepository productRepository;
+
+    CrudRepository crudRepository;
 
     @Override
     public List<User> getUsers(User admin) throws Exception {
@@ -79,19 +82,19 @@ public class AdminServiceImpl implements AdminService{
         UserSearchDTO result = new UserSearchDTO();
         User admin = userRepository.findByEmail(adminSearchDTO.getUser().getEmail());
         User target = userRepository.findByEmail(adminSearchDTO.getFilter()); //Assuming Filter equals Email Value
-        try {
-            if (target != null && admin.getRole().equals("ADMIN")) {
-                result.setMessage("User was found");
-                result.setUser(target);
-            } else {
-                throw new Exception();
-            }
-        } catch (Exception e) {
+
+        if (target == null || admin.getRole().equals("USER")) {
+            result.setMessage("User Not Found");
             log.info("\n[Error Found] Admin or Target was not found..."
-                    + "\n Admin Expected:   " + admin.getEmail()
-                    + "\n Results Retrieved:  " + result);
+                    + "\nAdmin Expected:        " + admin.getEmail()
+                    + "\nUser Expected:         " + adminSearchDTO.getFilter()
+                    + "\nResults Retrieved:    " + result);
+            return result;
         }
-        return  result;
+
+        result.setMessage("User was found");
+        result.setUser(target);
+        return result;
     }
 
     @Override
@@ -147,8 +150,8 @@ public class AdminServiceImpl implements AdminService{
             List<Product> productList = existingUser.getProducts();
 
             productList.forEach(product -> {
-                Product targetProduct = productRepository.findByTitle(product.getTitle());
-                productRepository.delete(targetProduct);
+                Optional<Product> targetProduct = productRepository.findById(product.getId());
+                targetProduct.ifPresent(value -> productRepository.delete(value));
             });
 
             userRepository.deleteById(existingUser.getId());

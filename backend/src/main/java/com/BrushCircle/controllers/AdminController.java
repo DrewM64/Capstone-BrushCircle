@@ -161,7 +161,7 @@ public class AdminController {
 //        @Valid
             @RequestBody AdminUpdateUserDTO updateUserDTO) throws Throwable {
         adminService.deleteUser(updateUserDTO);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>("Successful Delete",HttpStatus.OK);
     }
 
     @ApiResponses(value = {

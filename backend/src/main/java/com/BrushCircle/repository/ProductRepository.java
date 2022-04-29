@@ -1,7 +1,7 @@
 package com.BrushCircle.repository;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import com.BrushCircle.model.Product;
 //import com.BrushCircle.service.model.Product;
@@ -11,7 +11,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
-import org.springframework.web.multipart.MultipartFile;
 
 @RepositoryRestResource
 public interface ProductRepository extends CrudRepository <Product, Long>, JpaSpecificationExecutor<Product> {
@@ -20,6 +19,8 @@ public interface ProductRepository extends CrudRepository <Product, Long>, JpaSp
 
     // Fetch product by title
     Product findByTitle(@Param("title") String title);
+
+    Optional<Product> findById(@Param("id") Long id);
 
     Product findByFilename(@Param("filename") String filename);
 
@@ -42,6 +43,9 @@ public interface ProductRepository extends CrudRepository <Product, Long>, JpaSp
 //    List<Product> deleteProduct(Long productId);
 
     List<Product> findByUser(@Param("user") User user);
+
+    @Query("select case when count(p)> 0 then true else false end from Product p where lower(p.title) like lower(:title)")
+    boolean existsByTitle(@Param("title") String title);
 
 //    @Query("SELECT * FROM product")
 //    List<Product> findAllProducts();

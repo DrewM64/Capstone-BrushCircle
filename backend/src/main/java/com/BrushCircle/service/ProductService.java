@@ -12,7 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 
 public interface ProductService {
-    Product registerProduct(User user, Product product, MultipartFile file) throws Exception;
+    List<Product> registerProduct(User user, MultipartFile file) throws Exception;
 
     Product getProductInfo(Product product) throws Exception;
 
@@ -23,4 +23,8 @@ public interface ProductService {
     List<Product> getProductList(User currentUser) throws Exception;
 
     List<String> removeStyleDuplicates(String[] styleList) throws Exception;
+
+    String getFileNameNoExtension(String fileName);
+
+    void getLogs(User user, MultipartFile file, Product product);
 }
