@@ -58,7 +58,7 @@ function UserProfile() {
             </Box>
             <Box sx={styles.biographyContainer}>
               <Typography align='center'>Bio</Typography>
-              <Typography align='left' >{userProfileObject?.biography}</Typography>
+              <Typography variant='caption' align='left'>{userProfileObject?.biography}</Typography>
             </Box>
           </Box>
         </Box>
