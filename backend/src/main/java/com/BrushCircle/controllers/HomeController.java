@@ -37,24 +37,23 @@ public class HomeController {
     @Autowired
     ProductService productService;
 
-//    @ApiResponses(value = {
-//            @ApiResponse(code = 200, message = "OK", response = User.class),
-//            @ApiResponse(code = 400, message = "Bad Request", response = ErrorMessage.class),
-//            @ApiResponse(code = 401, message = "Unauthorized", response = ErrorMessage.class),
-//            @ApiResponse(code = 404, message = "Not Found", response = ErrorMessage.class),
-//            @ApiResponse(code = 500, message = "Internal Server Error", response = ErrorMessage.class)
-//    })
-//    @RequestMapping(
-//            value = "/popularcategories",
-//            method = RequestMethod.GET,
-//            produces = {MediaType.APPLICATION_JSON_VALUE},
-//            consumes = {MediaType.APPLICATION_JSON_VALUE})
-//    public ResponseEntity<?> popularCategories() throws Exception {
-//        String[] categoryList = productRepository.getStyles().toArray(new String[0]);
-//        List<String> returnedList = productService.removeStyleDuplicates(categoryList);
-//        Collections.shuffle(returnedList);
-//        return new ResponseEntity<>(returnedList, HttpStatus.OK);
-//    }
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "OK", response = User.class),
+            @ApiResponse(code = 400, message = "Bad Request", response = ErrorMessage.class),
+            @ApiResponse(code = 401, message = "Unauthorized", response = ErrorMessage.class),
+            @ApiResponse(code = 404, message = "Not Found", response = ErrorMessage.class),
+            @ApiResponse(code = 500, message = "Internal Server Error", response = ErrorMessage.class)
+    })
+    @RequestMapping(
+            value = "/popularcategories",
+            method = RequestMethod.GET,
+            produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<?> popularCategories() throws Exception {
+        List<String> categoryList = productRepository.getStyles();
+        List<String> returnedList = productService.removeStyleDuplicates(categoryList);
+        Collections.shuffle(returnedList);
+        return new ResponseEntity<>(returnedList, HttpStatus.OK);
+    }
 
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "OK", response = User.class),

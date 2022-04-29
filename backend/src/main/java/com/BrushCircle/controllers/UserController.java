@@ -176,7 +176,7 @@ public class UserController {
         value ="/get",
         method = RequestMethod.POST,
         produces = {MediaType.APPLICATION_JSON_VALUE},
-        consumes = {MediaType.ALL_VALUE})
+        consumes = {MediaType.APPLICATION_JSON_VALUE})
     @ResponseBody
     public ResponseEntity<UserDTO> getUserInfo(
 //        @RequestHeader(value = "Authorization") @ApiParam(required = true, value = "JWT Token to authorize request made by user") String authorization,

@@ -171,44 +171,11 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<String> removeStyleDuplicates(String[] styleList) throws Exception {
-        int i, j;
-        int k = 0;
-        boolean t = false;
-
-        for (i = 0; i < styleList.length; i++) {
-            for (j = 0; j < styleList.length; j++) {
-                if ((styleList[i].equals(styleList[j])) && (j > i)) {
-                    t = true;
-                }
-            }
-            if (t) {
-                k++;
-            }
-        }
-        String[] styleList1 = new String[k];
-        for (i = 0; i < styleList.length; i++) {
-            for (j = 0; j < styleList.length; j++) {
-                if (!(styleList[i].equals(styleList[j])) && (j > i)) {
-                    t = true;
-                }
-            }
-            if (t) {
-                styleList1[i] = styleList[i];
-                t = false;
-            }
-        }
-        try {
-            if (styleList1 == null) {
-                throw new Exception();
-            }
-            return List.of(styleList1);
-        } catch (Exception e) {
-            log.info("\n[Error Found] Styles Not Found..."
-                    + "\n Styles Expected:  " + styleList
-                    + "\n Styles Found:     " + styleList1);
-        }
-        return null;
+    public List<String> removeStyleDuplicates(List<String> styleList) throws Exception {
+        Set<String> set = new HashSet<>(styleList);
+        styleList.clear();
+        styleList.addAll(set);
+        return styleList;
     }
 
 //    public static String[] removeDuplicates(String arr[], String n)

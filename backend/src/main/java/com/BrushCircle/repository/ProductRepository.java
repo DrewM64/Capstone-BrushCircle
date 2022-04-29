@@ -50,6 +50,6 @@ public interface ProductRepository extends CrudRepository <Product, Long>, JpaSp
 //    @Query("SELECT * FROM product")
 //    List<Product> findAllProducts();
 
-//    @Query("SELECT style FROM product")
-//    ArrayList<String> getStyles();
+    @Query(value = "SELECT style FROM product", nativeQuery = true)
+    List<String> getStyles();
 }

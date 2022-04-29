@@ -55,8 +55,7 @@ public class SearchController {
     @RequestMapping(
             value = "/search",
             method = RequestMethod.GET,
-            produces = {MediaType.APPLICATION_JSON_VALUE},
-            consumes = {MediaType.APPLICATION_JSON_VALUE})
+            produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<?> searchProducts(@RequestBody FilterProductDTO filterDTO) {
 
 //        Specification<Product> spec = new ProductSpecification(filter);
