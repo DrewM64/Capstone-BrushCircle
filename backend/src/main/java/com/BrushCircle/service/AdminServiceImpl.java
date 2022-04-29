@@ -35,7 +35,7 @@ public class AdminServiceImpl implements AdminService{
     public List<User> getUsers(User admin) throws Exception {
         log.info("Running Admin getUsers");
 
-//        List<User> userList = userRepository.getAllRegUsers(); //TODO Fix
+        //Get all users with the role "USER" *NOTE* Users with "ADMIN" role are not included
         List<User> userList = new ArrayList<>(userRepository.findAllByRole("USER"));
         try {
             for (User user: userList)
@@ -62,6 +62,7 @@ public class AdminServiceImpl implements AdminService{
         UserDTO result = new UserDTO();
         Optional<User> target = userRepository.findById(adminGetUserDataDTO.getFilter()); //Assuming Filter equals ID Value
         User admin = userRepository.findByEmail(adminGetUserDataDTO.getUser().getEmail());
+        //If Target User exist in DB and admin has correct role return target users info, and products
         try {
             if (target.isPresent() && admin.getRole().equals("ADMIN")) {
                 result.setUser(target.get());
@@ -92,6 +93,7 @@ public class AdminServiceImpl implements AdminService{
             return result;
         }
 
+        //If Target User is found return the users information, and a success message
         result.setMessage("User was found");
         result.setUser(target);
         return result;
@@ -105,6 +107,7 @@ public class AdminServiceImpl implements AdminService{
                 throw new Exception();
             }
 
+            //Create new user object using provided email & password then store into the database
             User newUser = new User(updateUserDTO.getUser().getEmail(), updateUserDTO.getUser().getPassword());
             userRepository.save(newUser);
             User registeredUser = userRepository.findByEmail(newUser.getEmail());
@@ -149,11 +152,12 @@ public class AdminServiceImpl implements AdminService{
 
             List<Product> productList = existingUser.getProducts();
 
+            //Delete all products under the user
             productList.forEach(product -> {
                 Optional<Product> targetProduct = productRepository.findById(product.getId());
                 targetProduct.ifPresent(value -> productRepository.delete(value));
             });
-
+            //Delete user by the users id provided
             userRepository.deleteById(existingUser.getId());
 
         } catch (Exception e) {
@@ -161,6 +165,8 @@ public class AdminServiceImpl implements AdminService{
         }
     }
 
+    //Created to simplify update functions for Users, Products, and Admins
+    //Clones objects, and updates values
     public static void copyNonNullProperties(Object src, Object target) {
         BeanUtils.copyProperties(src, target, getNullPropertyNames(src));
     }

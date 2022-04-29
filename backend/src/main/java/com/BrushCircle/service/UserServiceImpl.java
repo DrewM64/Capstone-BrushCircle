@@ -29,23 +29,6 @@ public class UserServiceImpl implements UserService {
     @Autowired
     UserRepository userRepository;
 
-//    public User registerUser(User newUser) throws Exception {
-//        log.info("Running RegisterUser");
-//        userRepository.save(newUser);
-//        User registeredUser = userRepository.findByEmail(newUser.getEmail());
-//        try {
-//            if (newUser == null) {
-//                throw new Exception();
-//            } else {
-//                return registeredUser;
-//            }
-//        } catch (Exception e) {
-//            log.info("\n[Error Found] User Email was not found..."
-//                    + "\n Email Expected:   " + newUser.getEmail());
-//        }
-//        return null;
-//    }
-
         public User registerUser(String email, String password) throws Exception {
         log.info("Running RegisterUser");
         User newUser = new User(email, password);

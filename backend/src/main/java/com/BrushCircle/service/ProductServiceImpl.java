@@ -125,6 +125,7 @@ public class ProductServiceImpl implements ProductService {
                         throw new Exception();
                     }
 
+                    //TODO Resolve in future iterations to delete the product images
 //                    log.info("\nDeleting Image");
 //                    Path fileNameAndPath = Paths.get(uploadDirectory, existingProduct.get().getFilename());
 //                    Files.delete(fileNameAndPath);
@@ -133,6 +134,7 @@ public class ProductServiceImpl implements ProductService {
                     productRepository.deleteById(existingProduct.get().getId());
                     userRepository.save(existingUser);
 
+                    //Set User, and Products Array to the DTO to return as a response
                     userDTO.setUser(existingUser);
                     userDTO.setProduct(existingUser.getProducts());
 
@@ -170,6 +172,8 @@ public class ProductServiceImpl implements ProductService {
         }
     }
 
+    //TODO Consider using dictionary
+    //Created to remove style duplicates when making request for a list of styles
     @Override
     public List<String> removeStyleDuplicates(List<String> styleList) throws Exception {
         Set<String> set = new HashSet<>(styleList);
