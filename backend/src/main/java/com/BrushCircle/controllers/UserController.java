@@ -2,10 +2,7 @@ package com.BrushCircle.controllers;
 
 //import com.BrushCircle.exception.InputFieldException;
 //import com.BrushCircle.mapper.UserMapper;
-import com.BrushCircle.dto.LoginFormDTO;
-import com.BrushCircle.dto.ProfilePhotoDTO;
-import com.BrushCircle.dto.RegisterFormDTO;
-import com.BrushCircle.dto.UserDTO;
+import com.BrushCircle.dto.*;
 import com.BrushCircle.model.ErrorMessage;
 import com.BrushCircle.model.Product;
 //import com.BrushCircle.payload.user.UserRequest;
@@ -179,13 +176,13 @@ public class UserController {
         value ="/get",
         method = RequestMethod.POST,
         produces = {MediaType.APPLICATION_JSON_VALUE},
-        consumes = {MediaType.APPLICATION_JSON_VALUE})
+        consumes = {MediaType.ALL_VALUE})
     @ResponseBody
     public ResponseEntity<UserDTO> getUserInfo(
 //        @RequestHeader(value = "Authorization") @ApiParam(required = true, value = "JWT Token to authorize request made by user") String authorization,
 //        @Valid
-            @RequestBody String email) throws Throwable {
-        UserDTO response = userService.getUserInfo(email);
+            @RequestBody FilterUserDTO filterDTO) throws Throwable {
+        UserDTO response = userService.getUserInfo(filterDTO.getFilter());
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 

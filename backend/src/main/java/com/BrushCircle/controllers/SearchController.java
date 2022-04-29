@@ -2,6 +2,8 @@ package com.BrushCircle.controllers;
 
 //import com.BrushCircle.exception.InputFieldException;
 //import com.BrushCircle.mapper.UserMapper;
+import com.BrushCircle.dto.FilterProductDTO;
+import com.BrushCircle.dto.FilterUserDTO;
 import com.BrushCircle.model.ErrorMessage;
 import com.BrushCircle.model.Product;
 //import com.BrushCircle.payload.user.UserRequest;
@@ -11,17 +13,13 @@ import com.BrushCircle.model.Product;
 //import graphql.ExecutionResult;
 //import graphql.servlet.internal.GraphQLRequest;
 //import lombok.RequiredArgsConstructor;
-import com.BrushCircle.model.ProductSpecification;
 import com.BrushCircle.model.User;
 import com.BrushCircle.repository.ProductRepository;
 import com.BrushCircle.service.ProductService;
-import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -30,7 +28,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 //import javax.validation.Valid;
-import javax.validation.Valid;
 import java.util.List;
 
 
@@ -60,12 +57,12 @@ public class SearchController {
             method = RequestMethod.GET,
             produces = {MediaType.APPLICATION_JSON_VALUE},
             consumes = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<?> searchProducts(@RequestBody String style) {
+    public ResponseEntity<?> searchProducts(@RequestBody FilterProductDTO filterDTO) {
 
 //        Specification<Product> spec = new ProductSpecification(filter);
 //        List<Product> result = productRepository.findAll(spec);
 
-        List<Product> result = productRepository.findByStyle(style);
+        List<Product> result = productRepository.findByStyle(filterDTO.getFilter());
 
         return new ResponseEntity<>(result, HttpStatus.OK);
     }

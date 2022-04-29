@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -54,22 +55,21 @@ public class HomeController {
 //        Collections.shuffle(returnedList);
 //        return new ResponseEntity<>(returnedList, HttpStatus.OK);
 //    }
-//
-//    @ApiResponses(value = {
-//            @ApiResponse(code = 200, message = "OK", response = User.class),
-//            @ApiResponse(code = 400, message = "Bad Request", response = ErrorMessage.class),
-//            @ApiResponse(code = 401, message = "Unauthorized", response = ErrorMessage.class),
-//            @ApiResponse(code = 404, message = "Not Found", response = ErrorMessage.class),
-//            @ApiResponse(code = 500, message = "Internal Server Error", response = ErrorMessage.class)
-//    })
-//    @RequestMapping(
-//            value = "/products",
-//            method = RequestMethod.GET,
-//            produces = {MediaType.APPLICATION_JSON_VALUE},
-//            consumes = {MediaType.APPLICATION_JSON_VALUE})
-//    public ResponseEntity<?> randomImages() {
-//        List<Product> productList = productRepository.findAllProducts();
-//        Collections.shuffle(productList);
-//        return new ResponseEntity<>(productList, HttpStatus.OK);
-//    }
+
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "OK", response = User.class),
+            @ApiResponse(code = 400, message = "Bad Request", response = ErrorMessage.class),
+            @ApiResponse(code = 401, message = "Unauthorized", response = ErrorMessage.class),
+            @ApiResponse(code = 404, message = "Not Found", response = ErrorMessage.class),
+            @ApiResponse(code = 500, message = "Internal Server Error", response = ErrorMessage.class)
+    })
+    @RequestMapping(
+            value = "/products",
+            method = RequestMethod.GET,
+            produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<List<Product>> randomImages() {
+        List<Product> productList = (List<Product>) productRepository.findAll();
+        Collections.shuffle(productList);
+        return new ResponseEntity<>(productList, HttpStatus.OK);
+    }
 }
