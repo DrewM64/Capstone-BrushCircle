@@ -2,7 +2,7 @@ import * as types from './constants';
 import { mockProducts } from '../data/mockData';
 
 const initialState = {
-    allProductsArray: mockProducts,
+    allProductsArray: null,
     homeCategoriesArray: null,
     exploreCategoriesArray: null,
     searchResultsArray: null,

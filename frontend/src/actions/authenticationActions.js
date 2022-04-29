@@ -1,8 +1,10 @@
-import axios from 'axios';
+import debug from "debug";
 
 import * as types from '../redux/constants';
-import { userData } from '../data/mockData'
+import { userData } from '../data/mockData';
 import { register, login, update, uploadProfilePhoto, resetProfilePhoto, getUser } from '../api/api';
+
+const output = debug("auth");
 
 export const uploadProfilePicture = (formData) => async (dispatch) => {
     //send to the backend
@@ -53,6 +55,7 @@ export const updateUser = (userInfo) => async (dispatch) => {
 
 export const getUserData = (email) => async (dispatch) => {
     try {
+        output("Get User", email);
         const response = await getUser(email);
         dispatch({type: types.USER_INFO_FETCHED, payload: response.data.user});
         dispatch({type: types.USER_PRODUCT_LIST_RETRIEVED, payload: response.data.productsArray});

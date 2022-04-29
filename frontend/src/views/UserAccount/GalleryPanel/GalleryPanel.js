@@ -10,6 +10,7 @@ import { Button, IconButton, Input, InputAdornment, Stack, Switch, TextField, Ty
 import GalleryItem from './GalleryItem/GalleryItem';
 import { DesktopDatePicker } from '@mui/x-date-pickers';
 import { updateGalleryProduct, uploadFile } from '../../../actions/productActions';
+import { getUserData } from '../../../actions/authenticationActions';
 
 function GalleryPanel(props) {
     const { value, index } = props;
@@ -41,6 +42,10 @@ function GalleryPanel(props) {
         setLength(selectedProduct.length);
         setTags(selectedProduct.tags);
     }, [selectedProduct]);
+
+    useEffect(() => {
+        dispatch(getUserData(user.email));
+    }, [])
 
     const onGalleryItemClicked = (index) => {
         setSelectedIndex(index);

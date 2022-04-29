@@ -1,5 +1,6 @@
-import { Box } from '@mui/material'
-import React, { useState } from 'react'
+import { Box } from '@mui/material';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
@@ -13,13 +14,16 @@ import AccountPanel from './AccountPanel/AccountPanel';
 import GalleryPanel from './GalleryPanel/GalleryPanel';
 import AdminPanel from './AdminPanel/AdminPanel';
 import styles from  './styles';
+import { getUserData } from '../../actions/authenticationActions';
 
 function UserViewAccount() {
     const [tabValue, setTabValue] = useState(0);
     const user = useSelector(state => state.Authentication.user);
+    const dispatch = useDispatch();
 
     const handleChange = (event, newValue) => {
         setTabValue(newValue);
+        dispatch(getUserData(user.email));
     }
 
     return (

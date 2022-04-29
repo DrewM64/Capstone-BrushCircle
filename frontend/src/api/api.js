@@ -9,7 +9,7 @@ export const login = (formData) => API.post('/user/login', formData);
 export const update = (newUserObject) => API.post('/user/update', newUserObject);
 export const uploadProfilePhoto = (formData) => API.post('/user/newprofilephoto', formData);
 export const resetProfilePhoto = (user) => API.post('/user/resetprofilephoto', user);
-export const getUser = (email) => API.post('/user/get', email);
+export const getUser = (email) => API.post('/user/get', email, {headers: {'Content-Type': 'application/json'}});
 
 // product
 export const uploadFileToServer = (formData) => API.post('/product/upload', formData);
