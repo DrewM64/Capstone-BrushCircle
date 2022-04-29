@@ -36,8 +36,10 @@ export const updateGalleryProduct = (data) => async (dispatch) => {
 
 export const deleteGalleryProduct = (data) => async (dispatch) => {
     try {
+        output("Deleted Product", data);
         const response = await deleteProduct(data);
-        dispatch({type: types.GALLERY_ITEM_DELETED, payload: response.data.productsArray});
+        output("Deleted Product Response", data);
+        dispatch({type: types.GALLERY_ITEM_DELETED, payload: response.data.product});
         dispatch({type: types.USER_INFO_FETCHED, payload: response.data.user});
     } catch (error) {
         console.log(error);

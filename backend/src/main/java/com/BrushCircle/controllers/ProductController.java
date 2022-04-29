@@ -125,7 +125,7 @@ public class ProductController {
     })
     @RequestMapping(
             value ="/delete",
-            method = RequestMethod.DELETE,
+            method = RequestMethod.POST,
             produces = {MediaType.APPLICATION_JSON_VALUE},
             consumes = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<?> deleteProduct(

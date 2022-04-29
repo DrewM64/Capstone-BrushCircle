@@ -74,7 +74,7 @@ function GalleryPanel(props) {
     }
 
     const onDeleteButtonPressed = (event) => {
-        dispatch(deleteGalleryProduct(selectedProduct));
+        dispatch(deleteGalleryProduct({user, product: selectedProduct}));
         setIsSidebarOpen(false);
         setSelectedIndex(null);
     }
