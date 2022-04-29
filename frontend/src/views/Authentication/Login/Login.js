@@ -8,8 +8,8 @@ import { loginUser } from '../../../actions/authenticationActions'
 import { useDispatch } from 'react-redux'
 
 function Login() {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const [email, setEmail] = useState("admin@aol.com");
+    const [password, setPassword] = useState("password");
     const styles = makeStyles();
     const dispatch = useDispatch();
 

@@ -1,8 +1,12 @@
 import * as types from '../redux/constants';
 import { uploadFileToServer, getProduct, updateProduct, deleteProduct } from "../api/api";
+import debug from "debug";
+
+const output = debug("product");
 
 export const uploadFile = (formData) => async (dispatch) => {
     try {
+        output("Upload Data", formData);
         const response = await uploadFileToServer(formData);
         dispatch({type: types.USER_INFO_FETCHED, payload: response.data.user});
         dispatch({type: types.PRODUCT_UPLOADED, payload: response.data.productsArray});
@@ -13,6 +17,7 @@ export const uploadFile = (formData) => async (dispatch) => {
 
 export const getGalleryProdctInfo = (product) => async (dispatch) => {
     try {
+        output("Product", product);
         const response = await getProduct(product);
         dispatch({type: types.GALLERY_ITEM_INFO_RETRIEVED, payload: response.data});
     } catch (error) {
@@ -22,6 +27,7 @@ export const getGalleryProdctInfo = (product) => async (dispatch) => {
 
 export const updateGalleryProduct = (data) => async (dispatch) => {
     try {
+        output("Update Data", data);
         const response = await updateProduct(data);
         dispatch({type: types.GALLERY_ITEM_INFO_UPDATED, payload: response.data})
     } catch (error) {

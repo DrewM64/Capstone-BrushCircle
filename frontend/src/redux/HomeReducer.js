@@ -1,13 +1,15 @@
 import * as types from './constants';
+import { mockProducts } from '../data/mockData';
 
 const initialState = {
-    allProductsArray: null,
+    allProductsArray: mockProducts,
     homeCategoriesArray: null,
     exploreCategoriesArray: null,
     searchResultsArray: null,
     userProfileObject: null,
     userProfileProducts: null,
     selectedProduct: null,
+    serverAddress: "/",
 }
 
 export default function(state = initialState, action){

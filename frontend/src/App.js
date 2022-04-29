@@ -10,12 +10,14 @@ import Login from './views/Authentication/Login/Login';
 import UserViewAccount from './views/UserAccount/UserAccount'
 import UserProfile from './views/UserProfile/UserProfile';
 import ImageView from './views/ImageView/ImageView';
+import Home from './views/Home/Home';
 import AppComponent from './components/AppComponent/AppComponent';
 import { useSelector } from 'react-redux';
 
 function App() {
   const [messasge, setMessage] = useState("Hi");
   const user = useSelector(state => state.Authentication.user);
+  localStorage.setItem("debug", "product");
 
   useEffect(() => {
     // axios.get('http://localhost:8080/')
@@ -26,12 +28,12 @@ function App() {
 
   return (
     <Routes>
-      <Route path='/' element={<Navigate to={"/login"} />} />
+      <Route path='/' element={<Home />} />
       <Route path='/register' element={user ? <Navigate to="/app/useraccount" /> : <Register />} />
       <Route path='/login' element={user ? <Navigate to="/app/useraccount" /> : <Login />} />
       <Route path='/userprofile' element={<UserProfile />} />
       <Route path='/imageview' element={<ImageView />} />
-      <Route path='/app' element={user ? <AppComponent /> : <Navigate to="/register" />}>
+      <Route path='/app' element={user ? <AppComponent /> : <Navigate to="/login" />}>
         <Route path='useraccount' element={<UserViewAccount />} />
       </Route>
 
